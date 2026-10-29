@@ -150,7 +150,6 @@
       flex-shrink: 0;
     }
 
-    /* SVG Icon Sizing */
     .icon-svg {
       width: 16px;
       height: 16px;
@@ -388,7 +387,7 @@
       border-color: rgba(255, 255, 255, 0.28);
     }
 
-    /* Custom File Upload Dropzone (Eliminates ugly browser 'Choose file' button) */
+    /* Custom File Upload Dropzone */
     .upload-dropzone {
       display: flex;
       align-items: center;
@@ -761,7 +760,7 @@
 
         <button class="nav-btn admin-tab" id="navAdminBtn" data-page="admin" onclick="navigate('admin')" style="display:none;">
           <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          <span>⚙️</span>
+          <span>Admin Console</span>
         </button>
       </nav>
 
@@ -785,13 +784,32 @@ const FALLBACK_AVATAR = "data:image/svg+xml;utf8," + encodeURIComponent(
   `<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120"><rect width="120" height="120" rx="24" fill="#171a21"/><circle cx="60" cy="46" r="20" fill="#4b5563"/><path d="M26 104c6-18 20-28 34-28s28 10 34 28" fill="#4b5563"/></svg>`
 );
 
-const LOGO_CONFIG = {
-  GOOGLE_SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbyr_zSADadx-_Yl3qbAv3EF_T16XQw7rGsn-Ofm_bw7WC_jcpn5t8VsraYT-lJAxnJUGg/exec',
+/**
+ * ============================================================================
+ * STEP 4: DISCORD ACTIVITY HANDSHAKE & CLOUDFLARE WORKER ROUTING
+ * ============================================================================
+ */
+const IS_DISCORD_ACTIVITY = window.location.hostname.endsWith('.discordsays.com');
 
-  ENCLAVE_HUB_LOGO: 'https://api.dicebear.com/7.x/shapes/svg?seed=EnclaveHub',
-  METRO_TV_LOGO:    'https://api.dicebear.com/7.x/identicon/svg?seed=MetroTV',
-  PUNT_LOGO:        'https://api.dicebear.com/7.x/identicon/svg?seed=PUNT',
-  KNOKNOX_LOGO:     'https://api.dicebear.com/7.x/identicon/svg?seed=KnokNox'
+if (IS_DISCORD_ACTIVITY) {
+  window.addEventListener('DOMContentLoaded', () => {
+    try {
+      // Sends the READY signal to the Discord Desktop/Mobile client so the Activity opens immediately
+      window.parent.postMessage([1, { cmd: 'SET_CONFIG', args: { use_interactive_pip: false }, nonce: '1' }], '*');
+    } catch (e) {}
+  });
+}
+
+const LOGO_CONFIG = {
+  // Automatically uses '/api' when launched inside Discord, or your Cloudflare Worker on normal browsers
+  GOOGLE_SCRIPT_URL: IS_DISCORD_ACTIVITY
+    ? '/api'
+    : 'https://enclave-api.dankj176.workers.dev',
+
+  ENCLAVE_HUB_LOGO: IS_DISCORD_ACTIVITY ? '/dicebear/7.x/shapes/svg?seed=EnclaveHub' : 'https://api.dicebear.com/7.x/shapes/svg?seed=EnclaveHub',
+  METRO_TV_LOGO:    IS_DISCORD_ACTIVITY ? '/dicebear/7.x/identicon/svg?seed=MetroTV'  : 'https://api.dicebear.com/7.x/identicon/svg?seed=MetroTV',
+  PUNT_LOGO:        IS_DISCORD_ACTIVITY ? '/dicebear/7.x/identicon/svg?seed=PUNT'     : 'https://api.dicebear.com/7.x/identicon/svg?seed=PUNT',
+  KNOKNOX_LOGO:     IS_DISCORD_ACTIVITY ? '/dicebear/7.x/identicon/svg?seed=KnokNox'  : 'https://api.dicebear.com/7.x/identicon/svg?seed=KnokNox'
 };
 
 const PLATFORM_SPECS = {
@@ -1450,7 +1468,6 @@ function renderPlatformView(platformKey) {
   const platformPosts = STATE.posts.filter(p => p.platform === platformKey && p.status === 'ACTIVE');
 
   return `
-    <!-- SLEEK NETWORK HEADER + COLLAPSIBLE STUDIO TRIGGER -->
     <div class="card" style="padding:14px 18px; border-top:2px solid ${spec.accentColor};">
       <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px;">
         <div style="display:flex; align-items:center; gap:12px;">
