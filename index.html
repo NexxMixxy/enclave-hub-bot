@@ -7,7 +7,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Enclave" />
   <meta name="theme-color" content="#090a0d" />
-  <title>ENCLAVE NETWORK</title>
+  <title>ENCLAVE</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -77,12 +77,13 @@
     .viewport-wrapper.mode-mobile .nav-btn { flex-direction: column; justify-content: center; align-items: center; padding: 6px 8px; gap: 3px; font-size: 0.64rem; width: auto; min-width: 54px; margin-top: 0; }
 
     .main-stage { flex: 1; overflow-y: auto; overflow-x: hidden; padding: 24px; display: flex; flex-direction: column; align-items: center; }
-    .stage-inner { width: 100%; max-width: 780px; display: flex; flex-direction: column; gap: 16px; }
+    .stage-inner { width: 100%; max-width: 800px; display: flex; flex-direction: column; gap: 16px; }
     .viewport-wrapper.mode-mobile .main-stage { padding: 12px; }
 
     .card { background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 18px; }
     .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
-    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 10px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(185px, 1fr)); gap: 10px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
 
     .badge { display: inline-flex; align-items: center; gap: 4px; padding: 2px 7px; border-radius: 6px; font-family: var(--font-mono); font-size: 0.68rem; font-weight: 600; background: var(--bg-elevated); color: var(--text-secondary); border: 1px solid var(--border-subtle); white-space: nowrap; }
     .badge.verified { background: rgba(6, 182, 212, 0.12); color: var(--accent-knok); border-color: rgba(6, 182, 212, 0.3); }
@@ -124,11 +125,23 @@
     .avatar-lg { width: 68px; height: 68px; border-radius: 50%; object-fit: cover; border: 2px solid var(--border-hover); flex-shrink: 0; background: var(--bg-elevated); }
     .post-caption { font-size: 0.9rem; line-height: 1.55; color: var(--text-primary); white-space: pre-wrap; word-break: break-word; }
 
-    .post-media-box { width: 100%; border-radius: 10px; overflow: hidden; background: #050608; border: 1px solid var(--border-subtle); display: flex; align-items: center; justify-content: center; max-height: 440px; }
+    .post-media-box { width: 100%; border-radius: 10px; overflow: hidden; background: #050608; border: 1px solid var(--border-subtle); display: flex; align-items: center; justify-content: center; max-height: 440px; min-height: 64px; position: relative; }
     .post-media-box img, .post-media-box video { max-width: 100%; max-height: 430px; width: auto; height: auto; object-fit: contain; display: block; margin: 0 auto; }
-    .post-media-box audio { width: 100%; margin: 12px; }
+    .post-media-box audio { width: 94%; margin: 14px auto; display: block; }
     .post-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; padding-top: 10px; border-top: 1px solid var(--border-subtle); }
     .shared-embed { background: var(--bg-input); border: 1px solid var(--border-subtle); border-left: 3px solid var(--text-secondary); padding: 10px 12px; border-radius: 6px; font-size: 0.8rem; }
+
+    /* Collapsible Comments Drawer */
+    .comments-drawer { background: var(--bg-input); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 12px; margin-top: 4px; display: flex; flex-direction: column; gap: 10px; }
+    .comment-item { display: flex; gap: 9px; align-items: flex-start; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 0.81rem; }
+    .comment-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+    /* Leaderboard Table */
+    .lb-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 12px; background: var(--bg-input); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); }
+    .lb-rank { width: 26px; height: 26px; border-radius: 6px; background: var(--bg-elevated); display: inline-flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 0.75rem; font-weight: 700; color: var(--accent-enclave); flex-shrink: 0; }
+
+    /* Quota Bar */
+    .quota-strip { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; padding: 9px 12px; background: var(--bg-input); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-secondary); }
 
     .chat-layout { display: grid; grid-template-columns: 240px 1fr; gap: 12px; min-height: 500px; }
     .viewport-wrapper.mode-mobile .chat-layout { grid-template-columns: 1fr; }
@@ -166,7 +179,7 @@
   <div class="app-shell">
     <header class="top-bar">
       <div class="brand-cluster">
-        <img id="cornerHubLogo" class="brand-logo" src="" alt="Enclave" onerror="this.src=FALLBACK_AVATAR" />
+        <img id="cornerHubLogo" class="brand-logo" src="" alt="Enclave" />
         <div>
           <div class="brand-title">ENCLAVE NETWORK</div>
           <div class="brand-sub">METRO.TV / PUNT / KNOKNOX</div>
@@ -202,15 +215,15 @@
 
         <div class="nav-section-label">Networks</div>
         <button class="nav-btn metro-tab" data-page="metrotv" id="navBtn_metrotv">
-          <img id="navMetroLogo" src="" alt="" onerror="this.src=FALLBACK_AVATAR" />
+          <img id="navMetroLogo" src="" alt="" />
           <span>Metro TV</span>
         </button>
         <button class="nav-btn punt-tab" data-page="punt" id="navBtn_punt">
-          <img id="navPuntLogo" src="" alt="" onerror="this.src=FALLBACK_AVATAR" />
+          <img id="navPuntLogo" src="" alt="" />
           <span>PUNT</span>
         </button>
         <button class="nav-btn knok-tab" data-page="knoknox" id="navBtn_knoknox">
-          <img id="navKnokLogo" src="" alt="" onerror="this.src=FALLBACK_AVATAR" />
+          <img id="navKnokLogo" src="" alt="" />
           <span>KnokNox</span>
         </button>
 
@@ -238,6 +251,13 @@ const FALLBACK_AVATAR = "data:image/svg+xml;utf8," + encodeURIComponent(
   `<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120"><rect width="120" height="120" rx="24" fill="#171a21"/><circle cx="60" cy="46" r="20" fill="#4b5563"/><path d="M26 104c6-18 20-28 34-28s28 10 34 28" fill="#4b5563"/></svg>`
 );
 
+// CSP-Safe Global Image Fallback Listener (replaces inline onerror attributes)
+window.addEventListener('error', (e) => {
+  if (e.target && e.target.tagName === 'IMG' && e.target.src !== FALLBACK_AVATAR) {
+    e.target.src = FALLBACK_AVATAR;
+  }
+}, true);
+
 const IS_DISCORD_ACTIVITY = window.location.hostname.endsWith('.discordsays.com');
 if (IS_DISCORD_ACTIVITY) {
   window.addEventListener('DOMContentLoaded', () => {
@@ -254,26 +274,34 @@ const LOGO_CONFIG = {
 };
 
 const PLATFORM_SPECS = {
-  METROTV: { name: 'Metro TV', sub: 'Long-Form Video & Studio Drops', badgeClass: 'metro', btnClass: 'btn-metro', accentColor: 'var(--accent-metro)', maxDurationSec: 600, targetMaxW: 640, targetMaxH: 360, bestResolution: '640×360 (16:9)', logoKey: 'METRO_TV_LOGO' },
-  PUNT: { name: 'PUNT', sub: 'Live Streams, Ranked Grinds & IRL Broadcasts', badgeClass: 'punt', btnClass: 'btn-punt', accentColor: 'var(--accent-punt)', maxDurationSec: 300, targetMaxW: 640, targetMaxH: 360, bestResolution: '640×360 (Live VOD)', logoKey: 'PUNT_LOGO' },
-  KNOKNOX: { name: 'KnokNox', sub: 'Short-Form Algorithmic Vertical Feed', badgeClass: 'knoknox', btnClass: 'btn-knok', accentColor: 'var(--accent-knok)', maxDurationSec: 60, targetMaxW: 360, targetMaxH: 640, bestResolution: '360×640 (9:16)', logoKey: 'KNOKNOX_LOGO' }
+  METROTV: { name: 'Metro TV', sub: 'Long-Form Video & Studio Drops', badgeClass: 'metro', btnClass: 'btn-metro', accentColor: 'var(--accent-metro)', maxDurationSec: 600, targetMaxW: 640, targetMaxH: 360, bestResolution: '640×360 (16:9)', logoKey: 'METRO_TV_LOGO', folKey: 'metroFollowers' },
+  PUNT: { name: 'PUNT', sub: 'Live Streams, Ranked Grinds & IRL Broadcasts', badgeClass: 'punt', btnClass: 'btn-punt', accentColor: 'var(--accent-punt)', maxDurationSec: 300, targetMaxW: 640, targetMaxH: 360, bestResolution: '640×360 (Live VOD)', logoKey: 'PUNT_LOGO', folKey: 'puntFollowers' },
+  KNOKNOX: { name: 'KnokNox', sub: 'Short-Form Algorithmic Vertical Feed', badgeClass: 'knoknox', btnClass: 'btn-knok', accentColor: 'var(--accent-knok)', maxDurationSec: 60, targetMaxW: 360, targetMaxH: 640, bestResolution: '360×640 (9:16)', logoKey: 'KNOKNOX_LOGO', folKey: 'knoknoxFollowers' }
 };
 
 const ICONS = {
   check: `<svg class="icon-svg" style="width:13px;height:13px;" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>`,
   up: `<svg class="icon-svg" style="width:14px;height:14px;" viewBox="0 0 24 24"><path d="m18 15-6-6-6 6"/></svg>`,
   down: `<svg class="icon-svg" style="width:14px;height:14px;" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>`,
+  comment: `<svg class="icon-svg" style="width:14px;height:14px;" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>`,
   repost: `<svg class="icon-svg" style="width:14px;height:14px;" viewBox="0 0 24 24"><path d="m17 2 4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14"/><path d="m7 22-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/></svg>`,
   share: `<svg class="icon-svg" style="width:14px;height:14px;" viewBox="0 0 24 24"><path d="M22 2 11 13"/><path d="m22 2-7 20-4-9-9-4 20-7z"/></svg>`,
   flag: `<svg class="icon-svg" style="width:14px;height:14px;" viewBox="0 0 24 24"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" x2="4" y1="22" y2="15"/></svg>`,
-  upload: `<svg class="icon-svg" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>`
+  upload: `<svg class="icon-svg" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>`,
+  trophy: `<svg class="icon-svg" style="width:14px;height:14px;" viewBox="0 0 24 24"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>`
 };
+
+// In-memory Blob URL cache so video/audio streams only fetch once per session
+const MEDIA_BLOB_CACHE = {};
 
 let STATE = {
   viewportMode: localStorage.getItem('enclave_viewport_mode') || 'desktop',
   currentPage: 'profile',
   authTab: 'login',
   composerOpen: false,
+  leaderboardOpen: false,
+  leaderboardSort: 'followers', // followers | posts | upvotes | downvotes
+  openCommentsMap: {}, // postId -> boolean
   currentUser: null,
   users: [],
   posts: [],
@@ -300,6 +328,85 @@ function showLoading(subText) {
 function hideLoading() {
   STATE.isBusy = false;
   document.getElementById('loadingOverlay').classList.remove('active');
+}
+
+/**
+ * Converts Base64 DataURL into a native Browser Blob URL (`blob:...`)
+ * so <video> and <audio> tags play smoothly without CSP or length limits.
+ */
+function dataUrlToBlobUrl(dataUrl) {
+  try {
+    const parts = dataUrl.split(',');
+    const mimeMatch = parts[0].match(/:(.*?);/);
+    const mime = mimeMatch ? mimeMatch[1] : 'application/octet-stream';
+    const bstr = atob(parts[1]);
+    let n = bstr.length;
+    const u8arr = new Uint8Array(n);
+    while (n--) {
+      u8arr[n] = bstr.charCodeAt(n);
+    }
+    const blob = new Blob([u8arr], { type: mime });
+    return URL.createObjectURL(blob);
+  } catch (e) {
+    return dataUrl;
+  }
+}
+
+/**
+ * Hydrates all <video> and <audio> elements that use `gdrive:` or `data:` streams into playable Blob URLs!
+ */
+async function hydrateMediaStreams() {
+  const mediaEls = document.querySelectorAll('[data-stream-src]');
+  for (const el of mediaEls) {
+    const rawSrc = el.getAttribute('data-stream-src');
+    if (!rawSrc || el.getAttribute('data-hydrated') === '1') continue;
+    el.setAttribute('data-hydrated', '1');
+
+    if (MEDIA_BLOB_CACHE[rawSrc]) {
+      el.src = MEDIA_BLOB_CACHE[rawSrc];
+      continue;
+    }
+
+    if (rawSrc.startsWith('data:')) {
+      const blobUrl = dataUrlToBlobUrl(rawSrc);
+      MEDIA_BLOB_CACHE[rawSrc] = blobUrl;
+      el.src = blobUrl;
+      continue;
+    }
+
+    // Handle gdrive:FILE_ID:MIME or legacy drive.google.com/uc?id=FILE_ID
+    let fileId = '';
+    let mimeType = el.tagName === 'AUDIO' ? 'audio/mpeg' : 'video/mp4';
+    if (rawSrc.startsWith('gdrive:')) {
+      const bits = rawSrc.split(':');
+      fileId = bits[1] || '';
+      if (bits[2]) mimeType = bits[2];
+    } else {
+      const m = rawSrc.match(/[?&]id=([a-zA-Z0-9_-]+)/);
+      if (m && m[1]) fileId = m[1];
+    }
+
+    if (fileId) {
+      try {
+        const scriptUrl = (LOGO_CONFIG.GOOGLE_SCRIPT_URL || '').trim();
+        const resp = await fetch(scriptUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify({ action: 'getMedia', fileId, mimeType })
+        });
+        const res = await resp.json();
+        if (res && res.ok && res.dataUrl) {
+          const blobUrl = dataUrlToBlobUrl(res.dataUrl);
+          MEDIA_BLOB_CACHE[rawSrc] = blobUrl;
+          el.src = blobUrl;
+        }
+      } catch (err) {
+        console.warn('Stream fetch error:', err);
+      }
+    } else {
+      el.src = rawSrc;
+    }
+  }
 }
 
 function autoResizeImageFile(file, maxWidth, maxHeight, quality) {
@@ -346,6 +453,14 @@ function fixMediaUrl(url) {
   return str;
 }
 
+function formatCountdownUntil(isoTarget) {
+  if (!isoTarget) return 'Soon';
+  const diff = Math.max(0, new Date(isoTarget).getTime() - Date.now());
+  const hrs = Math.floor(diff / 3600000);
+  const mins = Math.floor((diff % 3600000) / 60000);
+  return hrs + 'h ' + mins + 'm';
+}
+
 window.addEventListener('DOMContentLoaded', () => {
   const savedLogos = localStorage.getItem('enclave_cached_logos');
   if (savedLogos) {
@@ -354,7 +469,6 @@ window.addEventListener('DOMContentLoaded', () => {
   applyLogos();
   applyViewportMode(STATE.viewportMode);
 
-  // Event Listeners for Global Buttons
   document.getElementById('viewportToggleBtn').addEventListener('click', toggleViewportMode);
   document.getElementById('syncBtn').addEventListener('click', () => refreshFromServer(true));
   document.getElementById('logoutBtn').addEventListener('click', logout);
@@ -493,6 +607,7 @@ function logout() {
 function navigate(page) {
   STATE.currentPage = page;
   STATE.composerOpen = false;
+  STATE.leaderboardOpen = false;
   STATE.pendingMedia = { dataUrl: '', mediaType: 'none', durationSec: 0, resolution: '' };
   document.querySelectorAll('.nav-btn').forEach(btn => {
     btn.classList.toggle('active', btn.dataset.page === page);
@@ -513,7 +628,7 @@ async function handleMediaFileSelect(inputEl, platformKey) {
     try {
       const resized = await autoResizeImageFile(file, spec.targetMaxW, spec.targetMaxH, 0.76);
       STATE.pendingMedia = { dataUrl: resized.dataUrl, mediaType: 'image', durationSec: 0, resolution: resized.resolution };
-      if (statusEl) statusEl.innerHTML = `<span style="color:var(--success);">Attached (${resized.resolution})</span>`;
+      if (statusEl) statusEl.innerHTML = `<span style="color:var(--success);">Image Ready (${resized.resolution})</span>`;
       if (previewEl) {
         previewEl.style.display = 'flex';
         previewEl.innerHTML = `<img src="${resized.dataUrl}" alt="Preview" />`;
@@ -524,18 +639,23 @@ async function handleMediaFileSelect(inputEl, platformKey) {
       hideLoading();
     }
   } else if (file.type.startsWith('video/') || file.type.startsWith('audio/')) {
+    if (file.size > 22 * 1024 * 1024) {
+      inputEl.value = '';
+      showToast('Please keep video/audio files under 22MB for smooth streaming.');
+      return;
+    }
     const isVideo = file.type.startsWith('video/');
-    const tempUrl = URL.createObjectURL(file);
+    const tempBlobUrl = URL.createObjectURL(file);
     const mediaEl = document.createElement(isVideo ? 'video' : 'audio');
     mediaEl.preload = 'metadata';
 
-    showLoading('Verifying Media...');
+    showLoading('Verifying Media Stream...');
     mediaEl.onloadedmetadata = () => {
       const dur = Math.round(mediaEl.duration || 0);
-      const res = isVideo ? (mediaEl.videoWidth + '×' + mediaEl.videoHeight) : 'Audio';
-      URL.revokeObjectURL(tempUrl);
+      const res = isVideo ? (mediaEl.videoWidth + '×' + mediaEl.videoHeight) : 'MP3/Audio';
 
       if (dur > spec.maxDurationSec) {
+        URL.revokeObjectURL(tempBlobUrl);
         hideLoading();
         STATE.pendingMedia = { dataUrl: '', mediaType: 'none', durationSec: 0, resolution: '' };
         inputEl.value = '';
@@ -548,12 +668,22 @@ async function handleMediaFileSelect(inputEl, platformKey) {
       reader.onload = ev => {
         hideLoading();
         STATE.pendingMedia = { dataUrl: ev.target.result, mediaType: isVideo ? 'video' : 'audio', durationSec: dur, resolution: res };
-        if (statusEl) statusEl.innerHTML = `<span style="color:var(--success);">Ready (${dur}s • ${res})</span>`;
+        if (statusEl) statusEl.innerHTML = `<span style="color:var(--success);">Stream Verified (${dur}s • ${res})</span>`;
+        if (previewEl) {
+          previewEl.style.display = 'flex';
+          previewEl.innerHTML = isVideo
+            ? `<video src="${tempBlobUrl}" controls playsinline></video>`
+            : `<audio src="${tempBlobUrl}" controls></audio>`;
+        }
       };
       reader.readAsDataURL(file);
     };
-    mediaEl.onerror = () => { hideLoading(); showToast('Unsupported media format.'); };
-    mediaEl.src = tempUrl;
+    mediaEl.onerror = () => {
+      URL.revokeObjectURL(tempBlobUrl);
+      hideLoading();
+      showToast('Unsupported video/audio format. Use MP4, WebM, or MP3.');
+    };
+    mediaEl.src = tempBlobUrl;
   }
 }
 
@@ -572,9 +702,27 @@ function render() {
     case 'knoknox': stage.innerHTML = renderPlatformView('KNOKNOX'); bindPlatformEvents('KNOKNOX'); break;
     case 'search': stage.innerHTML = renderSearchView(); bindSearchEvents(); break;
     case 'connections': stage.innerHTML = renderConnectionsView(); bindChatEvents(); break;
-    case 'admin': stage.innerHTML = STATE.currentUser.isAdmin ? renderAdminView() : renderProfileView(); if(STATE.currentUser.isAdmin) bindAdminEvents(); break;
+    case 'admin': stage.innerHTML = STATE.currentUser.isAdmin ? renderAdminView() : renderProfileView(); if (STATE.currentUser.isAdmin) bindAdminEvents(); break;
     default: stage.innerHTML = renderProfileView();
   }
+  hydrateMediaStreams();
+}
+
+function renderQuotaBanner(u) {
+  const q = u.quota || { used6h: 0, max6h: u.tier || 1, remaining6h: 1, next6hResetIso: '', usedWeek: 0, maxWeek: 10, remainingWeek: 10 };
+  return `
+    <div class="quota-strip">
+      <div>
+        <span>6h Window Quota:</span>
+        <strong style="color:${q.remaining6h > 0 ? 'var(--success)' : 'var(--danger)'};">${q.remaining6h}/${q.max6h} left</strong>
+        <span>(Resets in ${formatCountdownUntil(q.next6hResetIso)})</span>
+      </div>
+      <div>
+        <span>Weekly Quota (Tier ${u.tier}):</span>
+        <strong style="color:${q.remainingWeek > 0 ? '#fff' : 'var(--danger)'};">${q.usedWeek}/${q.maxWeek} used</strong>
+      </div>
+    </div>
+  `;
 }
 
 function renderAuthView() {
@@ -582,7 +730,7 @@ function renderAuthView() {
   return `
     <div class="auth-container card">
       <div style="display:flex; align-items:center; gap:12px; margin-bottom:18px;">
-        <img src="${fixMediaUrl(LOGO_CONFIG.ENCLAVE_HUB_LOGO) || FALLBACK_AVATAR}" style="width:44px;height:44px;border-radius:10px;object-fit:cover;" alt="" onerror="this.src=FALLBACK_AVATAR" />
+        <img src="${fixMediaUrl(LOGO_CONFIG.ENCLAVE_HUB_LOGO) || FALLBACK_AVATAR}" style="width:44px;height:44px;border-radius:10px;object-fit:cover;" alt="" />
         <div>
           <h2 style="font-size:1.05rem; font-weight:800; letter-spacing:0.02em;">ENCLAVE ID</h2>
           <p style="font-size:0.75rem; color:var(--text-secondary);">Single Sign-On for Metro TV, PUNT & KnokNox</p>
@@ -627,7 +775,7 @@ function renderAuthView() {
           </div>
           <div class="form-group">
             <label>Initial Audience (Followers)</label>
-            <input type="number" id="signupFollowers" value="75" min="0" />
+            <input type="number" id="signupFollowers" value="40" min="0" />
           </div>
           <div class="form-group">
             <label>Avatar</label>
@@ -704,10 +852,10 @@ function renderProfileView() {
   const myPosts = STATE.posts.filter(p => p.author.toLowerCase() === u.username.toLowerCase() && p.status === 'ACTIVE');
 
   return `
-    <div class="card">
+    <div class="card" style="display:flex; flex-direction:column; gap:14px;">
       <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:14px;">
         <div style="display:flex; align-items:center; gap:14px; flex-wrap:wrap;">
-          <img src="${escapeHtml(fixMediaUrl(u.profilePic) || FALLBACK_AVATAR)}" class="avatar-lg" alt="" onerror="this.src=FALLBACK_AVATAR" />
+          <img src="${escapeHtml(fixMediaUrl(u.profilePic) || FALLBACK_AVATAR)}" class="avatar-lg" alt="" />
           <div>
             <div style="display:flex; align-items:center; gap:7px; flex-wrap:wrap;">
               <h2 style="font-size:1.2rem; font-weight:800;">${escapeHtml(u.displayName)}</h2>
@@ -721,28 +869,36 @@ function renderProfileView() {
         ${u.isAdmin ? `<button class="btn btn-outline btn-sm" id="openAdminBtn">Open Admin Console</button>` : ''}
       </div>
 
-      <div class="grid-3" style="margin-top:16px;">
-        <div style="background:var(--bg-input); padding:12px 14px; border-radius:var(--radius-md); border:1px solid var(--border-subtle);">
-          <div style="font-size:0.72rem; color:var(--text-secondary);">Audience & Reach</div>
-          <div style="font-family:var(--font-mono); font-size:1.15rem; font-weight:700; margin-top:4px;">
-            ${Number(u.followers).toLocaleString()} <span style="font-size:0.75rem; color:var(--accent-enclave);">${u.multiplier}x</span>
+      ${renderQuotaBanner(u)}
+
+      <div class="grid-4">
+        <div style="background:var(--bg-input); padding:12px; border-radius:var(--radius-md); border:1px solid var(--border-subtle);">
+          <div style="font-size:0.7rem; color:var(--text-secondary);">Main Follower Avg (Active)</div>
+          <div style="font-family:var(--font-mono); font-size:1.12rem; font-weight:700; margin-top:4px;">
+            ${Number(u.followers).toLocaleString()} <span style="font-size:0.72rem; color:var(--accent-enclave);">${u.multiplier}x</span>
           </div>
         </div>
-        <div style="background:var(--bg-input); padding:12px 14px; border-radius:var(--radius-md); border:1px solid var(--border-subtle);">
-          <div style="font-size:0.72rem; color:var(--text-secondary);">Total Upvotes</div>
-          <div style="font-family:var(--font-mono); font-size:1.15rem; font-weight:700; color:var(--success); margin-top:4px;">
+        <div style="background:var(--bg-input); padding:12px; border-radius:var(--radius-md); border:1px solid var(--border-subtle);">
+          <div style="font-size:0.7rem; color:var(--text-secondary);">Total Combined Following</div>
+          <div style="font-family:var(--font-mono); font-size:1.12rem; font-weight:700; color:var(--accent-knok); margin-top:4px;">
+            ${Number(u.totalFollowers || 0).toLocaleString()}
+          </div>
+        </div>
+        <div style="background:var(--bg-input); padding:12px; border-radius:var(--radius-md); border:1px solid var(--border-subtle);">
+          <div style="font-size:0.7rem; color:var(--text-secondary);">Total Upvotes</div>
+          <div style="font-family:var(--font-mono); font-size:1.12rem; font-weight:700; color:var(--success); margin-top:4px;">
             +${Number(u.totalUpvotes).toLocaleString()}
           </div>
         </div>
-        <div style="background:var(--bg-input); padding:12px 14px; border-radius:var(--radius-md); border:1px solid var(--border-subtle);">
-          <div style="font-size:0.72rem; color:var(--text-secondary);">Total Downvotes</div>
-          <div style="font-family:var(--font-mono); font-size:1.15rem; font-weight:700; color:var(--danger); margin-top:4px;">
+        <div style="background:var(--bg-input); padding:12px; border-radius:var(--radius-md); border:1px solid var(--border-subtle);">
+          <div style="font-size:0.7rem; color:var(--text-secondary);">Total Downvotes</div>
+          <div style="font-family:var(--font-mono); font-size:1.12rem; font-weight:700; color:var(--danger); margin-top:4px;">
             -${Number(u.totalDownvotes).toLocaleString()}
           </div>
         </div>
       </div>
 
-      <details style="margin-top:12px; background:var(--bg-input); padding:10px 14px; border-radius:var(--radius-md); border:1px solid var(--border-subtle);">
+      <details style="background:var(--bg-input); padding:10px 14px; border-radius:var(--radius-md); border:1px solid var(--border-subtle);">
         <summary style="cursor:pointer; font-size:0.78rem; font-weight:600; color:var(--text-secondary);">Edit Channel Settings</summary>
         <div class="grid-2" style="margin-top:12px;">
           <div class="form-group">
@@ -762,27 +918,29 @@ function renderProfileView() {
     </div>
 
     <div class="card">
-      <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;">
-        <h3 style="font-size:0.9rem; font-weight:700;">Connected Networks</h3>
+      <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:6px; margin-bottom:10px;">
+        <h3 style="font-size:0.9rem; font-weight:700;">Connected Networks & Individual Followings</h3>
+        <span style="font-size:0.72rem; color:var(--text-secondary);">Main Tier uses the Average across your active channels</span>
       </div>
       <div class="grid-3">
         ${['METROTV', 'PUNT', 'KNOKNOX'].map(key => {
           const spec = PLATFORM_SPECS[key];
           const isActive = key === 'METROTV' ? u.metroActive : (key === 'PUNT' ? u.puntActive : u.knoknoxActive);
+          const platFol = Number(u[spec.folKey] || 0).toLocaleString();
           return `
             <div style="background:var(--bg-input); border:1px solid var(--border-subtle); padding:12px; border-radius:var(--radius-md); display:flex; flex-direction:column; justify-content:space-between; gap:12px;">
               <div style="display:flex; align-items:center; gap:10px;">
-                <img src="${fixMediaUrl(LOGO_CONFIG[spec.logoKey]) || FALLBACK_AVATAR}" style="width:30px;height:30px;border-radius:6px;object-fit:cover;" alt="" onerror="this.src=FALLBACK_AVATAR" />
+                <img src="${fixMediaUrl(LOGO_CONFIG[spec.logoKey]) || FALLBACK_AVATAR}" style="width:32px;height:32px;border-radius:6px;object-fit:cover;" alt="" />
                 <div>
                   <div style="font-weight:700; font-size:0.84rem;">${spec.name}</div>
-                  <div style="font-family:var(--font-mono); font-size:0.68rem; color:${isActive ? 'var(--success)' : 'var(--text-dim)'};">
-                    ${isActive ? 'ACTIVE' : 'INACTIVE'}
+                  <div style="font-family:var(--font-mono); font-size:0.7rem; color:${isActive ? 'var(--success)' : 'var(--text-dim)'};">
+                    ${isActive ? 'ACTIVE' : 'INACTIVE'} • ${platFol} followers
                   </div>
                 </div>
               </div>
               <div style="display:flex; gap:6px;">
                 <button class="btn btn-sm ${isActive ? 'btn-outline' : spec.btnClass} toggle-net-btn" data-net="${key}" style="flex:1;">
-                  ${isActive ? 'Disable' : 'Enable'}
+                  ${isActive ? 'Disable' : 'Activate'}
                 </button>
                 ${isActive ? `<button class="btn btn-sm btn-outline nav-net-btn" data-net="${key.toLowerCase()}">Open</button>` : ''}
               </div>
@@ -801,7 +959,7 @@ function renderProfileView() {
             return `
               <div style="background:var(--bg-input); padding:10px 12px; border-radius:var(--radius-md); border:1px solid var(--border-subtle); display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;">
                 <div style="display:flex; align-items:center; gap:10px;">
-                  <img src="${escapeHtml(fixMediaUrl(sender.profilePic) || FALLBACK_AVATAR)}" class="avatar" alt="" onerror="this.src=FALLBACK_AVATAR" />
+                  <img src="${escapeHtml(fixMediaUrl(sender.profilePic) || FALLBACK_AVATAR)}" class="avatar" alt="" />
                   <div>
                     <div style="font-weight:700; font-size:0.84rem;">${escapeHtml(sender.displayName)}</div>
                     <div style="font-family:var(--font-mono); font-size:0.7rem; color:var(--text-secondary);">@${escapeHtml(sender.username)}</div>
@@ -895,49 +1053,137 @@ function bindProfileEvents() {
   bindGlobalPostEvents();
 }
 
+function renderPlatformLeaderboardHTML(platformKey) {
+  const spec = PLATFORM_SPECS[platformKey];
+  const sortKey = STATE.leaderboardSort || 'followers';
+
+  // Filter creators who have activated this platform or posted on it
+  const activeFlag = platformKey === 'METROTV' ? 'metroActive' : (platformKey === 'PUNT' ? 'puntActive' : 'knoknoxActive');
+  const ranked = STATE.users
+    .map(u => {
+      const ps = (u.platformStats && u.platformStats[platformKey]) || { followers: u[spec.folKey] || 0, posts: 0, upvotes: 0, downvotes: 0 };
+      return {
+        username: u.username,
+        displayName: u.displayName,
+        profilePic: u.profilePic,
+        verified: u.verified,
+        tierLabel: u.tierLabel,
+        isActive: u[activeFlag],
+        platFollowers: Number(ps.followers || 0),
+        totalFollowers: Number(u.totalFollowers || 0),
+        avgFollowers: Number(u.followers || 0),
+        posts: Number(ps.posts || 0),
+        upvotes: Number(ps.upvotes || 0),
+        downvotes: Number(ps.downvotes || 0)
+      };
+    })
+    .filter(x => x.isActive || x.posts > 0 || x.platFollowers > 0)
+    .sort((a, b) => {
+      if (sortKey === 'posts') return b.posts - a.posts || b.platFollowers - a.platFollowers;
+      if (sortKey === 'upvotes') return b.upvotes - a.upvotes || b.platFollowers - a.platFollowers;
+      if (sortKey === 'downvotes') return b.downvotes - a.downvotes || b.platFollowers - a.platFollowers;
+      return b.platFollowers - a.platFollowers || b.totalFollowers - a.totalFollowers;
+    });
+
+  return `
+    <div class="card" style="display:flex; flex-direction:column; gap:12px;">
+      <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;">
+        <div>
+          <h3 style="font-size:0.95rem; font-weight:800;">${ICONS.trophy} ${spec.name} Creator Leaderboard</h3>
+          <p style="font-size:0.74rem; color:var(--text-secondary);">Ranked by ${spec.name} metrics • Shows Network Following & Total Combined Following</p>
+        </div>
+        <div style="display:flex; gap:6px; flex-wrap:wrap;">
+          <button type="button" class="btn btn-sm ${sortKey==='followers'?'btn-primary':'btn-outline'} lb-sort-btn" data-sort="followers">Most Followers</button>
+          <button type="button" class="btn btn-sm ${sortKey==='posts'?'btn-primary':'btn-outline'} lb-sort-btn" data-sort="posts">Most Posts</button>
+          <button type="button" class="btn btn-sm ${sortKey==='upvotes'?'btn-primary':'btn-outline'} lb-sort-btn" data-sort="upvotes">Most Upvotes</button>
+          <button type="button" class="btn btn-sm ${sortKey==='downvotes'?'btn-primary':'btn-outline'} lb-sort-btn" data-sort="downvotes">Most Downvotes</button>
+        </div>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:8px;">
+        ${ranked.length === 0 ? `<p style="font-size:0.8rem; color:var(--text-secondary);">No creators ranked on ${spec.name} yet.</p>` :
+          ranked.map((c, idx) => `
+            <div class="lb-row">
+              <div style="display:flex; align-items:center; gap:10px; cursor:pointer;" class="op-profile-trigger" data-user="${escapeHtml(c.username)}">
+                <span class="lb-rank">#${idx + 1}</span>
+                <img src="${escapeHtml(fixMediaUrl(c.profilePic) || FALLBACK_AVATAR)}" class="avatar" style="width:34px;height:34px;" alt="" />
+                <div>
+                  <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
+                    <strong style="font-size:0.86rem;">${escapeHtml(c.displayName)}</strong>
+                    ${c.verified ? `<span class="badge verified">✓</span>` : ''}
+                    <span class="badge tier">${escapeHtml(c.tierLabel)}</span>
+                  </div>
+                  <div style="font-family:var(--font-mono); font-size:0.68rem; color:var(--text-secondary);">
+                    @${escapeHtml(c.username)} • Total Combined: ${c.totalFollowers.toLocaleString()} (Main Avg: ${c.avgFollowers.toLocaleString()})
+                  </div>
+                </div>
+              </div>
+
+              <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; font-family:var(--font-mono); font-size:0.74rem;">
+                <span class="badge ${spec.badgeClass}">${spec.name}: ${c.platFollowers.toLocaleString()} fol</span>
+                <span class="badge">${c.posts} posts</span>
+                <span class="badge" style="color:var(--success);">+${c.upvotes.toLocaleString()}</span>
+                <span class="badge" style="color:var(--danger);">-${c.downvotes.toLocaleString()}</span>
+              </div>
+            </div>
+          `).join('')}
+      </div>
+    </div>
+  `;
+}
+
 function renderPlatformView(platformKey) {
   const spec = PLATFORM_SPECS[platformKey];
   const u = STATE.currentUser;
   const isActivated = u.isAdmin || (platformKey === 'METROTV' ? u.metroActive : platformKey === 'PUNT' ? u.puntActive : u.knoknoxActive);
   const platformPosts = STATE.posts.filter(p => p.platform === platformKey && p.status === 'ACTIVE');
+  const myPlatFollowers = Number(u[spec.folKey] || 0).toLocaleString();
 
   return `
-    <div class="card" style="padding:14px 18px; border-top:2px solid ${spec.accentColor};">
+    <div class="card" style="padding:14px 18px; border-top:2px solid ${spec.accentColor}; display:flex; flex-direction:column; gap:12px;">
       <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px;">
         <div style="display:flex; align-items:center; gap:12px;">
-          <img src="${fixMediaUrl(LOGO_CONFIG[spec.logoKey]) || FALLBACK_AVATAR}" style="width:40px;height:40px;border-radius:9px;object-fit:cover;" alt="" onerror="this.src=FALLBACK_AVATAR" />
+          <img src="${fixMediaUrl(LOGO_CONFIG[spec.logoKey]) || FALLBACK_AVATAR}" style="width:40px;height:40px;border-radius:9px;object-fit:cover;" alt="" />
           <div>
-            <div style="display:flex; align-items:center; gap:8px;">
+            <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
               <h2 style="font-size:1.1rem; font-weight:800;">${spec.name}</h2>
-              <span class="badge ${spec.badgeClass}">${spec.maxDurationSec / 60}m Max</span>
+              <span class="badge ${spec.badgeClass}">My ${spec.name} Following: ${myPlatFollowers}</span>
+              <span class="badge">${spec.maxDurationSec / 60}m Max</span>
             </div>
             <p style="font-size:0.75rem; color:var(--text-secondary); margin-top:2px;">${spec.sub}</p>
           </div>
         </div>
 
-        ${!isActivated ? `
-          <button class="btn ${spec.btnClass} btn-sm" id="activateNetBtn">Enable ${spec.name} Channel</button>
-        ` : `
-          <button class="btn ${STATE.composerOpen ? 'btn-outline' : spec.btnClass} btn-sm" id="toggleStudioBtn">
-            ${STATE.composerOpen ? 'Close Studio' : '+ Create Post'}
+        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+          <button type="button" class="btn ${STATE.leaderboardOpen ? 'btn-primary' : 'btn-outline'} btn-sm" id="toggleLeaderboardBtn">
+            ${ICONS.trophy} <span>Leaderboard</span>
           </button>
-        `}
+          ${!isActivated ? `
+            <button type="button" class="btn ${spec.btnClass} btn-sm" id="activateNetBtn">Enable ${spec.name} Channel</button>
+          ` : `
+            <button type="button" class="btn ${STATE.composerOpen ? 'btn-outline' : spec.btnClass} btn-sm" id="toggleStudioBtn">
+              ${STATE.composerOpen ? 'Close Studio' : '+ Create Post'}
+            </button>
+          `}
+        </div>
       </div>
 
+      ${renderQuotaBanner(u)}
+
       ${isActivated && STATE.composerOpen ? `
-        <form id="platformPostForm" style="margin-top:14px; padding-top:14px; border-top:1px solid var(--border-subtle);">
+        <form id="platformPostForm" style="padding-top:12px; border-top:1px solid var(--border-subtle);">
           <div class="form-group">
             <textarea id="postCaptionInput" placeholder="Write a title, caption, or broadcast update for ${spec.name}..." required></textarea>
           </div>
           <div class="grid-2">
             <div class="form-group">
-              <label>Media Attachment (Auto-Fit ${spec.bestResolution})</label>
+              <label>Media Attachment (Images Auto-Fit ${spec.bestResolution} • Video/MP3 Stream Ready)</label>
               <label class="upload-dropzone">
-                ${ICONS.upload} <span id="uploadFileNameLabel">Select Image, Video, or MP3</span>
+                ${ICONS.upload} <span id="uploadFileNameLabel">Select Image, Video (MP4/WebM), or Audio (MP3)</span>
                 <input type="file" id="postMediaFileInput" accept="image/*,video/*,audio/*" />
               </label>
               <div id="mediaCheckStatus" style="font-family:var(--font-mono); font-size:0.7rem; color:var(--text-secondary); margin-top:4px;"></div>
-              <div id="mediaLivePreviewBox" class="post-media-box" style="display:none; margin-top:8px; max-height:200px;"></div>
+              <div id="mediaLivePreviewBox" class="post-media-box" style="display:none; margin-top:8px; max-height:220px;"></div>
             </div>
             <div class="form-group">
               <label>External Media Link (Optional)</label>
@@ -949,13 +1195,15 @@ function renderPlatformView(platformKey) {
               </select>
             </div>
           </div>
-          <div style="display:flex; align-items:center; justify-content:space-between; margin-top:4px;">
-            <span class="badge tier">Active Reach Multiplier: ${u.multiplier}x</span>
+          <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px; margin-top:4px;">
+            <span class="badge tier">Main Tier Multiplier: ${u.multiplier}x • Grows ${spec.name} Following</span>
             <button type="submit" class="btn ${spec.btnClass}">Post to ${spec.name}</button>
           </div>
         </form>
       ` : ''}
     </div>
+
+    ${STATE.leaderboardOpen ? renderPlatformLeaderboardHTML(platformKey) : ''}
 
     <div style="display:flex; flex-direction:column; gap:12px;">
       ${platformPosts.length === 0 ? `<div class="card"><p style="font-size:0.82rem; color:var(--text-secondary);">No broadcasts on ${spec.name} yet.</p></div>` : platformPosts.map(p => renderPostCardHTML(p)).join('')}
@@ -964,6 +1212,21 @@ function renderPlatformView(platformKey) {
 }
 
 function bindPlatformEvents(platformKey) {
+  const lbBtn = document.getElementById('toggleLeaderboardBtn');
+  if (lbBtn) {
+    lbBtn.addEventListener('click', () => {
+      STATE.leaderboardOpen = !STATE.leaderboardOpen;
+      render();
+    });
+  }
+
+  document.querySelectorAll('.lb-sort-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      STATE.leaderboardSort = btn.getAttribute('data-sort');
+      render();
+    });
+  });
+
   const actBtn = document.getElementById('activateNetBtn');
   if (actBtn) {
     actBtn.addEventListener('click', async () => {
@@ -1023,13 +1286,15 @@ function renderPostCardHTML(p) {
   const op = STATE.users.find(u => u.username.toLowerCase() === p.author.toLowerCase()) || { username: p.author, displayName: p.author, profilePic: FALLBACK_AVATAR, verified: false, tierLabel: 'Tier 1' };
   const spec = PLATFORM_SPECS[p.platform] || PLATFORM_SPECS.METROTV;
   const originalPost = p.sharedFromId ? STATE.posts.find(x => x.postId === p.sharedFromId) : null;
-  const cleanMediaUrl = fixMediaUrl(p.mediaUrl);
+  const rawMediaUrl = String(p.mediaUrl || '').trim();
+  const comments = Array.isArray(p.comments) ? p.comments : [];
+  const isCommentsOpen = Boolean(STATE.openCommentsMap[p.postId]);
 
   return `
     <article class="post-card" id="post-${escapeHtml(p.postId)}">
       <div class="post-header">
         <div class="post-author op-profile-trigger" data-user="${escapeHtml(op.username)}">
-          <img src="${escapeHtml(fixMediaUrl(op.profilePic) || FALLBACK_AVATAR)}" class="avatar" alt="" onerror="this.src=FALLBACK_AVATAR" />
+          <img src="${escapeHtml(fixMediaUrl(op.profilePic) || FALLBACK_AVATAR)}" class="avatar" alt="" />
           <div>
             <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
               <span style="font-weight:700; font-size:0.88rem; color:#fff;">${escapeHtml(op.displayName)}</span>
@@ -1057,14 +1322,18 @@ function renderPostCardHTML(p) {
 
       <div class="post-caption">${escapeHtml(p.caption)}</div>
 
-      ${cleanMediaUrl && p.mediaType === 'image' ? `
-        <div class="post-media-box"><img src="${escapeHtml(cleanMediaUrl)}" alt="" loading="lazy" onerror="this.parentElement.style.display='none'" /></div>
+      ${rawMediaUrl && p.mediaType === 'image' ? `
+        <div class="post-media-box"><img src="${escapeHtml(fixMediaUrl(rawMediaUrl))}" alt="" loading="lazy" /></div>
       ` : ''}
-      ${cleanMediaUrl && p.mediaType === 'video' ? `
-        <div class="post-media-box"><video src="${escapeHtml(cleanMediaUrl)}" controls playsinline></video></div>
+      ${rawMediaUrl && p.mediaType === 'video' ? `
+        <div class="post-media-box">
+          <video data-stream-src="${escapeHtml(rawMediaUrl)}" controls playsinline preload="metadata"></video>
+        </div>
       ` : ''}
-      ${cleanMediaUrl && p.mediaType === 'audio' ? `
-        <div class="post-media-box"><audio src="${escapeHtml(cleanMediaUrl)}" controls></audio></div>
+      ${rawMediaUrl && p.mediaType === 'audio' ? `
+        <div class="post-media-box">
+          <audio data-stream-src="${escapeHtml(rawMediaUrl)}" controls preload="metadata"></audio>
+        </div>
       ` : ''}
 
       <div class="post-actions">
@@ -1073,6 +1342,9 @@ function renderPostCardHTML(p) {
         </button>
         <button type="button" class="btn btn-sm ${p.myVote === 'DOWN' ? 'btn-danger' : 'btn-outline'} vote-btn" data-id="${escapeHtml(p.postId)}" data-type="DOWN">
           ${ICONS.down} <span>${Number(p.downvotes).toLocaleString()}</span>
+        </button>
+        <button type="button" class="btn btn-sm ${isCommentsOpen ? 'btn-primary' : 'btn-outline'} toggle-comments-btn" data-id="${escapeHtml(p.postId)}">
+          ${ICONS.comment} <span>Comments (${comments.length})</span>
         </button>
         <button type="button" class="btn btn-sm btn-outline repost-btn" data-id="${escapeHtml(p.postId)}">
           ${ICONS.repost} <span>Repost</span>
@@ -1084,6 +1356,33 @@ function renderPostCardHTML(p) {
           ${ICONS.flag}
         </button>
       </div>
+
+      ${isCommentsOpen ? `
+        <div class="comments-drawer">
+          <div style="display:flex; flex-direction:column; gap:8px; max-height:220px; overflow-y:auto;">
+            ${comments.length === 0 ? `<p style="font-size:0.76rem; color:var(--text-dim);">No comments yet. Start the discussion!</p>` :
+              comments.map(c => {
+                const cUser = STATE.users.find(x => x.username.toLowerCase() === String(c.author).toLowerCase()) || { username: c.author, displayName: c.author, profilePic: FALLBACK_AVATAR };
+                return `
+                  <div class="comment-item">
+                    <img src="${escapeHtml(fixMediaUrl(cUser.profilePic) || FALLBACK_AVATAR)}" class="avatar" style="width:26px;height:26px;" alt="" />
+                    <div style="flex:1;">
+                      <div style="display:flex; align-items:center; gap:6px;">
+                        <strong style="font-size:0.78rem; cursor:pointer;" class="op-profile-trigger" data-user="${escapeHtml(cUser.username)}">${escapeHtml(cUser.displayName)}</strong>
+                        <span style="font-family:var(--font-mono); font-size:0.65rem; color:var(--text-dim);">@${escapeHtml(cUser.username)} • ${formatTime(c.createdAt)}</span>
+                      </div>
+                      <div style="margin-top:2px; color:var(--text-primary);">${escapeHtml(c.text)}</div>
+                    </div>
+                  </div>
+                `;
+              }).join('')}
+          </div>
+          <form class="comment-submit-form" data-id="${escapeHtml(p.postId)}" style="display:flex; gap:6px;">
+            <input type="text" id="commentInput_${escapeHtml(p.postId)}" placeholder="Write a comment..." required style="flex:1; padding:7px 10px; font-size:0.8rem;" />
+            <button type="submit" class="btn btn-primary btn-sm">Reply</button>
+          </form>
+        </div>
+      ` : ''}
     </article>
   `;
 }
@@ -1096,6 +1395,46 @@ function bindGlobalPostEvents() {
   document.querySelectorAll('.vote-btn').forEach(btn => {
     btn.addEventListener('click', async () => {
       await voteOnPost(btn.getAttribute('data-id'), btn.getAttribute('data-type'));
+    });
+  });
+
+  document.querySelectorAll('.toggle-comments-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const pid = btn.getAttribute('data-id');
+      STATE.openCommentsMap[pid] = !STATE.openCommentsMap[pid];
+      render();
+      if (STATE.openOPModalUser) openOPProfileModal(STATE.openOPModalUser);
+    });
+  });
+
+  document.querySelectorAll('.comment-submit-form').forEach(form => {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const postId = form.getAttribute('data-id');
+      const inputEl = document.getElementById('commentInput_' + postId);
+      const text = inputEl ? inputEl.value.trim() : '';
+      if (!text) return;
+
+      const res = await apiCall({
+        action: 'addComment',
+        postId: postId,
+        author: STATE.currentUser.username,
+        text: text
+      }, 'Posting Comment');
+
+      if (!res || !res.ok) return showToast((res && res.error) ? res.error : 'Failed to post comment');
+
+      if (res.fastComment && res.comment) {
+        const targetPost = STATE.posts.find(p => String(p.postId) === String(postId));
+        if (targetPost) {
+          if (!Array.isArray(targetPost.comments)) targetPost.comments = [];
+          targetPost.comments.push(res.comment);
+        }
+        render();
+        if (STATE.openOPModalUser) openOPProfileModal(STATE.openOPModalUser);
+      } else if (res.currentUser) {
+        ingestBootstrap(res);
+      }
     });
   });
 
@@ -1190,15 +1529,20 @@ function openOPProfileModal(username) {
   box.innerHTML = `
     <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
       <div style="display:flex; align-items:center; gap:12px;">
-        <img src="${escapeHtml(fixMediaUrl(op.profilePic) || FALLBACK_AVATAR)}" class="avatar-lg" style="width:52px;height:52px;" alt="" onerror="this.src=FALLBACK_AVATAR" />
+        <img src="${escapeHtml(fixMediaUrl(op.profilePic) || FALLBACK_AVATAR)}" class="avatar-lg" style="width:52px;height:52px;" alt="" />
         <div>
           <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
             <h3 style="font-size:1rem;">${escapeHtml(op.displayName)}</h3>
             ${op.verified ? `<span class="badge verified">✓</span>` : ''}
             <span class="badge tier">${escapeHtml(op.tierLabel)}</span>
           </div>
-          <div style="font-family:var(--font-mono); font-size:0.74rem; color:var(--text-secondary); margin-top:2px;">
-            @${escapeHtml(op.username)} • ${Number(op.followers).toLocaleString()} followers
+          <div style="font-family:var(--font-mono); font-size:0.72rem; color:var(--text-secondary); margin-top:2px;">
+            @${escapeHtml(op.username)} • Main Avg: ${Number(op.followers).toLocaleString()} • Combined Total: ${Number(op.totalFollowers || 0).toLocaleString()}
+          </div>
+          <div style="display:flex; gap:6px; flex-wrap:wrap; margin-top:6px;">
+            <span class="badge metro">Metro: ${Number(op.metroFollowers || 0).toLocaleString()}</span>
+            <span class="badge punt">PUNT: ${Number(op.puntFollowers || 0).toLocaleString()}</span>
+            <span class="badge knoknox">KnokNox: ${Number(op.knoknoxFollowers || 0).toLocaleString()}</span>
           </div>
         </div>
       </div>
@@ -1212,6 +1556,7 @@ function openOPProfileModal(username) {
   document.getElementById('modalBackdrop').classList.add('open');
   document.getElementById('closeModalBtn').addEventListener('click', closeModal);
   bindGlobalPostEvents();
+  hydrateMediaStreams();
 }
 
 function closeModal() {
@@ -1246,15 +1591,17 @@ function renderSearchView() {
         return `
           <div class="card" style="display:flex; flex-direction:column; gap:12px;">
             <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;">
-              <div style="display:flex; align-items:center; gap:10px; cursor:pointer;" onclick="openOPProfileModal('${escapeHtml(u.username)}')">
-                <img src="${escapeHtml(fixMediaUrl(u.profilePic) || FALLBACK_AVATAR)}" class="avatar" alt="" onerror="this.src=FALLBACK_AVATAR" />
+              <div style="display:flex; align-items:center; gap:10px; cursor:pointer;" class="op-profile-trigger" data-user="${escapeHtml(u.username)}">
+                <img src="${escapeHtml(fixMediaUrl(u.profilePic) || FALLBACK_AVATAR)}" class="avatar" alt="" />
                 <div>
                   <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
                     <span style="font-weight:700; font-size:0.88rem;">${escapeHtml(u.displayName)}</span>
                     ${u.verified ? `<span class="badge verified">✓</span>` : ''}
                     <span class="badge tier">${escapeHtml(u.tierLabel)}</span>
                   </div>
-                  <div style="font-family:var(--font-mono); font-size:0.7rem; color:var(--text-secondary);">@${escapeHtml(u.username)} • ${Number(u.followers).toLocaleString()}</div>
+                  <div style="font-family:var(--font-mono); font-size:0.7rem; color:var(--text-secondary);">
+                    @${escapeHtml(u.username)} • Avg: ${Number(u.followers).toLocaleString()} • Total: ${Number(u.totalFollowers || 0).toLocaleString()}
+                  </div>
                 </div>
               </div>
 
@@ -1271,9 +1618,9 @@ function renderSearchView() {
             </div>
 
             <div style="display:flex; flex-direction:column; gap:6px; font-size:0.76rem; background:var(--bg-input); padding:10px; border-radius:var(--radius-md); border:1px solid var(--border-subtle);">
-              <div style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;"><span class="badge metro" style="margin-right:6px;">Metro</span><span style="color:var(--text-secondary);">${latestMetro ? escapeHtml(latestMetro.caption) : '—'}</span></div>
-              <div style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;"><span class="badge punt" style="margin-right:6px;">PUNT</span><span style="color:var(--text-secondary);">${latestPunt ? escapeHtml(latestPunt.caption) : '—'}</span></div>
-              <div style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;"><span class="badge knoknox" style="margin-right:6px;">Knok</span><span style="color:var(--text-secondary);">${latestKnok ? escapeHtml(latestKnok.caption) : '—'}</span></div>
+              <div style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;"><span class="badge metro" style="margin-right:6px;">Metro (${Number(u.metroFollowers||0).toLocaleString()})</span><span style="color:var(--text-secondary);">${latestMetro ? escapeHtml(latestMetro.caption) : '—'}</span></div>
+              <div style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;"><span class="badge punt" style="margin-right:6px;">PUNT (${Number(u.puntFollowers||0).toLocaleString()})</span><span style="color:var(--text-secondary);">${latestPunt ? escapeHtml(latestPunt.caption) : '—'}</span></div>
+              <div style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;"><span class="badge knoknox" style="margin-right:6px;">Knok (${Number(u.knoknoxFollowers||0).toLocaleString()})</span><span style="color:var(--text-secondary);">${latestKnok ? escapeHtml(latestKnok.caption) : '—'}</span></div>
             </div>
           </div>
         `;
@@ -1290,6 +1637,10 @@ function bindSearchEvents() {
       render();
     });
   }
+
+  document.querySelectorAll('.op-profile-trigger').forEach(el => {
+    el.addEventListener('click', () => openOPProfileModal(el.getAttribute('data-user')));
+  });
 
   document.querySelectorAll('.search-connect-btn').forEach(btn => {
     btn.addEventListener('click', async () => {
@@ -1541,10 +1892,10 @@ function renderAdminView() {
   return `
     <div class="card" style="border-top:2px solid var(--accent-enclave);">
       <div style="display:flex; align-items:center; gap:12px;">
-        <img src="${escapeHtml(fixMediaUrl(LOGO_CONFIG.ENCLAVE_HUB_LOGO) || FALLBACK_AVATAR)}" class="avatar" alt="" onerror="this.src=FALLBACK_AVATAR" />
+        <img src="${escapeHtml(fixMediaUrl(LOGO_CONFIG.ENCLAVE_HUB_LOGO) || FALLBACK_AVATAR)}" class="avatar" alt="" />
         <div>
           <h2 style="font-size:1.05rem; font-weight:800; color:var(--accent-enclave);">ENCLAVE ADMINISTRATION</h2>
-          <p style="font-size:0.75rem; color:var(--text-secondary);">Brand Assets • Moderation Queue • Access Blocks • Audience Overrides</p>
+          <p style="font-size:0.75rem; color:var(--text-secondary);">Brand Assets • Moderation Queue • Access Blocks • Per-Platform Audience Overrides</p>
         </div>
       </div>
     </div>
@@ -1560,7 +1911,7 @@ function renderAdminView() {
         ].map(item => `
           <div style="background:var(--bg-input); padding:12px; border-radius:var(--radius-md); border:1px solid var(--border-subtle);">
             <div style="display:flex; align-items:center; gap:10px; margin-bottom:8px;">
-              <img src="${fixMediaUrl(LOGO_CONFIG[item.key]) || FALLBACK_AVATAR}" style="width:32px;height:32px;border-radius:6px;object-fit:cover;" onerror="this.src=FALLBACK_AVATAR" />
+              <img src="${fixMediaUrl(LOGO_CONFIG[item.key]) || FALLBACK_AVATAR}" style="width:32px;height:32px;border-radius:6px;object-fit:cover;" alt="" />
               <strong style="font-size:0.82rem;">${item.title}</strong>
             </div>
             <label class="upload-dropzone" style="padding:7px 10px; margin-bottom:6px;">
@@ -1615,17 +1966,22 @@ function renderAdminView() {
     </div>
 
     <div class="card">
-      <h3 style="font-size:0.9rem; font-weight:700; margin-bottom:10px;">Audience Count Overrides</h3>
-      <div class="grid-2">
+      <h3 style="font-size:0.9rem; font-weight:700; margin-bottom:10px;">Per-Platform Audience Overrides (Auto-Computes Main Avg & Total)</h3>
+      <div style="display:flex; flex-direction:column; gap:10px;">
         ${STATE.users.map(u => `
-          <div style="background:var(--bg-input); padding:10px 12px; border-radius:var(--radius-md); border:1px solid var(--border-subtle); display:flex; align-items:center; justify-content:space-between; gap:8px;">
+          <div style="background:var(--bg-input); padding:12px; border-radius:var(--radius-md); border:1px solid var(--border-subtle); display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;">
             <div>
-              <strong style="font-size:0.82rem;">@${escapeHtml(u.username)}</strong>
-              <div style="font-family:var(--font-mono); font-size:0.7rem; color:var(--text-secondary);">${escapeHtml(u.tierLabel)}</div>
+              <strong style="font-size:0.84rem;">@${escapeHtml(u.username)}</strong>
+              <span class="badge tier">${escapeHtml(u.tierLabel)}</span>
+              <div style="font-family:var(--font-mono); font-size:0.7rem; color:var(--text-secondary); margin-top:2px;">
+                Main Avg: ${Number(u.followers).toLocaleString()} • Combined Total: ${Number(u.totalFollowers || 0).toLocaleString()}
+              </div>
             </div>
-            <div style="display:flex; gap:6px; align-items:center;">
-              <input type="number" id="adminFol_${escapeHtml(u.username)}" value="${u.followers}" style="width:105px; padding:5px 8px;" />
-              <button class="btn btn-primary btn-sm admin-set-fol" data-user="${escapeHtml(u.username)}">Apply</button>
+            <div style="display:flex; gap:6px; align-items:center; flex-wrap:wrap;">
+              <label style="font-size:0.7rem; color:var(--text-secondary);">Metro: <input type="number" id="adminFolM_${escapeHtml(u.username)}" value="${u.metroFollowers || 0}" style="width:85px; padding:4px 6px;" /></label>
+              <label style="font-size:0.7rem; color:var(--text-secondary);">PUNT: <input type="number" id="adminFolP_${escapeHtml(u.username)}" value="${u.puntFollowers || 0}" style="width:85px; padding:4px 6px;" /></label>
+              <label style="font-size:0.7rem; color:var(--text-secondary);">Knok: <input type="number" id="adminFolK_${escapeHtml(u.username)}" value="${u.knoknoxFollowers || 0}" style="width:85px; padding:4px 6px;" /></label>
+              <button class="btn btn-primary btn-sm admin-set-fol" data-user="${escapeHtml(u.username)}">Save</button>
             </div>
           </div>
         `).join('')}
@@ -1682,7 +2038,7 @@ function bindAdminEvents() {
       const params = { subAction };
       if (btn.hasAttribute('data-post')) params.postId = btn.getAttribute('data-post');
       if (btn.hasAttribute('data-rep')) params.reportId = btn.getAttribute('data-rep');
-      const res = await apiCall({ action: 'adminUser', adminUser: 'EnclaveAdmin', adminPass: 'ADMIN_KEY_2026', ...params }, 'Executing Action');
+      const res = await apiCall({ action: 'adminAction', adminUser: 'EnclaveAdmin', adminPass: 'ADMIN_KEY_2026', ...params }, 'Executing Action');
       if (!res.ok) return showToast(res.error);
       ingestBootstrap(res);
     });
@@ -1699,10 +2055,22 @@ function bindAdminEvents() {
   document.querySelectorAll('.admin-set-fol').forEach(btn => {
     btn.addEventListener('click', async () => {
       const targetUser = btn.getAttribute('data-user');
-      const val = Number(document.getElementById('adminFol_' + targetUser).value || 0);
-      const res = await apiCall({ action: 'adminAction', adminUser: 'EnclaveAdmin', adminPass: 'ADMIN_KEY_2026', subAction: 'SET_FOLLOWERS', targetUser, followers: val }, 'Updating Followers');
+      const mVal = Number(document.getElementById('adminFolM_' + targetUser).value || 0);
+      const pVal = Number(document.getElementById('adminFolP_' + targetUser).value || 0);
+      const kVal = Number(document.getElementById('adminFolK_' + targetUser).value || 0);
+      const res = await apiCall({
+        action: 'adminAction',
+        adminUser: 'EnclaveAdmin',
+        adminPass: 'ADMIN_KEY_2026',
+        subAction: 'SET_FOLLOWERS',
+        targetUser,
+        metroFollowers: mVal,
+        puntFollowers: pVal,
+        knoknoxFollowers: kVal
+      }, 'Updating Followers');
       if (!res.ok) return showToast(res.error);
       ingestBootstrap(res);
+      showToast('Audience counts updated.');
     });
   });
 }
@@ -1720,7 +2088,7 @@ function showToast(msg) {
   el.textContent = msg;
   el.style.display = 'block';
   clearTimeout(window.__toastTimer);
-  window.__toastTimer = setTimeout(() => { el.style.display = 'none'; }, 3200);
+  window.__toastTimer = setTimeout(() => { el.style.display = 'none'; }, 3400);
 }
 </script>
 </body>
