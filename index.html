@@ -7,7 +7,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Enclave" />
   <meta name="theme-color" content="#090a0d" />
-  <title>ENCLAVE</title>
+  <title>ENCLAVE.NET</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,6 +31,7 @@
       --accent-metro: #ef4444;
       --accent-punt: #53fc18;
       --accent-knok: #06b6d4;
+      --accent-arcade: #a855f7;
       --danger: #f43f5e;
       --success: #10b981;
       --radius-lg: 12px;
@@ -72,9 +73,10 @@
     .nav-btn.metro-tab.active { color: #fff; background: rgba(239, 68, 68, 0.1); border-color: rgba(239, 68, 68, 0.3); }
     .nav-btn.punt-tab.active { color: var(--accent-punt); background: rgba(83, 252, 24, 0.08); border-color: rgba(83, 252, 24, 0.3); }
     .nav-btn.knok-tab.active { color: var(--accent-knok); background: rgba(6, 182, 212, 0.1); border-color: rgba(6, 182, 212, 0.3); }
+    .nav-btn.games-tab.active { color: #d8b4fe; background: rgba(168, 85, 247, 0.12); border-color: rgba(168, 85, 247, 0.35); }
     .nav-btn.admin-tab { color: var(--accent-enclave); margin-top: auto; }
     .nav-btn.admin-tab.active { background: rgba(245, 158, 11, 0.12); border-color: rgba(245, 158, 11, 0.35); }
-    .viewport-wrapper.mode-mobile .nav-btn { flex-direction: column; justify-content: center; align-items: center; padding: 6px 8px; gap: 3px; font-size: 0.64rem; width: auto; min-width: 54px; margin-top: 0; }
+    .viewport-wrapper.mode-mobile .nav-btn { flex-direction: column; justify-content: center; align-items: center; padding: 6px 8px; gap: 3px; font-size: 0.64rem; width: auto; min-width: 52px; margin-top: 0; }
 
     .main-stage { flex: 1; overflow-y: auto; overflow-x: hidden; padding: 24px; display: flex; flex-direction: column; align-items: center; }
     .stage-inner { width: 100%; max-width: 800px; display: flex; flex-direction: column; gap: 16px; }
@@ -91,6 +93,7 @@
     .badge.metro { background: rgba(239, 68, 68, 0.12); color: #f87171; border-color: rgba(239, 68, 68, 0.3); }
     .badge.punt { background: rgba(83, 252, 24, 0.1); color: var(--accent-punt); border-color: rgba(83, 252, 24, 0.3); }
     .badge.knoknox { background: rgba(6, 182, 212, 0.12); color: #38bdf8; border-color: rgba(6, 182, 212, 0.3); }
+    .badge.arcade { background: rgba(168, 85, 247, 0.14); color: #d8b4fe; border-color: rgba(168, 85, 247, 0.35); }
 
     .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
     .form-group label { font-size: 0.75rem; font-weight: 600; color: var(--text-secondary); }
@@ -104,13 +107,14 @@
     .upload-dropzone:hover { border-color: var(--text-primary); color: var(--text-primary); background: rgba(255, 255, 255, 0.03); }
     .upload-dropzone input[type="file"] { display: none; }
 
-    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 7px; padding: 8px 14px; border-radius: var(--radius-md); border: 1px solid transparent; font-family: var(--font-sans); font-size: 0.8rem; font-weight: 600; cursor: pointer; transition: all 0.15s ease; white-space: nowrap; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 7px; padding: 8px 14px; border-radius: var(--radius-md); border: 1px solid transparent; font-family: var(--font-sans); font-size: 0.8rem; font-weight: 600; cursor: pointer; transition: all 0.15s ease; white-space: nowrap; user-select: none; }
     .btn:disabled { opacity: 0.5; pointer-events: none; }
     .btn-primary { background: #f3f4f6; color: #090a0d; font-weight: 700; }
     .btn-primary:hover { background: #ffffff; }
     .btn-metro { background: var(--accent-metro); color: #fff; font-weight: 700; }
     .btn-punt { background: var(--accent-punt); color: #041200; font-weight: 700; }
     .btn-knok { background: var(--accent-knok); color: #041318; font-weight: 700; }
+    .btn-arcade { background: var(--accent-arcade); color: #fff; font-weight: 700; }
     .btn-outline { background: var(--bg-elevated); color: var(--text-primary); border-color: var(--border-subtle); }
     .btn-outline:hover { border-color: var(--border-hover); background: rgba(255,255,255,0.06); }
     .btn-danger { background: rgba(244, 63, 94, 0.12); color: #fb7185; border-color: rgba(244, 63, 94, 0.28); }
@@ -139,6 +143,13 @@
     .lb-rank { width: 26px; height: 26px; border-radius: 6px; background: var(--bg-elevated); display: inline-flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 0.75rem; font-weight: 700; color: var(--accent-enclave); flex-shrink: 0; }
 
     .quota-strip { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; padding: 9px 12px; background: var(--bg-input); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-secondary); }
+
+    /* Arcade & Slime Escape Canvas Styling */
+    .game-canvas-wrap { width: 100%; background: #05070c; border: 1px solid var(--border-hover); border-radius: var(--radius-lg); overflow: hidden; position: relative; display: flex; flex-direction: column; align-items: center; }
+    #slimeCanvas, #cyberCanvas { width: 100%; max-width: 740px; height: auto; aspect-ratio: 16 / 9; display: block; background: #070b14; touch-action: none; }
+    .game-touch-bar { width: 100%; display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; padding: 10px; background: var(--bg-input); border-top: 1px solid var(--border-subtle); }
+    .touch-pad-btn { padding: 12px 6px; border-radius: 8px; background: var(--bg-elevated); border: 1px solid var(--border-hover); color: #fff; font-family: var(--font-mono); font-size: 0.78rem; font-weight: 700; text-align: center; cursor: pointer; user-select: none; touch-action: manipulation; }
+    .touch-pad-btn:active { background: var(--accent-arcade); color: #fff; }
 
     .chat-layout { display: grid; grid-template-columns: 240px 1fr; gap: 12px; min-height: 500px; }
     .viewport-wrapper.mode-mobile .chat-layout { grid-template-columns: 1fr; }
@@ -179,7 +190,7 @@
         <img id="cornerHubLogo" class="brand-logo" src="" alt="Enclave" />
         <div>
           <div class="brand-title">ENCLAVE NETWORK</div>
-          <div class="brand-sub">METRO.TV / PUNT / KNOKNOX</div>
+          <div class="brand-sub">METRO.TV / PUNT / KNOKNOX / ARCADE</div>
         </div>
       </div>
       <div class="top-controls">
@@ -222,6 +233,12 @@
         <button class="nav-btn knok-tab" data-page="knoknox" id="navBtn_knoknox">
           <img id="navKnokLogo" src="" alt="" />
           <span>KnokNox</span>
+        </button>
+
+        <div class="nav-section-label">Arcade</div>
+        <button class="nav-btn games-tab" data-page="games" id="navBtn_games">
+          <svg class="icon-svg" viewBox="0 0 24 24"><line x1="6" x2="10" y1="12" y2="12"/><line x1="8" x2="8" y1="10" y2="14"/><line x1="15" x2="15.01" y1="13" y2="13"/><line x1="18" x2="18.01" y1="11" y2="11"/><rect width="20" height="12" x="2" y="6" rx="2"/></svg>
+          <span>Games</span>
         </button>
 
         <button class="nav-btn admin-tab" id="navAdminBtn" data-page="admin" style="display:none;">
@@ -293,6 +310,7 @@ let STATE = {
   viewportMode: localStorage.getItem('enclave_viewport_mode') || 'desktop',
   currentPage: 'profile',
   authTab: 'login',
+  activeGameTab: 'slime', // slime | cyber | dungeon
   composerOpen: false,
   leaderboardOpen: false,
   leaderboardSort: 'followers',
@@ -310,7 +328,8 @@ let STATE = {
   searchQuery: '',
   pendingMedia: { dataUrl: '', mediaType: 'none', durationSec: 0, resolution: '' },
   openOPModalUser: null,
-  isBusy: false
+  isBusy: false,
+  lastGameResult: ''
 };
 
 function showLoading(subText) {
@@ -463,7 +482,7 @@ window.addEventListener('DOMContentLoaded', () => {
     if (e.target === document.getElementById('modalBackdrop')) closeModal();
   });
 
-  ['profile', 'search', 'connections', 'metrotv', 'punt', 'knoknox', 'admin'].forEach(p => {
+  ['profile', 'search', 'connections', 'metrotv', 'punt', 'knoknox', 'games', 'admin'].forEach(p => {
     const el = document.getElementById('navBtn_' + p);
     if (el) el.addEventListener('click', () => navigate(p));
   });
@@ -582,6 +601,7 @@ async function refreshFromServer(withLoadingPopup) {
 }
 
 function logout() {
+  stopActiveGames();
   localStorage.removeItem('enclave_session_user');
   STATE.currentUser = null;
   STATE.openOPModalUser = null;
@@ -592,6 +612,9 @@ function logout() {
 }
 
 function navigate(page) {
+  if (STATE.currentPage === 'games' && page !== 'games') {
+    stopActiveGames();
+  }
   STATE.currentPage = page;
   STATE.composerOpen = false;
   STATE.leaderboardOpen = false;
@@ -687,6 +710,7 @@ function render() {
     case 'metrotv': stage.innerHTML = renderPlatformView('METROTV'); bindPlatformEvents('METROTV'); break;
     case 'punt': stage.innerHTML = renderPlatformView('PUNT'); bindPlatformEvents('PUNT'); break;
     case 'knoknox': stage.innerHTML = renderPlatformView('KNOKNOX'); bindPlatformEvents('KNOKNOX'); break;
+    case 'games': stage.innerHTML = renderGamesView(); bindGamesEvents(); break;
     case 'search': stage.innerHTML = renderSearchView(); bindSearchEvents(); break;
     case 'connections': stage.innerHTML = renderConnectionsView(); bindChatEvents(); break;
     case 'admin': stage.innerHTML = STATE.currentUser.isAdmin ? renderAdminView() : renderProfileView(); if (STATE.currentUser.isAdmin) bindAdminEvents(); break;
@@ -720,7 +744,7 @@ function renderAuthView() {
         <img src="${fixMediaUrl(LOGO_CONFIG.ENCLAVE_HUB_LOGO) || FALLBACK_AVATAR}" style="width:44px;height:44px;border-radius:10px;object-fit:cover;" alt="" />
         <div>
           <h2 style="font-size:1.05rem; font-weight:800; letter-spacing:0.02em;">ENCLAVE ID</h2>
-          <p style="font-size:0.75rem; color:var(--text-secondary);">Single Sign-On for Metro TV, PUNT & KnokNox</p>
+          <p style="font-size:0.75rem; color:var(--text-secondary);">Single Sign-On for Metro TV, PUNT, KnokNox & Arcade</p>
         </div>
       </div>
 
@@ -853,7 +877,10 @@ function renderProfileView() {
             <div style="font-family:var(--font-mono); color:var(--text-secondary); font-size:0.78rem; margin-top:4px;">@${escapeHtml(u.username)}</div>
           </div>
         </div>
-        ${u.isAdmin ? `<button class="btn btn-outline btn-sm" id="openAdminBtn">Open Admin Console</button>` : ''}
+        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+          <button class="btn btn-arcade btn-sm" id="goArcadeBtn">Play Slime Escape</button>
+          ${u.isAdmin ? `<button class="btn btn-outline btn-sm" id="openAdminBtn">Admin Console</button>` : ''}
+        </div>
       </div>
 
       ${renderQuotaBanner(u)}
@@ -972,6 +999,9 @@ function renderProfileView() {
 }
 
 function bindProfileEvents() {
+  const goArcadeBtn = document.getElementById('goArcadeBtn');
+  if (goArcadeBtn) goArcadeBtn.addEventListener('click', () => navigate('games'));
+
   const adminBtn = document.getElementById('openAdminBtn');
   if (adminBtn) adminBtn.addEventListener('click', () => navigate('admin'));
 
@@ -1038,6 +1068,861 @@ function bindProfileEvents() {
   });
 
   bindGlobalPostEvents();
+}
+
+/**
+ * ============================================================================
+ * ENCLAVE ARCADE & GAMES HUB (Slime Escape 3D + Cyber Dodge + Instant Dungeon)
+ * ============================================================================
+ */
+let SLIME_LOOP_ID = null;
+let CYBER_LOOP_ID = null;
+
+function stopActiveGames() {
+  if (SLIME_LOOP_ID) { cancelAnimationFrame(SLIME_LOOP_ID); SLIME_LOOP_ID = null; }
+  if (CYBER_LOOP_ID) { cancelAnimationFrame(CYBER_LOOP_ID); CYBER_LOOP_ID = null; }
+}
+
+function renderGamesView() {
+  const gTab = STATE.activeGameTab || 'slime';
+  const bestSlimeMs = Number(localStorage.getItem('enclave_slime_best_ms') || 0);
+  const bestSlimeDist = Number(localStorage.getItem('enclave_slime_best_dist') || 0);
+  const bestCyber = Number(localStorage.getItem('enclave_cyber_best') || 0);
+
+  return `
+    <div class="card" style="border-top:2px solid var(--accent-arcade); display:flex; flex-direction:column; gap:12px;">
+      <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px;">
+        <div>
+          <div style="display:flex; align-items:center; gap:8px;">
+            <h2 style="font-size:1.12rem; font-weight:800;">ENCLAVE ARCADE</h2>
+            <span class="badge arcade">3 Playable Games</span>
+          </div>
+          <p style="font-size:0.75rem; color:var(--text-secondary); margin-top:2px;">
+            Play Slime Escape 3D, PUNT Stream-Snipe Dodge, or Instant Dungeon Forager & share your runs directly to the feeds!
+          </p>
+        </div>
+
+        <div style="display:flex; gap:6px; flex-wrap:wrap;">
+          <button type="button" class="btn btn-sm ${gTab==='slime'?'btn-arcade':'btn-outline'} game-tab-btn" data-gtab="slime">🟢 Slime Escape 3D</button>
+          <button type="button" class="btn btn-sm ${gTab==='cyber'?'btn-arcade':'btn-outline'} game-tab-btn" data-gtab="cyber">⚡ PUNT Snipe Dodge</button>
+          <button type="button" class="btn btn-sm ${gTab==='dungeon'?'btn-arcade':'btn-outline'} game-tab-btn" data-gtab="dungeon">⛏️ Instant Dungeon (ID)</button>
+        </div>
+      </div>
+    </div>
+
+    ${gTab === 'slime' ? `
+      <div class="card" style="display:flex; flex-direction:column; gap:12px;">
+        <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px;">
+          <div>
+            <h3 style="font-size:0.96rem; font-weight:800; color:#4ade80;">Slime Escape: Stickman Evolution & Boss Speedrun</h3>
+            <p style="font-size:0.74rem; color:var(--text-secondary);">
+              Collect Bones (🦴) to evolve: <strong>1 Bone</strong> = Double Jump • <strong>3 Bones</strong> = Triple Jump • <strong>4 Bones</strong> = Recharging Shield • <strong>5 Bones</strong> = Humanoid Stickman Evolution + Boss Battle!
+            </p>
+          </div>
+          <div style="display:flex; gap:6px; align-items:center; flex-wrap:wrap;">
+            <span class="badge arcade">Best Distance: ${bestSlimeDist}m</span>
+            ${bestSlimeMs > 0 ? `<span class="badge verified">Best Boss Clear: ${(bestSlimeMs/1000).toFixed(2)}s</span>` : ''}
+            <button type="button" class="btn btn-primary btn-sm" id="restartSlimeBtn">↻ Restart Run</button>
+            <button type="button" class="btn btn-knok btn-sm" id="shareSlimeRunBtn">Share Run to Feed</button>
+          </div>
+        </div>
+
+        <div class="game-canvas-wrap">
+          <canvas id="slimeCanvas" width="740" height="416"></canvas>
+          <div class="game-touch-bar">
+            <button type="button" class="touch-pad-btn" id="touchLeftBtn">◀ LEFT (A)</button>
+            <button type="button" class="touch-pad-btn" id="touchRightBtn">RIGHT (D) ▶</button>
+            <button type="button" class="touch-pad-btn" id="touchJumpBtn">▲ JUMP / WALL (SPACE)</button>
+            <button type="button" class="touch-pad-btn" id="touchDashBtn">⚡ DASH / STRIKE (SHIFT)</button>
+          </div>
+        </div>
+      </div>
+    ` : gTab === 'cyber' ? `
+      <div class="card" style="display:flex; flex-direction:column; gap:12px;">
+        <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px;">
+          <div>
+            <h3 style="font-size:0.96rem; font-weight:800; color:var(--accent-punt);">PUNT IRL Stream-Snipe Dodge</h3>
+            <p style="font-size:0.74rem; color:var(--text-secondary);">
+              Dodge incoming Stream-Sniper Drones & Swat Vans while collecting 90/10 Sub Drops! Use WASD / Arrows or Touch buttons.
+            </p>
+          </div>
+          <div style="display:flex; gap:6px; align-items:center;">
+            <span class="badge punt">High Score: ${bestCyber} Subs</span>
+            <button type="button" class="btn btn-primary btn-sm" id="restartCyberBtn">↻ Restart Stream</button>
+            <button type="button" class="btn btn-punt btn-sm" id="shareCyberRunBtn">Post Score to PUNT</button>
+          </div>
+        </div>
+
+        <div class="game-canvas-wrap">
+          <canvas id="cyberCanvas" width="740" height="416"></canvas>
+          <div class="game-touch-bar">
+            <button type="button" class="touch-pad-btn" id="cyberLeftBtn">◀ MOVE LEFT</button>
+            <button type="button" class="touch-pad-btn" id="cyberUpBtn">▲ MOVE UP</button>
+            <button type="button" class="touch-pad-btn" id="cyberDownBtn">▼ MOVE DOWN</button>
+            <button type="button" class="touch-pad-btn" id="cyberRightBtn">MOVE RIGHT ▶</button>
+          </div>
+        </div>
+      </div>
+    ` : `
+      <div class="card" style="display:flex; flex-direction:column; gap:14px;">
+        <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px;">
+          <div>
+            <h3 style="font-size:0.96rem; font-weight:800; color:var(--accent-enclave);">Instant Dungeon (ID) — Resource Forager</h3>
+            <p style="font-size:0.74rem; color:var(--text-secondary);">
+              Deploy into an Enclave Instant Dungeon node to Fish, Mine, Hunt, or Chop. Yield scales with your Follow Tier (${STATE.currentUser.multiplier}x)!
+            </p>
+          </div>
+          <button type="button" class="btn btn-outline btn-sm" id="shareDungeonLootBtn">Flex Loot on Feed</button>
+        </div>
+
+        <div class="grid-4">
+          <button type="button" class="card id-forage-btn" data-node="FISH" style="cursor:pointer; text-align:center; background:var(--bg-input);">
+            <div style="font-size:1.5rem;">🎣</div>
+            <div style="font-weight:800; font-size:0.86rem; margin-top:6px;">Abyssal Fishing</div>
+            <div style="font-size:0.7rem; color:var(--text-secondary); margin-top:2px;">Ryugu Reefs</div>
+          </button>
+          <button type="button" class="card id-forage-btn" data-node="MINE" style="cursor:pointer; text-align:center; background:var(--bg-input);">
+            <div style="font-size:1.5rem;">⛏️</div>
+            <div style="font-weight:800; font-size:0.86rem; margin-top:6px;">etherium Mining</div>
+            <div style="font-size:0.7rem; color:var(--text-secondary); margin-top:2px;">Depths Sector 4</div>
+          </button>
+          <button type="button" class="card id-forage-btn" data-node="HUNT" style="cursor:pointer; text-align:center; background:var(--bg-input);">
+            <div style="font-size:1.5rem;">🏹</div>
+            <div style="font-weight:800; font-size:0.86rem; margin-top:6px;">Monster Hunting</div>
+            <div style="font-size:0.7rem; color:var(--text-secondary); margin-top:2px;">Slime & Skeletons</div>
+          </button>
+          <button type="button" class="card id-forage-btn" data-node="CHOP" style="cursor:pointer; text-align:center; background:var(--bg-input);">
+            <div style="font-size:1.5rem;">🪓</div>
+            <div style="font-weight:800; font-size:0.86rem; margin-top:6px;">Spirit Timber</div>
+            <div style="font-size:0.7rem; color:var(--text-secondary); margin-top:2px;">Elder Grove</div>
+          </button>
+        </div>
+
+        <div id="dungeonLogBox" style="background:var(--bg-input); border:1px solid var(--border-subtle); border-radius:var(--radius-md); padding:14px; font-family:var(--font-mono); font-size:0.78rem; min-height:120px; color:var(--text-primary);">
+          ${escapeHtml(STATE.lastGameResult || 'Select an Instant Dungeon node above to roll a foraging expedition...')}
+        </div>
+      </div>
+    `}
+  `;
+}
+
+function bindGamesEvents() {
+  stopActiveGames();
+
+  document.querySelectorAll('.game-tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      stopActiveGames();
+      STATE.activeGameTab = btn.getAttribute('data-gtab');
+      render();
+    });
+  });
+
+  if (STATE.activeGameTab === 'slime') {
+    initSlimeEscapeGame();
+  } else if (STATE.activeGameTab === 'cyber') {
+    initCyberDodgeGame();
+  } else if (STATE.activeGameTab === 'dungeon') {
+    initInstantDungeonGame();
+  }
+}
+
+/**
+ * GAME 1: SLIME ESCAPE 3D (Procedural 3D Perspective Chunks, Bone Evolution -> Stickman, Wall Climb, Skeleton Lasers, Boss Fight, Mini-Map)
+ */
+const SLIME_KEYS = { left: false, right: false, jump: false, dash: false };
+window.addEventListener('keydown', (e) => {
+  if (STATE.currentPage !== 'games' || STATE.activeGameTab !== 'slime') return;
+  const k = e.key.toLowerCase();
+  if (k === 'a' || e.key === 'ArrowLeft') SLIME_KEYS.left = true;
+  if (k === 'd' || e.key === 'ArrowRight') SLIME_KEYS.right = true;
+  if (k === 'w' || e.key === 'ArrowUp' || e.key === ' ') {
+    if (!SLIME_KEYS.jump) window.__slimeTriggerJump && window.__slimeTriggerJump();
+    SLIME_KEYS.jump = true;
+    if (e.key === ' ') e.preventDefault();
+  }
+  if (e.key === 'Shift' || k === 'e' || k === 'j') {
+    window.__slimeTriggerDash && window.__slimeTriggerDash();
+    SLIME_KEYS.dash = true;
+  }
+});
+window.addEventListener('keyup', (e) => {
+  const k = e.key.toLowerCase();
+  if (k === 'a' || e.key === 'ArrowLeft') SLIME_KEYS.left = false;
+  if (k === 'd' || e.key === 'ArrowRight') SLIME_KEYS.right = false;
+  if (k === 'w' || e.key === 'ArrowUp' || e.key === ' ') SLIME_KEYS.jump = false;
+  if (e.key === 'Shift' || k === 'e' || k === 'j') SLIME_KEYS.dash = false;
+});
+
+function initSlimeEscapeGame() {
+  const canvas = document.getElementById('slimeCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+
+  let gameState = {
+    startTime: performance.now(),
+    elapsedMs: 0,
+    bones: 0,
+    maxJumps: 1,
+    jumpsLeft: 1,
+    hasShield: false,
+    shieldReady: false,
+    shieldCooldown: 0,
+    isStickman: false,
+    distance: 0,
+    bossCleared: false,
+    dead: false,
+    winTimeMs: 0,
+    camX: 0,
+    player: { x: 80, y: 200, vx: 0, vy: 0, w: 28, h: 28, onGround: false, onWall: 0, facing: 1, dashTimer: 0, animFrame: 0 },
+    platforms: [],
+    bonesList: [],
+    skeletons: [],
+    lasers: [],
+    particles: [],
+    boss: { active: false, x: 2650, y: 160, w: 54, h: 68, hp: 5, maxHp: 5, vy: 2, shootTimer: 0, stunTimer: 0 }
+  };
+
+  function generateWorld() {
+    gameState.platforms = [
+      { x: 0, y: 330, w: 360, h: 90, climbable: false },
+      { x: 410, y: 290, w: 180, h: 130, climbable: true },
+      { x: 650, y: 240, w: 160, h: 180, climbable: true },
+      { x: 870, y: 310, w: 240, h: 110, climbable: false },
+      { x: 1160, y: 220, w: 90, h: 200, climbable: true },
+      { x: 1310, y: 170, w: 180, h: 40, climbable: false },
+      { x: 1540, y: 290, w: 260, h: 130, climbable: true },
+      { x: 1860, y: 210, w: 120, h: 210, climbable: true },
+      { x: 2040, y: 280, w: 240, h: 140, climbable: false },
+      // Boss Arena Floor & Walls
+      { x: 2340, y: 320, w: 560, h: 100, climbable: false },
+      { x: 2340, y: 120, w: 28, h: 200, climbable: true },
+      { x: 2872, y: 120, w: 28, h: 200, climbable: true }
+    ];
+
+    gameState.bonesList = [
+      { x: 260, y: 290, collected: false },
+      { x: 490, y: 250, collected: false },
+      { x: 720, y: 195, collected: false },
+      { x: 1000, y: 270, collected: false },
+      { x: 1390, y: 130, collected: false },
+      { x: 1680, y: 245, collected: false },
+      { x: 2160, y: 235, collected: false }
+    ];
+
+    gameState.skeletons = [
+      { x: 520, y: 256, minX: 420, maxX: 570, vx: 1.1, shootCd: 90, alive: true },
+      { x: 980, y: 276, minX: 880, maxX: 1080, vx: -1.3, shootCd: 70, alive: true },
+      { x: 1650, y: 256, minX: 1550, maxX: 1780, vx: 1.4, shootCd: 65, alive: true },
+      { x: 2150, y: 246, minX: 2050, maxX: 2250, vx: 1.5, shootCd: 60, alive: true }
+    ];
+  }
+
+  generateWorld();
+
+  function updateProgression() {
+    const b = gameState.bones;
+    gameState.maxJumps = b >= 3 ? 3 : (b >= 1 ? 2 : 1);
+    if (b >= 4 && !gameState.hasShield) {
+      gameState.hasShield = true;
+      gameState.shieldReady = true;
+    }
+    if (b >= 5 && !gameState.isStickman) {
+      gameState.isStickman = true;
+      gameState.player.h = 42;
+      gameState.player.y -= 14;
+      showToast('EVOLUTION! 5 Bones collected — Transformed into Stickman!');
+    }
+  }
+
+  window.__slimeTriggerJump = () => {
+    if (gameState.dead || gameState.bossCleared) return;
+    const p = gameState.player;
+    if (p.onWall !== 0 && !p.onGround) {
+      p.vy = -10.5;
+      p.vx = -p.onWall * 7.5;
+      p.jumpsLeft = Math.max(1, gameState.maxJumps - 1);
+      return;
+    }
+    if (p.jumpsLeft > 0) {
+      p.vy = -10.2;
+      p.onGround = false;
+      p.jumpsLeft--;
+    }
+  };
+
+  window.__slimeTriggerDash = () => {
+    if (gameState.dead || gameState.bossCleared) return;
+    const p = gameState.player;
+    if (p.dashTimer <= 0) {
+      p.dashTimer = 16;
+      p.vx = p.facing * 11.5;
+      p.vy = -2;
+    }
+  };
+
+  // Bind Touch Buttons
+  const bindHold = (id, keyName) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.addEventListener('pointerdown', (e) => { e.preventDefault(); SLIME_KEYS[keyName] = true; });
+    el.addEventListener('pointerup', () => { SLIME_KEYS[keyName] = false; });
+    el.addEventListener('pointerleave', () => { SLIME_KEYS[keyName] = false; });
+  };
+  bindHold('touchLeftBtn', 'left');
+  bindHold('touchRightBtn', 'right');
+
+  const jBtn = document.getElementById('touchJumpBtn');
+  if (jBtn) jBtn.addEventListener('pointerdown', (e) => { e.preventDefault(); window.__slimeTriggerJump(); });
+  const dBtn = document.getElementById('touchDashBtn');
+  if (dBtn) dBtn.addEventListener('pointerdown', (e) => { e.preventDefault(); window.__slimeTriggerDash(); });
+
+  const restartBtn = document.getElementById('restartSlimeBtn');
+  if (restartBtn) restartBtn.addEventListener('click', () => initSlimeEscapeGame());
+
+  const shareBtn = document.getElementById('shareSlimeRunBtn');
+  if (shareBtn) {
+    shareBtn.addEventListener('click', async () => {
+      const statusText = gameState.bossCleared
+        ? `Cleared SLIME ESCAPE 3D Boss in ${(gameState.winTimeMs / 1000).toFixed(2)}s as Evolved Stickman (${gameState.bones} Bones)!`
+        : `Reached ${gameState.distance}m in SLIME ESCAPE 3D (${gameState.bones} Bones collected • ${gameState.isStickman ? 'Stickman Form' : 'Slime Form'})!`;
+      STATE.lastGameResult = statusText;
+      const res = await apiCall({
+        action: 'createPost',
+        author: STATE.currentUser.username,
+        platform: STATE.currentUser.knoknoxActive ? 'KNOKNOX' : (STATE.currentUser.puntActive ? 'PUNT' : 'METROTV'),
+        caption: `🎮 [ENCLAVE ARCADE] ${statusText}`,
+        mediaUrl: '',
+        mediaType: 'none',
+        durationSec: 0,
+        resolution: 'Arcade Run'
+      }, 'Sharing Arcade Run');
+      if (!res.ok) return showToast(res.error);
+      ingestBootstrap(res);
+      showToast('Posted your Slime Escape run to the feed!');
+    });
+  }
+
+  function takeHit() {
+    if (gameState.shieldReady) {
+      gameState.shieldReady = false;
+      gameState.shieldCooldown = 360; // Recharges after 6 seconds
+      showToast('Shield absorbed lethal laser hit! Recharging...');
+      return;
+    }
+    gameState.dead = true;
+  }
+
+  function step() {
+    if (STATE.currentPage !== 'games' || STATE.activeGameTab !== 'slime') return;
+
+    const p = gameState.player;
+    if (!gameState.dead && !gameState.bossCleared) {
+      gameState.elapsedMs = performance.now() - gameState.startTime;
+
+      if (gameState.hasShield && !gameState.shieldReady) {
+        gameState.shieldCooldown--;
+        if (gameState.shieldCooldown <= 0) gameState.shieldReady = true;
+      }
+
+      const accel = p.dashTimer > 0 ? 0.9 : 0.65;
+      if (SLIME_KEYS.left) { p.vx = Math.max(p.vx - accel, -5.4); p.facing = -1; }
+      else if (SLIME_KEYS.right) { p.vx = Math.min(p.vx + accel, 5.4); p.facing = 1; }
+      else { p.vx *= 0.82; }
+
+      if (p.dashTimer > 0) p.dashTimer--;
+      p.vy = Math.min(p.vy + 0.52, 12);
+
+      // Horizontal Move & Wall Collision
+      p.x += p.vx;
+      p.onWall = 0;
+      for (const plat of gameState.platforms) {
+        if (p.x + p.w > plat.x && p.x < plat.x + plat.w && p.y + p.h > plat.y + 4 && p.y < plat.y + plat.h - 4) {
+          if (p.vx > 0) {
+            p.x = plat.x - p.w;
+            if (plat.climbable) { p.onWall = 1; if (SLIME_KEYS.right) p.vy = Math.min(p.vy, 1.5); }
+          } else if (p.vx < 0) {
+            p.x = plat.x + plat.w;
+            if (plat.climbable) { p.onWall = -1; if (SLIME_KEYS.left) p.vy = Math.min(p.vy, 1.5); }
+          }
+          p.vx = 0;
+        }
+      }
+
+      // Vertical Move & Floor Collision
+      p.y += p.vy;
+      p.onGround = false;
+      for (const plat of gameState.platforms) {
+        if (p.x + p.w > plat.x + 2 && p.x < plat.x + plat.w - 2 && p.y + p.h >= plat.y && p.y < plat.y + plat.h) {
+          if (p.vy >= 0 && p.y + p.h - p.vy <= plat.y + 14) {
+            p.y = plat.y - p.h;
+            p.vy = 0;
+            p.onGround = true;
+            p.jumpsLeft = gameState.maxJumps;
+          } else if (p.vy < 0) {
+            p.y = plat.y + plat.h;
+            p.vy = 0;
+          }
+        }
+      }
+
+      if (p.y > 460) gameState.dead = true;
+
+      gameState.distance = Math.max(gameState.distance, Math.floor(p.x / 10));
+      if (gameState.distance > Number(localStorage.getItem('enclave_slime_best_dist') || 0)) {
+        localStorage.setItem('enclave_slime_best_dist', String(gameState.distance));
+      }
+
+      // Collect Bones
+      for (const b of gameState.bonesList) {
+        if (!b.collected && Math.hypot((p.x + p.w/2) - b.x, (p.y + p.h/2) - b.y) < 26) {
+          b.collected = true;
+          gameState.bones++;
+          updateProgression();
+        }
+      }
+
+      // Skeleton Patrol & Red Laser Firing
+      for (const sk of gameState.skeletons) {
+        if (!sk.alive) continue;
+        sk.x += sk.vx;
+        if (sk.x < sk.minX || sk.x > sk.maxX) sk.vx *= -1;
+        sk.shootCd--;
+        if (sk.shootCd <= 0 && Math.abs(sk.x - p.x) < 420) {
+          sk.shootCd = 85;
+          const dir = p.x < sk.x ? -1 : 1;
+          gameState.lasers.push({ x: sk.x, y: sk.y + 12, vx: dir * 6.8, vy: 0 });
+        }
+        // Stomp or Dash-Strike Skeleton
+        if (Math.abs((p.x + p.w/2) - sk.x) < 24 && Math.abs((p.y + p.h/2) - (sk.y + 16)) < 26) {
+          if (p.vy > 1 || p.dashTimer > 0) {
+            sk.alive = false;
+            p.vy = -8;
+          } else {
+            takeHit();
+          }
+        }
+      }
+
+      // Boss Encounter at x >= 2300
+      const boss = gameState.boss;
+      if (p.x > 2280) boss.active = true;
+      if (boss.active && boss.hp > 0) {
+        if (boss.stunTimer > 0) boss.stunTimer--;
+        else {
+          boss.y += boss.vy;
+          if (boss.y < 140 || boss.y > 250) boss.vy *= -1;
+          boss.shootTimer--;
+          if (boss.shootTimer <= 0) {
+            boss.shootTimer = 55;
+            const angle = Math.atan2((p.y + p.h/2) - (boss.y + boss.h/2), (p.x + p.w/2) - boss.x);
+            gameState.lasers.push({ x: boss.x, y: boss.y + 28, vx: Math.cos(angle) * 7.2, vy: Math.sin(angle) * 7.2 });
+          }
+        }
+
+        // Player hits Boss
+        if (p.x + p.w > boss.x && p.x < boss.x + boss.w && p.y + p.h > boss.y && p.y < boss.y + boss.h) {
+          if ((p.vy > 1 || p.dashTimer > 0) && boss.stunTimer <= 0) {
+            boss.hp--;
+            boss.stunTimer = 40;
+            p.vy = -9.5;
+            p.vx = -6;
+            if (boss.hp <= 0) {
+              gameState.bossCleared = true;
+              gameState.winTimeMs = gameState.elapsedMs;
+              const prevBest = Number(localStorage.getItem('enclave_slime_best_ms') || 0);
+              if (prevBest === 0 || gameState.winTimeMs < prevBest) {
+                localStorage.setItem('enclave_slime_best_ms', String(Math.round(gameState.winTimeMs)));
+              }
+              showToast('VICTORY! Boss defeated in ' + (gameState.winTimeMs / 1000).toFixed(2) + 's!');
+            }
+          } else if (boss.stunTimer <= 0) {
+            takeHit();
+          }
+        }
+      }
+
+      // Update Red Lasers
+      for (let i = gameState.lasers.length - 1; i >= 0; i--) {
+        const l = gameState.lasers[i];
+        l.x += l.vx;
+        l.y += l.vy;
+        if (l.x > p.x && l.x < p.x + p.w && l.y > p.y && l.y < p.y + p.h) {
+          gameState.lasers.splice(i, 1);
+          takeHit();
+          continue;
+        }
+        if (Math.abs(l.x - p.x) > 700) gameState.lasers.splice(i, 1);
+      }
+
+      p.animFrame += Math.abs(p.vx) * 0.15 + 0.05;
+      gameState.camX = Math.max(0, p.x - 220);
+    }
+
+    // RENDER 3D-PERSPECTIVE WORLD
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const grad = ctx.createLinearGradient(0, 0, 0, canvas.height);
+    grad.addColorStop(0, '#070b16');
+    grad.addColorStop(1, '#111a2e');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.save();
+    ctx.translate(-gameState.camX, 0);
+
+    // Draw 3D-Shaded Platforms
+    for (const plat of gameState.platforms) {
+      const depthX = 12;
+      const depthY = -10;
+      // 3D Top Face
+      ctx.fillStyle = plat.climbable ? '#2dd4bf' : '#334155';
+      ctx.beginPath();
+      ctx.moveTo(plat.x, plat.y);
+      ctx.lineTo(plat.x + depthX, plat.y + depthY);
+      ctx.lineTo(plat.x + plat.w + depthX, plat.y + depthY);
+      ctx.lineTo(plat.x + plat.w, plat.y);
+      ctx.closePath();
+      ctx.fill();
+
+      // 3D Right Side Face
+      ctx.fillStyle = '#0f172a';
+      ctx.beginPath();
+      ctx.moveTo(plat.x + plat.w, plat.y);
+      ctx.lineTo(plat.x + plat.w + depthX, plat.y + depthY);
+      ctx.lineTo(plat.x + plat.w + depthX, plat.y + plat.h + depthY);
+      ctx.lineTo(plat.x + plat.w, plat.y + plat.h);
+      ctx.closePath();
+      ctx.fill();
+
+      // Front Face
+      ctx.fillStyle = plat.climbable ? '#115e59' : '#1e293b';
+      ctx.fillRect(plat.x, plat.y, plat.w, plat.h);
+      ctx.strokeStyle = plat.climbable ? '#5eead4' : '#475569';
+      ctx.strokeRect(plat.x, plat.y, plat.w, plat.h);
+    }
+
+    // Draw Bones
+    for (const b of gameState.bonesList) {
+      if (b.collected) continue;
+      ctx.fillStyle = '#f8fafc';
+      ctx.beginPath();
+      ctx.arc(b.x - 5, b.y, 5, 0, Math.PI * 2);
+      ctx.arc(b.x + 5, b.y, 5, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillRect(b.x - 5, b.y - 2, 10, 4);
+    }
+
+    // Draw Skeleton Enemies
+    for (const sk of gameState.skeletons) {
+      if (!sk.alive) continue;
+      ctx.strokeStyle = '#e2e8f0';
+      ctx.lineWidth = 2.5;
+      ctx.beginPath();
+      ctx.arc(sk.x, sk.y, 7, 0, Math.PI * 2);
+      ctx.moveTo(sk.x, sk.y + 7);
+      ctx.lineTo(sk.x, sk.y + 22);
+      ctx.moveTo(sk.x - 8, sk.y + 13);
+      ctx.lineTo(sk.x + 8, sk.y + 13);
+      ctx.moveTo(sk.x, sk.y + 22);
+      ctx.lineTo(sk.x - 6, sk.y + 32);
+      ctx.moveTo(sk.x, sk.y + 22);
+      ctx.lineTo(sk.x + 6, sk.y + 32);
+      ctx.stroke();
+      ctx.fillStyle = '#ef4444';
+      ctx.fillRect(sk.x - 3, sk.y - 2, 2, 2);
+      ctx.fillRect(sk.x + 1, sk.y - 2, 2, 2);
+    }
+
+    // Draw Boss
+    const boss = gameState.boss;
+    if (boss.active && boss.hp > 0) {
+      ctx.fillStyle = boss.stunTimer > 0 ? '#f59e0b' : '#dc2626';
+      ctx.fillRect(boss.x, boss.y, boss.w, boss.h);
+      ctx.strokeStyle = '#fca5a5';
+      ctx.lineWidth = 2;
+      ctx.strokeRect(boss.x, boss.y, boss.w, boss.h);
+      // Boss HP Bar
+      ctx.fillStyle = '#111827';
+      ctx.fillRect(boss.x - 10, boss.y - 18, 74, 8);
+      ctx.fillStyle = '#ef4444';
+      ctx.fillRect(boss.x - 10, boss.y - 18, (boss.hp / boss.maxHp) * 74, 8);
+    }
+
+    // Draw Red Lasers
+    ctx.fillStyle = '#ff2a4b';
+    for (const l of gameState.lasers) {
+      ctx.beginPath();
+      ctx.arc(l.x, l.y, 4.5, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    // Draw Player (Slime OR Evolved Humanoid Stickman)
+    if (gameState.isStickman) {
+      const cx = p.x + p.w / 2;
+      const cy = p.y;
+      const swing = Math.sin(p.animFrame) * 8;
+      ctx.strokeStyle = '#4ade80';
+      ctx.lineWidth = 3.2;
+      ctx.beginPath();
+      ctx.arc(cx, cy + 8, 7, 0, Math.PI * 2);
+      ctx.moveTo(cx, cy + 15);
+      ctx.lineTo(cx, cy + 29);
+      ctx.moveTo(cx, cy + 18);
+      ctx.lineTo(cx - swing, cy + 26);
+      ctx.moveTo(cx, cy + 18);
+      ctx.lineTo(cx + swing, cy + 26);
+      ctx.moveTo(cx, cy + 29);
+      ctx.lineTo(cx - swing, cy + 41);
+      ctx.moveTo(cx, cy + 29);
+      ctx.lineTo(cx + swing, cy + 41);
+      ctx.stroke();
+    } else {
+      ctx.fillStyle = '#22c55e';
+      ctx.beginPath();
+      ctx.roundRect(p.x, p.y, p.w, p.h, [12, 12, 5, 5]);
+      ctx.fill();
+      ctx.fillStyle = '#052e16';
+      const eyeOffset = p.facing > 0 ? 15 : 5;
+      ctx.fillRect(p.x + eyeOffset, p.y + 9, 4, 5);
+      ctx.fillRect(p.x + eyeOffset + 6, p.y + 9, 4, 5);
+    }
+
+    // Draw Shield Bubble (Unlocked at 4 Bones)
+    if (gameState.shieldReady) {
+      ctx.strokeStyle = '#38bdf8';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.arc(p.x + p.w / 2, p.y + p.h / 2, 24, 0, Math.PI * 2);
+      ctx.stroke();
+    }
+
+    ctx.restore();
+
+    // HUD Overlay
+    ctx.fillStyle = 'rgba(9, 10, 13, 0.78)';
+    ctx.fillRect(12, 12, 340, 56);
+    ctx.strokeStyle = 'rgba(255,255,255,0.12)';
+    ctx.strokeRect(12, 12, 340, 56);
+    ctx.fillStyle = '#f3f4f6';
+    ctx.font = 'bold 12px "JetBrains Mono", monospace';
+    ctx.fillText(`TIME: ${(gameState.elapsedMs / 1000).toFixed(2)}s | DIST: ${gameState.distance}m | BONES: ${gameState.bones}/5`, 22, 34);
+    ctx.fillStyle = '#4ade80';
+    ctx.fillText(`FORM: ${gameState.isStickman ? 'STICKMAN (EVOLVED)' : 'SLIME'} | JUMPS: ${gameState.maxJumps}x | SHIELD: ${gameState.shieldReady ? 'ON' : (gameState.hasShield ? 'RECHARGING' : 'LOCKED')}`, 22, 54);
+
+    // Mini-Map in Top-Right Corner
+    const mapW = 150;
+    const mapH = 34;
+    const mapX = canvas.width - mapW - 12;
+    const mapY = 12;
+    ctx.fillStyle = 'rgba(9, 10, 13, 0.82)';
+    ctx.fillRect(mapX, mapY, mapW, mapH);
+    ctx.strokeStyle = 'rgba(255,255,255,0.2)';
+    ctx.strokeRect(mapX, mapY, mapW, mapH);
+    const prog = Math.min(1, p.x / 2850);
+    ctx.fillStyle = '#22c55e';
+    ctx.fillRect(mapX + prog * (mapW - 8), mapY + 8, 6, 18);
+    ctx.fillStyle = '#ef4444';
+    ctx.fillRect(mapX + (2650 / 2850) * (mapW - 8), mapY + 6, 6, 22);
+
+    if (gameState.dead || gameState.bossCleared) {
+      ctx.fillStyle = 'rgba(5, 7, 12, 0.82)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = gameState.bossCleared ? '#4ade80' : '#f43f5e';
+      ctx.font = 'bold 22px "Plus Jakarta Sans", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText(gameState.bossCleared ? '🏆 BOSS DEFEATED — SPEEDRUN COMPLETE!' : '💀 RUN TERMINATED', canvas.width / 2, canvas.height / 2 - 14);
+      ctx.fillStyle = '#e5e7eb';
+      ctx.font = '14px "JetBrains Mono", monospace';
+      ctx.fillText(`Distance: ${gameState.distance}m • Bones: ${gameState.bones} • Time: ${(gameState.elapsedMs / 1000).toFixed(2)}s`, canvas.width / 2, canvas.height / 2 + 16);
+      ctx.fillText('Click "Restart Run" or "Share Run to Feed" above!', canvas.width / 2, canvas.height / 2 + 42);
+      ctx.textAlign = 'left';
+    }
+
+    SLIME_LOOP_ID = requestAnimationFrame(step);
+  }
+
+  SLIME_LOOP_ID = requestAnimationFrame(step);
+}
+
+/**
+ * GAME 2: PUNT STREAM-SNIPE DODGE
+ */
+function initCyberDodgeGame() {
+  const canvas = document.getElementById('cyberCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+
+  let state = {
+    player: { x: 80, y: 190, r: 14, speed: 4.8 },
+    keys: { up: false, down: false, left: false, right: false },
+    drones: [],
+    subs: [],
+    score: 0,
+    alive: true,
+    tick: 0
+  };
+
+  const bindBtn = (id, dir) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.addEventListener('pointerdown', (e) => { e.preventDefault(); state.keys[dir] = true; });
+    el.addEventListener('pointerup', () => { state.keys[dir] = false; });
+    el.addEventListener('pointerleave', () => { state.keys[dir] = false; });
+  };
+  bindBtn('cyberLeftBtn', 'left');
+  bindBtn('cyberRightBtn', 'right');
+  bindBtn('cyberUpBtn', 'up');
+  bindBtn('cyberDownBtn', 'down');
+
+  const rBtn = document.getElementById('restartCyberBtn');
+  if (rBtn) rBtn.addEventListener('click', () => initCyberDodgeGame());
+
+  const sBtn = document.getElementById('shareCyberRunBtn');
+  if (sBtn) {
+    sBtn.addEventListener('click', async () => {
+      const res = await apiCall({
+        action: 'createPost',
+        author: STATE.currentUser.username,
+        platform: STATE.currentUser.puntActive ? 'PUNT' : (STATE.currentUser.knoknoxActive ? 'KNOKNOX' : 'METROTV'),
+        caption: `🟢 [PUNT ARCADE] Survived IRL Stream-Snipe Dodge with ${state.score} Gifted Subs collected!`,
+        mediaUrl: '',
+        mediaType: 'none',
+        durationSec: 0,
+        resolution: 'Arcade Run'
+      }, 'Sharing Score');
+      if (!res.ok) return showToast(res.error);
+      ingestBootstrap(res);
+      showToast('Posted score to feed!');
+    });
+  }
+
+  function loop() {
+    if (STATE.currentPage !== 'games' || STATE.activeGameTab !== 'cyber') return;
+    if (state.alive) {
+      state.tick++;
+      if (state.keys.left) state.player.x = Math.max(20, state.player.x - state.player.speed);
+      if (state.keys.right) state.player.x = Math.min(canvas.width - 20, state.player.x + state.player.speed);
+      if (state.keys.up) state.player.y = Math.max(20, state.player.y - state.player.speed);
+      if (state.keys.down) state.player.y = Math.min(canvas.height - 20, state.player.y + state.player.speed);
+
+      if (state.tick % 32 === 0) {
+        state.drones.push({ x: canvas.width + 20, y: 24 + Math.random() * (canvas.height - 48), vx: -(3.8 + Math.random() * 2.8), r: 12 });
+      }
+      if (state.tick % 45 === 0) {
+        state.subs.push({ x: canvas.width + 20, y: 24 + Math.random() * (canvas.height - 48), vx: -3.2, r: 9 });
+      }
+
+      for (let i = state.drones.length - 1; i >= 0; i--) {
+        const d = state.drones[i];
+        d.x += d.vx;
+        if (Math.hypot(d.x - state.player.x, d.y - state.player.y) < d.r + state.player.r) {
+          state.alive = false;
+        }
+        if (d.x < -30) state.drones.splice(i, 1);
+      }
+
+      for (let i = state.subs.length - 1; i >= 0; i--) {
+        const s = state.subs[i];
+        s.x += s.vx;
+        if (Math.hypot(s.x - state.player.x, s.y - state.player.y) < s.r + state.player.r) {
+          state.score += 10;
+          if (state.score > Number(localStorage.getItem('enclave_cyber_best') || 0)) {
+            localStorage.setItem('enclave_cyber_best', String(state.score));
+          }
+          state.subs.splice(i, 1);
+          continue;
+        }
+        if (s.x < -30) state.subs.splice(i, 1);
+      }
+    }
+
+    ctx.fillStyle = '#060a06';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = '#53fc18';
+    ctx.beginPath();
+    ctx.arc(state.player.x, state.player.y, state.player.r, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.fillStyle = '#f43f5e';
+    for (const d of state.drones) {
+      ctx.beginPath();
+      ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    ctx.fillStyle = '#f59e0b';
+    for (const s of state.subs) {
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    ctx.fillStyle = '#fff';
+    ctx.font = 'bold 14px "JetBrains Mono", monospace';
+    ctx.fillText(`PUNT SUBS COLLECTED: ${state.score}`, 18, 28);
+
+    if (!state.alive) {
+      ctx.fillStyle = 'rgba(0,0,0,0.78)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = '#53fc18';
+      ctx.font = 'bold 22px "Plus Jakarta Sans", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('STREAM SNIPED! BROADCAST ENDED', canvas.width / 2, canvas.height / 2 - 8);
+      ctx.fillStyle = '#fff';
+      ctx.font = '14px "JetBrains Mono", monospace';
+      ctx.fillText(`Final Payout: ${state.score} Gifted Subs`, canvas.width / 2, canvas.height / 2 + 20);
+      ctx.textAlign = 'left';
+    }
+
+    CYBER_LOOP_ID = requestAnimationFrame(loop);
+  }
+  CYBER_LOOP_ID = requestAnimationFrame(loop);
+}
+
+/**
+ * GAME 3: INSTANT DUNGEON (ID) FORAGER
+ */
+function initInstantDungeonGame() {
+  const lootTable = {
+    FISH: ['Abyssal Leviathan Scale', 'Ryugu Pearl', 'Neon Koi', 'Golden Sea King Fin'],
+    MINE: ['Pure Etherium Core', 'Poneglyph Obsidian Shard', 'Mythril Ore', 'Void Crystal'],
+    HUNT: ['Royal Slime Core', 'Skeleton Laser Lens', 'Shadow Wolf Fang', 'Cursed Bone Relic'],
+    CHOP: ['Elder Spirit Timber', 'World-Tree Sap', 'Ironwood Plank', ' luminescent Bark']
+  };
+
+  document.querySelectorAll('.id-forage-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const node = btn.getAttribute('data-node');
+      const items = lootTable[node] || lootTable.MINE;
+      const picked = items[Math.floor(Math.random() * items.length)];
+      const mult = STATE.currentUser.multiplier || 1;
+      const qty = Math.max(1, Math.round((2 + Math.floor(Math.random() * 5)) * mult));
+      const msg = `[INSTANT DUNGEON // ${node}] Expedition Success! Harvested ${qty}x ${picked} (Tier ${STATE.currentUser.tier} ${mult}x Yield Bonus).`;
+      STATE.lastGameResult = msg;
+      const box = document.getElementById('dungeonLogBox');
+      if (box) box.textContent = msg;
+    });
+  });
+
+  const shareBtn = document.getElementById('shareDungeonLootBtn');
+  if (shareBtn) {
+    shareBtn.addEventListener('click', async () => {
+      if (!STATE.lastGameResult) return showToast('Run an Instant Dungeon node first!');
+      const res = await apiCall({
+        action: 'createPost',
+        author: STATE.currentUser.username,
+        platform: STATE.currentUser.metroActive ? 'METROTV' : (STATE.currentUser.puntActive ? 'PUNT' : 'KNOKNOX'),
+        caption: `⛏️ ${STATE.lastGameResult}`,
+        mediaUrl: '',
+        mediaType: 'none',
+        durationSec: 0,
+        resolution: 'Instant Dungeon'
+      }, 'Posting Loot');
+      if (!res.ok) return showToast(res.error);
+      ingestBootstrap(res);
+      showToast('Posted Instant Dungeon haul to feed!');
+    });
+  }
 }
 
 function renderPlatformLeaderboardHTML(platformKey) {
