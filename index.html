@@ -131,16 +131,13 @@
     .post-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; padding-top: 10px; border-top: 1px solid var(--border-subtle); }
     .shared-embed { background: var(--bg-input); border: 1px solid var(--border-subtle); border-left: 3px solid var(--text-secondary); padding: 10px 12px; border-radius: 6px; font-size: 0.8rem; }
 
-    /* Collapsible Comments Drawer */
     .comments-drawer { background: var(--bg-input); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 12px; margin-top: 4px; display: flex; flex-direction: column; gap: 10px; }
     .comment-item { display: flex; gap: 9px; align-items: flex-start; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 0.81rem; }
     .comment-item:last-child { border-bottom: none; padding-bottom: 0; }
 
-    /* Leaderboard Table */
-    .lb-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 12px; background: var(--bg-input); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); }
+    .lb-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 12px; background: var(--bg-input); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); flex-wrap: wrap; }
     .lb-rank { width: 26px; height: 26px; border-radius: 6px; background: var(--bg-elevated); display: inline-flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 0.75rem; font-weight: 700; color: var(--accent-enclave); flex-shrink: 0; }
 
-    /* Quota Bar */
     .quota-strip { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; padding: 9px 12px; background: var(--bg-input); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-secondary); }
 
     .chat-layout { display: grid; grid-template-columns: 240px 1fr; gap: 12px; min-height: 500px; }
@@ -251,7 +248,6 @@ const FALLBACK_AVATAR = "data:image/svg+xml;utf8," + encodeURIComponent(
   `<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120"><rect width="120" height="120" rx="24" fill="#171a21"/><circle cx="60" cy="46" r="20" fill="#4b5563"/><path d="M26 104c6-18 20-28 34-28s28 10 34 28" fill="#4b5563"/></svg>`
 );
 
-// CSP-Safe Global Image Fallback Listener (replaces inline onerror attributes)
 window.addEventListener('error', (e) => {
   if (e.target && e.target.tagName === 'IMG' && e.target.src !== FALLBACK_AVATAR) {
     e.target.src = FALLBACK_AVATAR;
@@ -291,7 +287,6 @@ const ICONS = {
   trophy: `<svg class="icon-svg" style="width:14px;height:14px;" viewBox="0 0 24 24"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>`
 };
 
-// In-memory Blob URL cache so video/audio streams only fetch once per session
 const MEDIA_BLOB_CACHE = {};
 
 let STATE = {
@@ -300,8 +295,8 @@ let STATE = {
   authTab: 'login',
   composerOpen: false,
   leaderboardOpen: false,
-  leaderboardSort: 'followers', // followers | posts | upvotes | downvotes
-  openCommentsMap: {}, // postId -> boolean
+  leaderboardSort: 'followers',
+  openCommentsMap: {},
   currentUser: null,
   users: [],
   posts: [],
@@ -330,10 +325,6 @@ function hideLoading() {
   document.getElementById('loadingOverlay').classList.remove('active');
 }
 
-/**
- * Converts Base64 DataURL into a native Browser Blob URL (`blob:...`)
- * so <video> and <audio> tags play smoothly without CSP or length limits.
- */
 function dataUrlToBlobUrl(dataUrl) {
   try {
     const parts = dataUrl.split(',');
@@ -352,9 +343,6 @@ function dataUrlToBlobUrl(dataUrl) {
   }
 }
 
-/**
- * Hydrates all <video> and <audio> elements that use `gdrive:` or `data:` streams into playable Blob URLs!
- */
 async function hydrateMediaStreams() {
   const mediaEls = document.querySelectorAll('[data-stream-src]');
   for (const el of mediaEls) {
@@ -374,7 +362,6 @@ async function hydrateMediaStreams() {
       continue;
     }
 
-    // Handle gdrive:FILE_ID:MIME or legacy drive.google.com/uc?id=FILE_ID
     let fileId = '';
     let mimeType = el.tagName === 'AUDIO' ? 'audio/mpeg' : 'video/mp4';
     if (rawSrc.startsWith('gdrive:')) {
@@ -1056,9 +1043,8 @@ function bindProfileEvents() {
 function renderPlatformLeaderboardHTML(platformKey) {
   const spec = PLATFORM_SPECS[platformKey];
   const sortKey = STATE.leaderboardSort || 'followers';
-
-  // Filter creators who have activated this platform or posted on it
   const activeFlag = platformKey === 'METROTV' ? 'metroActive' : (platformKey === 'PUNT' ? 'puntActive' : 'knoknoxActive');
+
   const ranked = STATE.users
     .map(u => {
       const ps = (u.platformStats && u.platformStats[platformKey]) || { followers: u[spec.folKey] || 0, posts: 0, upvotes: 0, downvotes: 0 };
@@ -1090,7 +1076,7 @@ function renderPlatformLeaderboardHTML(platformKey) {
       <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;">
         <div>
           <h3 style="font-size:0.95rem; font-weight:800;">${ICONS.trophy} ${spec.name} Creator Leaderboard</h3>
-          <p style="font-size:0.74rem; color:var(--text-secondary);">Ranked by ${spec.name} metrics • Shows Network Following & Total Combined Following</p>
+          <p style="font-size:0.74rem; color:var(--text-secondary);">Ranked by ${spec.name} stats • Displays Network Following & Total Combined Following</p>
         </div>
         <div style="display:flex; gap:6px; flex-wrap:wrap;">
           <button type="button" class="btn btn-sm ${sortKey==='followers'?'btn-primary':'btn-outline'} lb-sort-btn" data-sort="followers">Most Followers</button>
