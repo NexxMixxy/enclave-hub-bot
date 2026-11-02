@@ -7,7 +7,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Enclave" />
   <meta name="theme-color" content="#090a0d" />
-  <title>ENCLAVE.NET</title>
+  <title>ENCLAVE</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -79,7 +79,7 @@
     .viewport-wrapper.mode-mobile .nav-btn { flex-direction: column; justify-content: center; align-items: center; padding: 6px 8px; gap: 3px; font-size: 0.64rem; width: auto; min-width: 52px; margin-top: 0; }
 
     .main-stage { flex: 1; overflow-y: auto; overflow-x: hidden; padding: 24px; display: flex; flex-direction: column; align-items: center; }
-    .stage-inner { width: 100%; max-width: 800px; display: flex; flex-direction: column; gap: 16px; }
+    .stage-inner { width: 100%; max-width: 820px; display: flex; flex-direction: column; gap: 16px; }
     .viewport-wrapper.mode-mobile .main-stage { padding: 12px; }
 
     .card { background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 18px; }
@@ -94,6 +94,8 @@
     .badge.punt { background: rgba(83, 252, 24, 0.1); color: var(--accent-punt); border-color: rgba(83, 252, 24, 0.3); }
     .badge.knoknox { background: rgba(6, 182, 212, 0.12); color: #38bdf8; border-color: rgba(6, 182, 212, 0.3); }
     .badge.arcade { background: rgba(168, 85, 247, 0.14); color: #d8b4fe; border-color: rgba(168, 85, 247, 0.35); }
+    .badge.live { background: rgba(16, 185, 129, 0.14); color: #34d399; border-color: rgba(16, 185, 129, 0.35); }
+    .badge.offline { background: rgba(107, 114, 128, 0.12); color: #9ca3af; border-color: rgba(107, 114, 128, 0.25); }
 
     .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
     .form-group label { font-size: 0.75rem; font-weight: 600; color: var(--text-secondary); }
@@ -132,6 +134,11 @@
     .post-media-box { width: 100%; border-radius: 10px; overflow: hidden; background: #050608; border: 1px solid var(--border-subtle); display: flex; align-items: center; justify-content: center; max-height: 440px; min-height: 64px; position: relative; }
     .post-media-box img, .post-media-box video { max-width: 100%; max-height: 430px; width: auto; height: auto; object-fit: contain; display: block; margin: 0 auto; }
     .post-media-box audio { width: 94%; margin: 14px auto; display: block; }
+
+    /* Multi-Image Dump Grid (Up to 5 Images) */
+    .post-dump-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 8px; width: 100%; background: #050608; padding: 8px; border-radius: 10px; border: 1px solid var(--border-subtle); }
+    .post-dump-grid img { width: 100%; height: 180px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border-subtle); display: block; background: var(--bg-elevated); }
+
     .post-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; padding-top: 10px; border-top: 1px solid var(--border-subtle); }
     .shared-embed { background: var(--bg-input); border: 1px solid var(--border-subtle); border-left: 3px solid var(--text-secondary); padding: 10px 12px; border-radius: 6px; font-size: 0.8rem; }
 
@@ -144,12 +151,17 @@
 
     .quota-strip { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; padding: 9px 12px; background: var(--bg-input); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-secondary); }
 
-    /* Arcade & Slime Escape Canvas Styling */
-    .game-canvas-wrap { width: 100%; background: #05070c; border: 1px solid var(--border-hover); border-radius: var(--radius-lg); overflow: hidden; position: relative; display: flex; flex-direction: column; align-items: center; }
-    #slimeCanvas, #cyberCanvas { width: 100%; max-width: 740px; height: auto; aspect-ratio: 16 / 9; display: block; background: #070b14; touch-action: none; }
-    .game-touch-bar { width: 100%; display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; padding: 10px; background: var(--bg-input); border-top: 1px solid var(--border-subtle); }
-    .touch-pad-btn { padding: 12px 6px; border-radius: 8px; background: var(--bg-elevated); border: 1px solid var(--border-hover); color: #fff; font-family: var(--font-mono); font-size: 0.78rem; font-weight: 700; text-align: center; cursor: pointer; user-select: none; touch-action: manipulation; }
+    /* Slime Adventure & Network Jack Styles */
+    .game-canvas-wrap { width: 100%; background: #06080e; border: 1px solid var(--border-hover); border-radius: var(--radius-lg); overflow: hidden; display: flex; flex-direction: column; align-items: center; }
+    #slimeDinoCanvas { width: 100%; max-width: 760px; height: auto; aspect-ratio: 16 / 7; display: block; background: #070a12; touch-action: none; }
+    .game-touch-bar { width: 100%; display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; padding: 10px; background: var(--bg-input); border-top: 1px solid var(--border-subtle); }
+    .touch-pad-btn { padding: 12px 8px; border-radius: 8px; background: var(--bg-elevated); border: 1px solid var(--border-hover); color: #fff; font-family: var(--font-mono); font-size: 0.8rem; font-weight: 700; text-align: center; cursor: pointer; user-select: none; touch-action: manipulation; }
     .touch-pad-btn:active { background: var(--accent-arcade); color: #fff; }
+
+    .bj-table-felt { background: radial-gradient(circle at center, #0f291e 0%, #07140f 100%); border: 2px solid #1f4e38; border-radius: var(--radius-lg); padding: 18px; display: flex; flex-direction: column; gap: 14px; }
+    .playing-card { display: inline-flex; flex-direction: column; align-items: center; justify-content: center; width: 52px; height: 74px; border-radius: 8px; background: #f8fafc; color: #0f172a; font-family: var(--font-mono); font-weight: 800; font-size: 0.95rem; border: 2px solid #cbd5e1; box-shadow: 0 4px 10px rgba(0,0,0,0.4); user-select: none; }
+    .playing-card.red { color: #dc2626; }
+    .playing-card.hidden-card { background: linear-gradient(135deg, #1e293b, #0f172a); color: #94a3b8; border-color: #475569; }
 
     .chat-layout { display: grid; grid-template-columns: 240px 1fr; gap: 12px; min-height: 500px; }
     .viewport-wrapper.mode-mobile .chat-layout { grid-template-columns: 1fr; }
@@ -190,7 +202,7 @@
         <img id="cornerHubLogo" class="brand-logo" src="" alt="Enclave" />
         <div>
           <div class="brand-title">ENCLAVE NETWORK</div>
-          <div class="brand-sub">METRO.TV / PUNT / KNOKNOX / ARCADE</div>
+          <div class="brand-sub">METRO.TV / PUNT / KNOKNOX</div>
         </div>
       </div>
       <div class="top-controls">
@@ -235,7 +247,7 @@
           <span>KnokNox</span>
         </button>
 
-        <div class="nav-section-label">Arcade</div>
+        <div class="nav-section-label">Arcade & PvP</div>
         <button class="nav-btn games-tab" data-page="games" id="navBtn_games">
           <svg class="icon-svg" viewBox="0 0 24 24"><line x1="6" x2="10" y1="12" y2="12"/><line x1="8" x2="8" y1="10" y2="14"/><line x1="15" x2="15.01" y1="13" y2="13"/><line x1="18" x2="18.01" y1="11" y2="11"/><rect width="20" height="12" x="2" y="6" rx="2"/></svg>
           <span>Games</span>
@@ -310,7 +322,8 @@ let STATE = {
   viewportMode: localStorage.getItem('enclave_viewport_mode') || 'desktop',
   currentPage: 'profile',
   authTab: 'login',
-  activeGameTab: 'slime', // slime | cyber | dungeon
+  activeGameTab: 'slime', // slime | blackjack
+  slimeRankedMode: false,
   composerOpen: false,
   leaderboardOpen: false,
   leaderboardSort: 'followers',
@@ -322,14 +335,17 @@ let STATE = {
   blocks: [],
   groups: [],
   messages: [],
+  slimeLeaderboard: [],
+  bjLeaderboard: [],
+  bjMatches: [],
   reports: [],
   history: [],
   activeChat: { type: 'DM', targetId: '', replyToMsgId: '', replyPreview: '' },
   searchQuery: '',
-  pendingMedia: { dataUrl: '', mediaType: 'none', durationSec: 0, resolution: '' },
+  pendingMedia: { dataUrl: '', mediaUrls: [], mediaType: 'none', durationSec: 0, resolution: '' },
   openOPModalUser: null,
   isBusy: false,
-  lastGameResult: ''
+  lastSlimeScore: 0
 };
 
 function showLoading(subText) {
@@ -344,12 +360,30 @@ function hideLoading() {
   document.getElementById('loadingOverlay').classList.remove('active');
 }
 
-function dataUrlToBlobUrl(dataUrl) {
+/**
+ * Converts a Base64 DataURL into a clean Browser Blob URL with explicit MIME enforcement
+ * so <video> and <audio> elements play reliably across Discord & all browsers.
+ */
+function dataUrlToBlobUrl(dataUrl, fallbackMime) {
   try {
-    const parts = dataUrl.split(',');
-    const mimeMatch = parts[0].match(/:(.*?);/);
-    const mime = mimeMatch ? mimeMatch[1] : 'application/octet-stream';
-    const bstr = atob(parts[1]);
+    const str = String(dataUrl || '').trim();
+    let base64Part = str;
+    let mime = fallbackMime || 'application/octet-stream';
+
+    if (str.startsWith('data:')) {
+      const commaIdx = str.indexOf(',');
+      if (commaIdx > -1) {
+        const header = str.slice(0, commaIdx);
+        base64Part = str.slice(commaIdx + 1);
+        const mimeMatch = header.match(/^data:([^;]+)/);
+        if (mimeMatch && mimeMatch[1] && mimeMatch[1] !== 'application/octet-stream') {
+          mime = mimeMatch[1];
+        }
+      }
+    }
+
+    if (mime === 'audio/mp3') mime = 'audio/mpeg';
+    const bstr = atob(base64Part);
     let n = bstr.length;
     const u8arr = new Uint8Array(n);
     while (n--) {
@@ -362,12 +396,51 @@ function dataUrlToBlobUrl(dataUrl) {
   }
 }
 
+/**
+ * Hydrates all `sheetmedia:`, `gdrive:`, `data:`, and `imagedump` elements on the page!
+ */
 async function hydrateMediaStreams() {
+  const scriptUrl = (LOGO_CONFIG.GOOGLE_SCRIPT_URL || '').trim();
+
+  // 1. Hydrate Multi-Image Dumps stored in MediaChunks
+  const dumpEls = document.querySelectorAll('[data-dump-src]');
+  for (const box of dumpEls) {
+    const rawDump = box.getAttribute('data-dump-src');
+    if (!rawDump || box.getAttribute('data-hydrated') === '1') continue;
+    box.setAttribute('data-hydrated', '1');
+
+    if (MEDIA_BLOB_CACHE[rawDump]) {
+      renderDumpImagesIntoBox(box, MEDIA_BLOB_CACHE[rawDump]);
+      continue;
+    }
+
+    if (rawDump.startsWith('sheetmedia:')) {
+      const bits = rawDump.split(':');
+      const mediaId = bits[1] || '';
+      try {
+        const resp = await fetch(scriptUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify({ action: 'getMedia', mediaId, mimeType: 'application/json' })
+        });
+        const res = await resp.json();
+        if (res && res.ok && res.dataUrl) {
+          const arr = JSON.parse(res.dataUrl);
+          MEDIA_BLOB_CACHE[rawDump] = arr;
+          renderDumpImagesIntoBox(box, arr);
+        }
+      } catch (e) {}
+    }
+  }
+
+  // 2. Hydrate Video, Audio, and Single Chunked Images
   const mediaEls = document.querySelectorAll('[data-stream-src]');
   for (const el of mediaEls) {
     const rawSrc = el.getAttribute('data-stream-src');
     if (!rawSrc || el.getAttribute('data-hydrated') === '1') continue;
     el.setAttribute('data-hydrated', '1');
+
+    const defaultMime = el.tagName === 'AUDIO' ? 'audio/mpeg' : (el.tagName === 'VIDEO' ? 'video/mp4' : 'image/jpeg');
 
     if (MEDIA_BLOB_CACHE[rawSrc]) {
       el.src = MEDIA_BLOB_CACHE[rawSrc];
@@ -375,15 +448,21 @@ async function hydrateMediaStreams() {
     }
 
     if (rawSrc.startsWith('data:')) {
-      const blobUrl = dataUrlToBlobUrl(rawSrc);
+      const blobUrl = dataUrlToBlobUrl(rawSrc, defaultMime);
       MEDIA_BLOB_CACHE[rawSrc] = blobUrl;
       el.src = blobUrl;
       continue;
     }
 
+    let mediaId = '';
     let fileId = '';
-    let mimeType = el.tagName === 'AUDIO' ? 'audio/mpeg' : 'video/mp4';
-    if (rawSrc.startsWith('gdrive:')) {
+    let mimeType = defaultMime;
+
+    if (rawSrc.startsWith('sheetmedia:')) {
+      const bits = rawSrc.split(':');
+      mediaId = bits[1] || '';
+      if (bits[2]) mimeType = bits[2];
+    } else if (rawSrc.startsWith('gdrive:')) {
       const bits = rawSrc.split(':');
       fileId = bits[1] || '';
       if (bits[2]) mimeType = bits[2];
@@ -392,19 +471,21 @@ async function hydrateMediaStreams() {
       if (m && m[1]) fileId = m[1];
     }
 
-    if (fileId) {
+    if (mediaId || fileId) {
       try {
-        const scriptUrl = (LOGO_CONFIG.GOOGLE_SCRIPT_URL || '').trim();
         const resp = await fetch(scriptUrl, {
           method: 'POST',
           headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-          body: JSON.stringify({ action: 'getMedia', fileId, mimeType })
+          body: JSON.stringify({ action: 'getMedia', mediaId, fileId, mimeType })
         });
         const res = await resp.json();
         if (res && res.ok && res.dataUrl) {
-          const blobUrl = dataUrlToBlobUrl(res.dataUrl);
+          const blobUrl = dataUrlToBlobUrl(res.dataUrl, res.mimeType || mimeType);
           MEDIA_BLOB_CACHE[rawSrc] = blobUrl;
           el.src = blobUrl;
+          if (el.tagName === 'VIDEO' || el.tagName === 'AUDIO') {
+            el.load();
+          }
         }
       } catch (err) {
         console.warn('Stream fetch error:', err);
@@ -413,6 +494,11 @@ async function hydrateMediaStreams() {
       el.src = rawSrc;
     }
   }
+}
+
+function renderDumpImagesIntoBox(box, urlsArray) {
+  if (!Array.isArray(urlsArray) || urlsArray.length === 0) return;
+  box.innerHTML = urlsArray.map(u => `<img src="${escapeHtml(fixMediaUrl(u))}" alt="Dump Image" loading="lazy" />`).join('');
 }
 
 function autoResizeImageFile(file, maxWidth, maxHeight, quality) {
@@ -433,9 +519,9 @@ function autoResizeImageFile(file, maxWidth, maxHeight, quality) {
         ctx.fillStyle = '#090a0d';
         ctx.fillRect(0, 0, w, h);
         ctx.drawImage(img, 0, 0, w, h);
-        let q = quality || 0.74;
+        let q = quality || 0.72;
         let dataUrl = canvas.toDataURL('image/jpeg', q);
-        while (dataUrl.length > 36000 && q > 0.35) {
+        while (dataUrl.length > 32000 && q > 0.35) {
           q -= 0.1;
           dataUrl = canvas.toDataURL('image/jpeg', q);
         }
@@ -460,11 +546,18 @@ function fixMediaUrl(url) {
 }
 
 function formatCountdownUntil(isoTarget) {
-  if (!isoTarget) return 'Soon';
+  if (!isoTarget) return 'Ready';
   const diff = Math.max(0, new Date(isoTarget).getTime() - Date.now());
+  if (diff <= 0) return 'Ready';
   const hrs = Math.floor(diff / 3600000);
   const mins = Math.floor((diff % 3600000) / 60000);
   return hrs + 'h ' + mins + 'm';
+}
+
+function renderOnlineBadge(isOnline) {
+  return isOnline
+    ? `<span class="badge live">● LIVE</span>`
+    : `<span class="badge offline">○ OFFLINE</span>`;
 }
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -562,6 +655,9 @@ function ingestBootstrap(res, skipCacheSave) {
   STATE.blocks = res.blocks || [];
   STATE.groups = res.groups || [];
   STATE.messages = res.messages || [];
+  STATE.slimeLeaderboard = res.slimeLeaderboard || [];
+  STATE.bjLeaderboard = res.bjLeaderboard || [];
+  STATE.bjMatches = res.bjMatches || [];
   STATE.reports = res.reports || [];
   STATE.history = res.history || [];
 
@@ -601,7 +697,7 @@ async function refreshFromServer(withLoadingPopup) {
 }
 
 function logout() {
-  stopActiveGames();
+  stopSlimeRunner();
   localStorage.removeItem('enclave_session_user');
   STATE.currentUser = null;
   STATE.openOPModalUser = null;
@@ -613,88 +709,168 @@ function logout() {
 
 function navigate(page) {
   if (STATE.currentPage === 'games' && page !== 'games') {
-    stopActiveGames();
+    stopSlimeRunner();
   }
   STATE.currentPage = page;
   STATE.composerOpen = false;
   STATE.leaderboardOpen = false;
-  STATE.pendingMedia = { dataUrl: '', mediaType: 'none', durationSec: 0, resolution: '' };
+  STATE.pendingMedia = { dataUrl: '', mediaUrls: [], mediaType: 'none', durationSec: 0, resolution: '' };
   document.querySelectorAll('.nav-btn').forEach(btn => {
     btn.classList.toggle('active', btn.dataset.page === page);
   });
   render();
 }
 
+/**
+ * Handles Single Image, Multi-Image Dump (Up to 5 Images), Video (MP4/WebM), and Audio (MP3/WAV/OGG)
+ */
 async function handleMediaFileSelect(inputEl, platformKey) {
-  const file = inputEl.files && inputEl.files[0];
+  const files = Array.from(inputEl.files || []);
   const statusEl = document.getElementById('mediaCheckStatus');
   const previewEl = document.getElementById('mediaLivePreviewBox');
-  if (!file) return;
+  if (files.length === 0) return;
 
   const spec = PLATFORM_SPECS[platformKey];
 
-  if (file.type.startsWith('image/')) {
-    showLoading('Optimizing Image...');
+  // Check if all selected files are images (Supports 1 image OR 2-5 Image Dump!)
+  const allImages = files.every(f => f.type.startsWith('image/') || /\.(jpg|jpeg|png|gif|webp)$/i.test(f.name));
+
+  if (allImages) {
+    const selectedImgs = files.slice(0, 5);
+    showLoading(selectedImgs.length > 1 ? `Optimizing ${selectedImgs.length} Images for Dump...` : 'Optimizing Image...');
     try {
-      const resized = await autoResizeImageFile(file, spec.targetMaxW, spec.targetMaxH, 0.76);
-      STATE.pendingMedia = { dataUrl: resized.dataUrl, mediaType: 'image', durationSec: 0, resolution: resized.resolution };
-      if (statusEl) statusEl.innerHTML = `<span style="color:var(--success);">Image Ready (${resized.resolution})</span>`;
-      if (previewEl) {
-        previewEl.style.display = 'flex';
-        previewEl.innerHTML = `<img src="${resized.dataUrl}" alt="Preview" />`;
+      const resizedList = [];
+      for (const f of selectedImgs) {
+        const r = await autoResizeImageFile(f, spec.targetMaxW, spec.targetMaxH, selectedImgs.length > 1 ? 0.66 : 0.75);
+        resizedList.push(r);
+      }
+
+      if (resizedList.length > 1) {
+        STATE.pendingMedia = {
+          dataUrl: '',
+          mediaUrls: resizedList.map(x => x.dataUrl),
+          mediaType: 'imagedump',
+          durationSec: 0,
+          resolution: `${resizedList.length} Images`
+        };
+        if (statusEl) statusEl.innerHTML = `<span style="color:var(--success);">✓ Image Dump Ready (${resizedList.length}/5 Images)</span>`;
+        if (previewEl) {
+          previewEl.style.display = 'grid';
+          previewEl.className = 'post-dump-grid';
+          previewEl.innerHTML = resizedList.map(x => `<img src="${x.dataUrl}" alt="Preview" />`).join('');
+        }
+      } else {
+        STATE.pendingMedia = {
+          dataUrl: resizedList[0].dataUrl,
+          mediaUrls: [],
+          mediaType: 'image',
+          durationSec: 0,
+          resolution: resizedList[0].resolution
+        };
+        if (statusEl) statusEl.innerHTML = `<span style="color:var(--success);">✓ Image Ready (${resizedList[0].resolution})</span>`;
+        if (previewEl) {
+          previewEl.style.display = 'flex';
+          previewEl.className = 'post-media-box';
+          previewEl.innerHTML = `<img src="${resizedList[0].dataUrl}" alt="Preview" />`;
+        }
       }
     } catch (err) {
-      showToast('Failed to process image.');
+      showToast('Failed to process images.');
     } finally {
       hideLoading();
     }
-  } else if (file.type.startsWith('video/') || file.type.startsWith('audio/')) {
-    if (file.size > 22 * 1024 * 1024) {
-      inputEl.value = '';
-      showToast('Please keep video/audio files under 22MB for smooth streaming.');
-      return;
-    }
-    const isVideo = file.type.startsWith('video/');
-    const tempBlobUrl = URL.createObjectURL(file);
+    return;
+  }
+
+  // Video or Audio File Upload
+  const file = files[0];
+  const isAudioExt = /\.(mp3|wav|ogg|m4a|aac|flac)$/i.test(file.name);
+  const isVideoExt = /\.(mp4|webm|mov|mkv)$/i.test(file.name);
+  const isAudio = file.type.startsWith('audio/') || isAudioExt;
+  const isVideo = (!isAudio && file.type.startsWith('video/')) || isVideoExt;
+
+  if (!isAudio && !isVideo) {
+    showToast('Unsupported file type. Select up to 5 Images, an MP4/WebM video, or an MP3 audio file.');
+    return;
+  }
+
+  if (file.size > 15 * 1024 * 1024) {
+    inputEl.value = '';
+    showToast('Please keep video/audio files under 15MB for Sheet Chunk storage.');
+    return;
+  }
+
+  showLoading(isVideo ? 'Encoding Video Stream...' : 'Encoding Audio Stream...');
+  const tempBlobUrl = URL.createObjectURL(file);
+
+  // Measure duration with safe 4-second timeout fallback so metadata hiccups never block uploads
+  const measureDuration = () => new Promise(resolve => {
     const mediaEl = document.createElement(isVideo ? 'video' : 'audio');
     mediaEl.preload = 'metadata';
-
-    showLoading('Verifying Media Stream...');
+    let settled = false;
+    const finish = (dur, resLabel) => {
+      if (settled) return;
+      settled = true;
+      resolve({ dur, resLabel });
+    };
+    const timer = setTimeout(() => finish(0, isVideo ? 'Video Stream' : 'MP3 Audio'), 3500);
     mediaEl.onloadedmetadata = () => {
-      const dur = Math.round(mediaEl.duration || 0);
-      const res = isVideo ? (mediaEl.videoWidth + '×' + mediaEl.videoHeight) : 'MP3/Audio';
-
-      if (dur > spec.maxDurationSec) {
-        URL.revokeObjectURL(tempBlobUrl);
-        hideLoading();
-        STATE.pendingMedia = { dataUrl: '', mediaType: 'none', durationSec: 0, resolution: '' };
-        inputEl.value = '';
-        if (statusEl) statusEl.innerHTML = `<span style="color:var(--danger);">Exceeds ${spec.maxDurationSec/60}m limit (${dur}s)</span>`;
-        showToast(`${spec.name} max duration is ${spec.maxDurationSec / 60}m.`);
-        return;
-      }
-
-      const reader = new FileReader();
-      reader.onload = ev => {
-        hideLoading();
-        STATE.pendingMedia = { dataUrl: ev.target.result, mediaType: isVideo ? 'video' : 'audio', durationSec: dur, resolution: res };
-        if (statusEl) statusEl.innerHTML = `<span style="color:var(--success);">Stream Verified (${dur}s • ${res})</span>`;
-        if (previewEl) {
-          previewEl.style.display = 'flex';
-          previewEl.innerHTML = isVideo
-            ? `<video src="${tempBlobUrl}" controls playsinline></video>`
-            : `<audio src="${tempBlobUrl}" controls></audio>`;
-        }
-      };
-      reader.readAsDataURL(file);
+      clearTimeout(timer);
+      const d = (mediaEl.duration && isFinite(mediaEl.duration)) ? Math.round(mediaEl.duration) : 0;
+      const r = isVideo && mediaEl.videoWidth ? `${mediaEl.videoWidth}×${mediaEl.videoHeight}` : (isVideo ? 'Video Stream' : 'MP3 Audio');
+      finish(d, r);
     };
     mediaEl.onerror = () => {
-      URL.revokeObjectURL(tempBlobUrl);
-      hideLoading();
-      showToast('Unsupported video/audio format. Use MP4, WebM, or MP3.');
+      clearTimeout(timer);
+      finish(0, isVideo ? 'Video Stream' : 'MP3 Audio');
     };
     mediaEl.src = tempBlobUrl;
+  });
+
+  const { dur, resLabel } = await measureDuration();
+  if (dur > spec.maxDurationSec) {
+    URL.revokeObjectURL(tempBlobUrl);
+    hideLoading();
+    STATE.pendingMedia = { dataUrl: '', mediaUrls: [], mediaType: 'none', durationSec: 0, resolution: '' };
+    inputEl.value = '';
+    if (statusEl) statusEl.innerHTML = `<span style="color:var(--danger);">✕ Exceeds ${spec.maxDurationSec / 60}m limit (${dur}s)</span>`;
+    showToast(`${spec.name} max duration is ${spec.maxDurationSec / 60}m.`);
+    return;
   }
+
+  const reader = new FileReader();
+  reader.onload = ev => {
+    hideLoading();
+    let rawDataUrl = String(ev.target.result || '');
+    const forcedMime = isAudio ? 'audio/mpeg' : 'video/mp4';
+    // Ensure valid MIME header in DataURL so chunked storage and playback never break
+    if (rawDataUrl.startsWith('data:;base64,') || rawDataUrl.startsWith('data:application/octet-stream;base64,')) {
+      rawDataUrl = 'data:' + forcedMime + ';base64,' + rawDataUrl.split(',')[1];
+    }
+
+    STATE.pendingMedia = {
+      dataUrl: rawDataUrl,
+      mediaUrls: [],
+      mediaType: isVideo ? 'video' : 'audio',
+      durationSec: dur,
+      resolution: resLabel
+    };
+    if (statusEl) {
+      statusEl.innerHTML = `<span style="color:var(--success);">✓ ${isVideo ? 'Video' : 'Audio'} Ready (${dur > 0 ? dur + 's • ' : ''}${resLabel})</span>`;
+    }
+    if (previewEl) {
+      previewEl.style.display = 'flex';
+      previewEl.className = 'post-media-box';
+      previewEl.innerHTML = isVideo
+        ? `<video src="${tempBlobUrl}" controls playsinline></video>`
+        : `<audio src="${tempBlobUrl}" controls></audio>`;
+    }
+  };
+  reader.onerror = () => {
+    hideLoading();
+    showToast('Error reading media file.');
+  };
+  reader.readAsDataURL(file);
 }
 
 function render() {
@@ -870,6 +1046,7 @@ function renderProfileView() {
           <div>
             <div style="display:flex; align-items:center; gap:7px; flex-wrap:wrap;">
               <h2 style="font-size:1.2rem; font-weight:800;">${escapeHtml(u.displayName)}</h2>
+              ${renderOnlineBadge(true)}
               ${u.verified ? `<span class="badge verified">${ICONS.check} Verified</span>` : ''}
               <span class="badge tier">${escapeHtml(u.tierLabel)}</span>
               ${u.isAdmin ? `<span class="badge" style="color:var(--accent-enclave);border-color:var(--accent-enclave);">STAFF</span>` : ''}
@@ -878,7 +1055,7 @@ function renderProfileView() {
           </div>
         </div>
         <div style="display:flex; gap:8px; flex-wrap:wrap;">
-          <button class="btn btn-arcade btn-sm" id="goArcadeBtn">Play Slime Escape</button>
+          <button class="btn btn-arcade btn-sm" id="goArcadeBtn">🎮 Slime & Network Jack</button>
           ${u.isAdmin ? `<button class="btn btn-outline btn-sm" id="openAdminBtn">Admin Console</button>` : ''}
         </div>
       </div>
@@ -1072,855 +1249,665 @@ function bindProfileEvents() {
 
 /**
  * ============================================================================
- * ENCLAVE ARCADE & GAMES HUB (Slime Escape 3D + Cyber Dodge + Instant Dungeon)
+ * ENCLAVE ARCADE & PVP HUB
+ * 1. Slime Adventure (Chrome Dino-Run Style Endless Slime + 24h Ranked Attempt + Monthly +2% Bonus)
+ * 2. Network Jack (Tier 4+ Live PvP Blackjack, 100 Min Bet, 1000 Weekly Cap, 300 Loss Lockout)
  * ============================================================================
  */
-let SLIME_LOOP_ID = null;
-let CYBER_LOOP_ID = null;
+let SLIME_RUNNER_RAF = null;
 
-function stopActiveGames() {
-  if (SLIME_LOOP_ID) { cancelAnimationFrame(SLIME_LOOP_ID); SLIME_LOOP_ID = null; }
-  if (CYBER_LOOP_ID) { cancelAnimationFrame(CYBER_LOOP_ID); CYBER_LOOP_ID = null; }
+function stopSlimeRunner() {
+  if (SLIME_RUNNER_RAF) {
+    cancelAnimationFrame(SLIME_RUNNER_RAF);
+    SLIME_RUNNER_RAF = null;
+  }
 }
 
 function renderGamesView() {
   const gTab = STATE.activeGameTab || 'slime';
-  const bestSlimeMs = Number(localStorage.getItem('enclave_slime_best_ms') || 0);
-  const bestSlimeDist = Number(localStorage.getItem('enclave_slime_best_dist') || 0);
-  const bestCyber = Number(localStorage.getItem('enclave_cyber_best') || 0);
+  const u = STATE.currentUser;
+  const mySlimeRecord = STATE.slimeLeaderboard.find(s => String(s.username).toLowerCase() === u.username.toLowerCase()) || {
+    highScore: 0,
+    lastAttemptScore: 0,
+    totalAttempts: 0,
+    canAttemptRanked: true,
+    nextAttemptIso: ''
+  };
 
   return `
     <div class="card" style="border-top:2px solid var(--accent-arcade); display:flex; flex-direction:column; gap:12px;">
       <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px;">
         <div>
           <div style="display:flex; align-items:center; gap:8px;">
-            <h2 style="font-size:1.12rem; font-weight:800;">ENCLAVE ARCADE</h2>
-            <span class="badge arcade">3 Playable Games</span>
+            <h2 style="font-size:1.12rem; font-weight:800;">ENCLAVE ARCADE & PVP</h2>
+            <span class="badge arcade">Live Leaderboards</span>
           </div>
           <p style="font-size:0.75rem; color:var(--text-secondary); margin-top:2px;">
-            Play Slime Escape 3D, PUNT Stream-Snipe Dodge, or Instant Dungeon Forager & share your runs directly to the feeds!
+            Play Slime Adventure (Daily Ranked Run + Monthly +2% Follower Bonus) or Network Jack (Tier 4+ PvP Blackjack)
           </p>
         </div>
 
-        <div style="display:flex; gap:6px; flex-wrap:wrap;">
-          <button type="button" class="btn btn-sm ${gTab==='slime'?'btn-arcade':'btn-outline'} game-tab-btn" data-gtab="slime">🟢 Slime Escape 3D</button>
-          <button type="button" class="btn btn-sm ${gTab==='cyber'?'btn-arcade':'btn-outline'} game-tab-btn" data-gtab="cyber">⚡ PUNT Snipe Dodge</button>
-          <button type="button" class="btn btn-sm ${gTab==='dungeon'?'btn-arcade':'btn-outline'} game-tab-btn" data-gtab="dungeon">⛏️ Instant Dungeon (ID)</button>
+        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+          <button type="button" class="btn btn-sm ${gTab==='slime'?'btn-arcade':'btn-outline'} game-tab-btn" data-gtab="slime">🟢 Slime Adventure (Dino Run)</button>
+          <button type="button" class="btn btn-sm ${gTab==='blackjack'?'btn-arcade':'btn-outline'} game-tab-btn" data-gtab="blackjack">🃏 Network Jack (PvP T4+)</button>
         </div>
       </div>
     </div>
 
-    ${gTab === 'slime' ? `
-      <div class="card" style="display:flex; flex-direction:column; gap:12px;">
-        <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px;">
-          <div>
-            <h3 style="font-size:0.96rem; font-weight:800; color:#4ade80;">Slime Escape: Stickman Evolution & Boss Speedrun</h3>
-            <p style="font-size:0.74rem; color:var(--text-secondary);">
-              Collect Bones (🦴) to evolve: <strong>1 Bone</strong> = Double Jump • <strong>3 Bones</strong> = Triple Jump • <strong>4 Bones</strong> = Recharging Shield • <strong>5 Bones</strong> = Humanoid Stickman Evolution + Boss Battle!
-            </p>
-          </div>
-          <div style="display:flex; gap:6px; align-items:center; flex-wrap:wrap;">
-            <span class="badge arcade">Best Distance: ${bestSlimeDist}m</span>
-            ${bestSlimeMs > 0 ? `<span class="badge verified">Best Boss Clear: ${(bestSlimeMs/1000).toFixed(2)}s</span>` : ''}
-            <button type="button" class="btn btn-primary btn-sm" id="restartSlimeBtn">↻ Restart Run</button>
-            <button type="button" class="btn btn-knok btn-sm" id="shareSlimeRunBtn">Share Run to Feed</button>
-          </div>
-        </div>
-
-        <div class="game-canvas-wrap">
-          <canvas id="slimeCanvas" width="740" height="416"></canvas>
-          <div class="game-touch-bar">
-            <button type="button" class="touch-pad-btn" id="touchLeftBtn">◀ LEFT (A)</button>
-            <button type="button" class="touch-pad-btn" id="touchRightBtn">RIGHT (D) ▶</button>
-            <button type="button" class="touch-pad-btn" id="touchJumpBtn">▲ JUMP / WALL (SPACE)</button>
-            <button type="button" class="touch-pad-btn" id="touchDashBtn">⚡ DASH / STRIKE (SHIFT)</button>
-          </div>
-        </div>
-      </div>
-    ` : gTab === 'cyber' ? `
-      <div class="card" style="display:flex; flex-direction:column; gap:12px;">
-        <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px;">
-          <div>
-            <h3 style="font-size:0.96rem; font-weight:800; color:var(--accent-punt);">PUNT IRL Stream-Snipe Dodge</h3>
-            <p style="font-size:0.74rem; color:var(--text-secondary);">
-              Dodge incoming Stream-Sniper Drones & Swat Vans while collecting 90/10 Sub Drops! Use WASD / Arrows or Touch buttons.
-            </p>
-          </div>
-          <div style="display:flex; gap:6px; align-items:center;">
-            <span class="badge punt">High Score: ${bestCyber} Subs</span>
-            <button type="button" class="btn btn-primary btn-sm" id="restartCyberBtn">↻ Restart Stream</button>
-            <button type="button" class="btn btn-punt btn-sm" id="shareCyberRunBtn">Post Score to PUNT</button>
-          </div>
-        </div>
-
-        <div class="game-canvas-wrap">
-          <canvas id="cyberCanvas" width="740" height="416"></canvas>
-          <div class="game-touch-bar">
-            <button type="button" class="touch-pad-btn" id="cyberLeftBtn">◀ MOVE LEFT</button>
-            <button type="button" class="touch-pad-btn" id="cyberUpBtn">▲ MOVE UP</button>
-            <button type="button" class="touch-pad-btn" id="cyberDownBtn">▼ MOVE DOWN</button>
-            <button type="button" class="touch-pad-btn" id="cyberRightBtn">MOVE RIGHT ▶</button>
-          </div>
-        </div>
-      </div>
-    ` : `
-      <div class="card" style="display:flex; flex-direction:column; gap:14px;">
-        <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px;">
-          <div>
-            <h3 style="font-size:0.96rem; font-weight:800; color:var(--accent-enclave);">Instant Dungeon (ID) — Resource Forager</h3>
-            <p style="font-size:0.74rem; color:var(--text-secondary);">
-              Deploy into an Enclave Instant Dungeon node to Fish, Mine, Hunt, or Chop. Yield scales with your Follow Tier (${STATE.currentUser.multiplier}x)!
-            </p>
-          </div>
-          <button type="button" class="btn btn-outline btn-sm" id="shareDungeonLootBtn">Flex Loot on Feed</button>
-        </div>
-
-        <div class="grid-4">
-          <button type="button" class="card id-forage-btn" data-node="FISH" style="cursor:pointer; text-align:center; background:var(--bg-input);">
-            <div style="font-size:1.5rem;">🎣</div>
-            <div style="font-weight:800; font-size:0.86rem; margin-top:6px;">Abyssal Fishing</div>
-            <div style="font-size:0.7rem; color:var(--text-secondary); margin-top:2px;">Ryugu Reefs</div>
-          </button>
-          <button type="button" class="card id-forage-btn" data-node="MINE" style="cursor:pointer; text-align:center; background:var(--bg-input);">
-            <div style="font-size:1.5rem;">⛏️</div>
-            <div style="font-weight:800; font-size:0.86rem; margin-top:6px;">etherium Mining</div>
-            <div style="font-size:0.7rem; color:var(--text-secondary); margin-top:2px;">Depths Sector 4</div>
-          </button>
-          <button type="button" class="card id-forage-btn" data-node="HUNT" style="cursor:pointer; text-align:center; background:var(--bg-input);">
-            <div style="font-size:1.5rem;">🏹</div>
-            <div style="font-weight:800; font-size:0.86rem; margin-top:6px;">Monster Hunting</div>
-            <div style="font-size:0.7rem; color:var(--text-secondary); margin-top:2px;">Slime & Skeletons</div>
-          </button>
-          <button type="button" class="card id-forage-btn" data-node="CHOP" style="cursor:pointer; text-align:center; background:var(--bg-input);">
-            <div style="font-size:1.5rem;">🪓</div>
-            <div style="font-weight:800; font-size:0.86rem; margin-top:6px;">Spirit Timber</div>
-            <div style="font-size:0.7rem; color:var(--text-secondary); margin-top:2px;">Elder Grove</div>
-          </button>
-        </div>
-
-        <div id="dungeonLogBox" style="background:var(--bg-input); border:1px solid var(--border-subtle); border-radius:var(--radius-md); padding:14px; font-family:var(--font-mono); font-size:0.78rem; min-height:120px; color:var(--text-primary);">
-          ${escapeHtml(STATE.lastGameResult || 'Select an Instant Dungeon node above to roll a foraging expedition...')}
-        </div>
-      </div>
-    `}
+    ${gTab === 'slime' ? renderSlimeAdventureSection(mySlimeRecord) : renderNetworkJackSection()}
   `;
 }
 
-function bindGamesEvents() {
-  stopActiveGames();
+function renderSlimeAdventureSection(mySlimeRecord) {
+  const localBest = Math.max(Number(localStorage.getItem('enclave_slime_dino_best') || 0), mySlimeRecord.highScore);
+  return `
+    <div class="card" style="display:flex; flex-direction:column; gap:12px;">
+      <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;">
+        <div>
+          <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+            <h3 style="font-size:0.98rem; font-weight:800; color:#4ade80;">Slime Adventure — Endless Runner</h3>
+            <span class="badge tier">🏆 #1 Monthly Reward: +2% Total Followers</span>
+          </div>
+          <p style="font-size:0.74rem; color:var(--text-secondary); margin-top:2px;">
+            Jump over Spikes & Pillars (<strong>SPACE / W / ↑</strong>) and Squish/Duck under Drones (<strong>S / ↓</strong>). Practice endlessly, or run your <strong>1 Daily Ranked Attempt</strong>!
+          </p>
+        </div>
 
-  document.querySelectorAll('.game-tab-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      stopActiveGames();
-      STATE.activeGameTab = btn.getAttribute('data-gtab');
-      render();
-    });
-  });
+        <div style="display:flex; gap:6px; align-items:center; flex-wrap:wrap;">
+          <span class="badge arcade">Personal Best: ${localBest}</span>
+          <button type="button" class="btn btn-outline btn-sm" id="startPracticeSlimeBtn">▶ Practice Run (Endless)</button>
+          <button type="button" class="btn ${mySlimeRecord.canAttemptRanked ? 'btn-punt' : 'btn-outline'} btn-sm" id="startRankedSlimeBtn" ${!mySlimeRecord.canAttemptRanked ? 'disabled' : ''}>
+            ${mySlimeRecord.canAttemptRanked ? '🏆 Start Daily Ranked Attempt (1/Day)' : '⏳ Next Ranked: ' + formatCountdownUntil(mySlimeRecord.nextAttemptIso)}
+          </button>
+        </div>
+      </div>
 
-  if (STATE.activeGameTab === 'slime') {
-    initSlimeEscapeGame();
-  } else if (STATE.activeGameTab === 'cyber') {
-    initCyberDodgeGame();
-  } else if (STATE.activeGameTab === 'dungeon') {
-    initInstantDungeonGame();
-  }
+      <div class="game-canvas-wrap">
+        <canvas id="slimeDinoCanvas" width="760" height="330"></canvas>
+        <div class="game-touch-bar">
+          <button type="button" class="touch-pad-btn" id="dinoJumpBtn">▲ JUMP (SPACE / W / UP)</button>
+          <button type="button" class="touch-pad-btn" id="dinoDuckBtn">▼ DUCK / SQUISH (HOLD S / DOWN)</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIME ADVENTURE LEADERBOARD -->
+    <div class="card" style="display:flex; flex-direction:column; gap:10px;">
+      <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px;">
+        <div>
+          <h3 style="font-size:0.92rem; font-weight:800;">${ICONS.trophy} Slime Adventure Ranked Leaderboard</h3>
+          <p style="font-size:0.72rem; color:var(--text-secondary);">1 official ranked attempt per 24 hours • #1 at month-end automatically receives +2% followers</p>
+        </div>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:8px;">
+        ${STATE.slimeLeaderboard.length === 0 ? `<p style="font-size:0.8rem; color:var(--text-secondary);">No ranked scores recorded yet. Click "Start Daily Ranked Attempt" above to claim #1!</p>` :
+          STATE.slimeLeaderboard.map((row, idx) => {
+            const uObj = STATE.users.find(x => x.username.toLowerCase() === String(row.username).toLowerCase()) || { username: row.username, displayName: row.username, profilePic: FALLBACK_AVATAR, isOnline: false, tierLabel: 'Tier 1' };
+            return `
+              <div class="lb-row">
+                <div style="display:flex; align-items:center; gap:10px; cursor:pointer;" class="op-profile-trigger" data-user="${escapeHtml(uObj.username)}">
+                  <span class="lb-rank">#${idx + 1}</span>
+                  <img src="${escapeHtml(fixMediaUrl(uObj.profilePic) || FALLBACK_AVATAR)}" class="avatar" style="width:34px;height:34px;" alt="" />
+                  <div>
+                    <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
+                      <strong style="font-size:0.86rem;">${escapeHtml(uObj.displayName)}</strong>
+                      ${renderOnlineBadge(uObj.isOnline)}
+                      <span class="badge tier">${escapeHtml(uObj.tierLabel)}</span>
+                      ${idx === 0 ? `<span class="badge verified">👑 Monthly +2% Leader</span>` : ''}
+                    </div>
+                    <div style="font-family:var(--font-mono); font-size:0.68rem; color:var(--text-secondary);">
+                      @${escapeHtml(uObj.username)} • Attempts: ${row.totalAttempts} • Last Run: ${row.lastAttemptScore}
+                    </div>
+                  </div>
+                </div>
+                <div style="font-family:var(--font-mono); font-size:0.9rem; font-weight:800; color:#4ade80;">
+                  ${Number(row.highScore).toLocaleString()} pts
+                </div>
+              </div>
+            `;
+          }).join('')}
+      </div>
+    </div>
+  `;
+}
+
+function renderNetworkJackSection() {
+  const u = STATE.currentUser;
+  const isEligible = u.tier >= 4 || u.isAdmin;
+  const myBjStat = STATE.bjLeaderboard.find(b => String(b.username).toLowerCase() === u.username.toLowerCase()) || {
+    wins: 0, losses: 0, ties: 0, netFollowers: 0, weeklyWon: 0, weeklyLost: 0, lockedOut: false
+  };
+
+  const tier4Users = STATE.users.filter(x => (x.tier >= 4 || x.isAdmin) && x.username.toLowerCase() !== u.username.toLowerCase());
+  const myActiveMatch = STATE.bjMatches.find(m =>
+    (m.status === 'PLAYING' || m.status === 'WAITING') &&
+    (String(m.hostUser).toLowerCase() === u.username.toLowerCase() || String(m.guestUser).toLowerCase() === u.username.toLowerCase())
+  );
+  const openTables = STATE.bjMatches.filter(m => m.status === 'WAITING');
+  const recentFinished = STATE.bjMatches.filter(m => m.status === 'FINISHED').slice(0, 8);
+
+  return `
+    <div class="card" style="display:flex; flex-direction:column; gap:12px;">
+      <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;">
+        <div>
+          <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+            <h3 style="font-size:0.98rem; font-weight:800; color:var(--accent-enclave);">🃏 Network Jack — Live PvP Follower Blackjack</h3>
+            <span class="badge tier">Tier 4+ Exclusive</span>
+          </div>
+          <p style="font-size:0.74rem; color:var(--text-secondary); margin-top:2px;">
+            Wager Followers head-to-head • Min Bet: <strong>100 Followers</strong> • Max Weekly Gain: <strong>1,000 Followers</strong> • Weekly Loss Lockout: <strong>300 Followers</strong>
+          </p>
+        </div>
+
+        <button type="button" class="btn btn-outline btn-sm" id="refreshBjBtn">↻ Refresh Tables</button>
+      </div>
+
+      <div class="quota-strip">
+        <div>
+          <span>Weekly Winnings Cap:</span>
+          <strong style="color:${myBjStat.weeklyWon >= 1000 ? 'var(--accent-enclave)' : 'var(--success)'};">${myBjStat.weeklyWon} / 1,000 Followers</strong>
+        </div>
+        <div>
+          <span>Weekly Loss Lockout Meter:</span>
+          <strong style="color:${myBjStat.lockedOut ? 'var(--danger)' : '#fff'};">${myBjStat.weeklyLost} / 300 Followers ${myBjStat.lockedOut ? '(LOCKED OUT)' : ''}</strong>
+        </div>
+        <div>
+          <span>Record:</span>
+          <strong>${myBjStat.wins}W - ${myBjStat.losses}L - ${myBjStat.ties}T (Net: ${myBjStat.netFollowers >= 0 ? '+' : ''}${myBjStat.netFollowers})</strong>
+        </div>
+      </div>
+
+      ${!isEligible ? `
+        <div style="background:rgba(244,63,94,0.1); border:1px solid rgba(244,63,94,0.3); padding:14px; border-radius:var(--radius-md); font-size:0.82rem; color:#fda4af;">
+          🔒 <strong>Tier 4 Required:</strong> Network Jack is unlocked at <strong>Follower Tier 4 (501+ Main Avg Followers)</strong>. You are currently Tier ${u.tier} (${Number(u.followers).toLocaleString()} avg followers).
+        </div>
+      ` : myBjStat.lockedOut && !u.isAdmin ? `
+        <div style="background:rgba(244,63,94,0.12); border:1px solid var(--danger); padding:14px; border-radius:var(--radius-md); font-size:0.82rem; color:#fda4af;">
+          🚫 <strong>Weekly Loss Lockout Active:</strong> You have lost ${myBjStat.weeklyLost} followers in Network Jack this week (300 limit). Your table access unlocks at the next global weekly reset.
+        </div>
+      ` : `
+        <div style="display:flex; gap:8px; align-items:flex-end; flex-wrap:wrap; background:var(--bg-input); padding:12px; border-radius:var(--radius-md); border:1px solid var(--border-subtle);">
+          <div class="form-group" style="margin-bottom:0; flex:1; min-width:140px;">
+            <label>Follower Wager (Min 100 • Max 1,000)</label>
+            <input type="number" id="bjBetInput" value="100" min="100" max="1000" step="50" />
+          </div>
+          <div class="form-group" style="margin-bottom:0; flex:1; min-width:180px;">
+            <label>Challenge Handle (Optional — Leave Open for Anyone)</label>
+            <select id="bjOpponentSelect">
+              <option value="">Open Table (Any Tier 4+ Player)</option>
+              ${tier4Users.map(tu => `<option value="${escapeHtml(tu.username)}">@${escapeHtml(tu.username)} (${tu.isOnline ? '● LIVE' : '○ OFFLINE'} • ${tu.tierLabel})</option>`).join('')}
+            </select>
+          </div>
+          <button type="button" class="btn btn-primary" id="createBjTableBtn">+ Open PvP Table</button>
+        </div>
+      `}
+    </div>
+
+    <!-- ACTIVE PVP TABLE FELT -->
+    ${myActiveMatch ? renderActiveBlackjackTableHTML(myActiveMatch) : ''}
+
+    <!-- OPEN TABLES & LIVE/OFFLINE TIER 4+ ROSTER -->
+    <div class="grid-2">
+      <div class="card" style="display:flex; flex-direction:column; gap:10px;">
+        <h3 style="font-size:0.9rem; font-weight:700;">Open Network Jack Tables (${openTables.length})</h3>
+        ${openTables.length === 0 ? `<p style="font-size:0.78rem; color:var(--text-secondary);">No open tables waiting. Create one above!</p>` :
+          openTables.map(m => {
+            const isMine = String(m.hostUser).toLowerCase() === u.username.toLowerCase();
+            return `
+              <div class="lb-row">
+                <div>
+                  <div style="font-weight:700; font-size:0.84rem;">Host: @${escapeHtml(m.hostUser)}</div>
+                  <div style="font-family:var(--font-mono); font-size:0.72rem; color:var(--accent-enclave);">
+                    Wager: ${Number(m.betAmount).toLocaleString()} Followers ${m.guestUser ? '• Reserved for @' + escapeHtml(m.guestUser) : '• Open Seat'}
+                  </div>
+                </div>
+                <div>
+                  ${isMine ? `
+                    <button type="button" class="btn btn-danger btn-sm bj-cancel-btn" data-id="${escapeHtml(m.matchId)}">Cancel</button>
+                  ` : isEligible ? `
+                    <button type="button" class="btn btn-success btn-sm bj-join-btn" data-id="${escapeHtml(m.matchId)}">Join Table</button>
+                  ` : ''}
+                </div>
+              </div>
+            `;
+          }).join('')}
+
+        ${recentFinished.length > 0 ? `
+          <hr style="border:none; border-top:1px solid var(--border-subtle); margin:6px 0;" />
+          <h4 style="font-size:0.8rem; color:var(--text-secondary);">Recent Table Results</h4>
+          <div style="display:flex; flex-direction:column; gap:6px;">
+            ${recentFinished.map(f => `
+              <div style="font-size:0.74rem; padding:8px; background:var(--bg-input); border-radius:6px; border:1px solid var(--border-subtle);">
+                <strong>@${escapeHtml(f.hostUser)} vs @${escapeHtml(f.guestUser)}</strong> (${f.betAmount} fol)
+                <div style="color:var(--text-secondary); margin-top:2px;">${escapeHtml(f.summary)}</div>
+              </div>
+            `).join('')}
+          </div>
+        ` : ''}
+      </div>
+
+      <!-- LIVE / OFFLINE HANDLES ROSTER -->
+      <div class="card" style="display:flex; flex-direction:column; gap:10px;">
+        <h3 style="font-size:0.9rem; font-weight:700;">Creator Handles Status (Live & Offline)</h3>
+        <div style="display:flex; flex-direction:column; gap:6px; max-height:280px; overflow-y:auto;">
+          ${STATE.users.map(usr => `
+            <div style="display:flex; align-items:center; justify-content:space-between; padding:8px 10px; background:var(--bg-input); border-radius:6px; border:1px solid var(--border-subtle);">
+              <div style="display:flex; align-items:center; gap:8px;">
+                <img src="${escapeHtml(fixMediaUrl(usr.profilePic) || FALLBACK_AVATAR)}" class="avatar" style="width:28px;height:28px;" alt="" />
+                <div>
+                  <div style="font-size:0.8rem; font-weight:700;">@${escapeHtml(usr.username)}</div>
+                  <div style="font-family:var(--font-mono); font-size:0.66rem; color:var(--text-secondary);">${escapeHtml(usr.tierLabel)}</div>
+                </div>
+              </div>
+              ${renderOnlineBadge(usr.isOnline)}
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    </div>
+
+    <!-- NETWORK JACK WIN/LOSS LEADERBOARD -->
+    <div class="card" style="display:flex; flex-direction:column; gap:10px;">
+      <h3 style="font-size:0.92rem; font-weight:800;">${ICONS.trophy} Network Jack Win / Loss Leaderboard</h3>
+      ${STATE.bjLeaderboard.length === 0 ? `<p style="font-size:0.8rem; color:var(--text-secondary);">No Network Jack matches completed yet.</p>` : `
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          ${STATE.bjLeaderboard.map((row, idx) => {
+            const uObj = STATE.users.find(x => x.username.toLowerCase() === String(row.username).toLowerCase()) || { username: row.username, displayName: row.username, profilePic: FALLBACK_AVATAR, isOnline: false };
+            return `
+              <div class="lb-row">
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <span class="lb-rank">#${idx + 1}</span>
+                  <img src="${escapeHtml(fixMediaUrl(uObj.profilePic) || FALLBACK_AVATAR)}" class="avatar" style="width:34px;height:34px;" alt="" />
+                  <div>
+                    <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
+                      <strong style="font-size:0.86rem;">@${escapeHtml(row.username)}</strong>
+                      ${renderOnlineBadge(uObj.isOnline)}
+                      ${row.lockedOut ? `<span class="badge" style="color:var(--danger);">LOCKED OUT (300L)</span>` : ''}
+                    </div>
+                    <div style="font-family:var(--font-mono); font-size:0.68rem; color:var(--text-secondary);">
+                      Weekly Won: ${row.weeklyWon}/1000 • Weekly Lost: ${row.weeklyLost}/300
+                    </div>
+                  </div>
+                </div>
+                <div style="display:flex; gap:8px; align-items:center; font-family:var(--font-mono); font-size:0.76rem;">
+                  <span class="badge" style="color:var(--success);">${row.wins}W</span>
+                  <span class="badge" style="color:var(--danger);">${row.losses}L</span>
+                  <span class="badge">${row.ties}T</span>
+                  <span class="badge tier">Net: ${row.netFollowers >= 0 ? '+' : ''}${Number(row.netFollowers).toLocaleString()} fol</span>
+                </div>
+              </div>
+            `;
+          }).join('')}
+        </div>
+      `}
+    </div>
+  `;
+}
+
+function renderPlayingCardsHTML(hand, hideHoleCards) {
+  if (!Array.isArray(hand) || hand.length === 0) return `<span style="font-size:0.75rem; color:var(--text-secondary);">No cards dealt yet</span>`;
+  return hand.map((c, idx) => {
+    if (hideHoleCards && idx > 0) {
+      return `<div class="playing-card hidden-card">?</div>`;
+    }
+    const isRed = c.suit === '♥' || c.suit === '♦';
+    return `<div class="playing-card ${isRed ? 'red' : ''}"><span>${escapeHtml(c.rank)}</span><span>${escapeHtml(c.suit)}</span></div>`;
+  }).join('');
+}
+
+function renderActiveBlackjackTableHTML(m) {
+  const me = STATE.currentUser.username.toLowerCase();
+  const isHost = String(m.hostUser).toLowerCase() === me;
+  const myHand = isHost ? m.hostHand : m.guestHand;
+  const oppHand = isHost ? m.guestHand : m.hostHand;
+  const myVal = isHost ? m.hostVal : m.guestVal;
+  const oppVal = isHost ? m.guestVal : m.hostVal;
+  const myState = isHost ? m.hostState : m.guestState;
+  const oppState = isHost ? m.guestState : m.hostState;
+  const oppName = isHost ? (m.guestUser || 'Waiting for Challenger...') : m.hostUser;
+  const hideOpponentCards = m.status === 'PLAYING' && (myState === 'PLAYING' || oppState === 'PLAYING');
+
+  return `
+    <div class="bj-table-felt">
+      <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px;">
+        <div>
+          <span class="badge tier">ACTIVE TABLE // ${escapeHtml(m.matchId)}</span>
+          <strong style="margin-left:8px; font-size:0.9rem;">Stakes: ${Number(m.betAmount).toLocaleString()} Followers</strong>
+        </div>
+        <div style="font-family:var(--font-mono); font-size:0.76rem; color:#a7f3d0;">
+          ${escapeHtml(m.summary)}
+        </div>
+      </div>
+
+      ${m.status === 'WAITING' ? `
+        <div style="padding:16px; text-align:center; font-size:0.86rem; color:#d1fae5;">
+          Waiting for ${m.guestUser ? '@' + escapeHtml(m.guestUser) : 'any Tier 4+ challenger'} to join the table...
+        </div>
+      ` : `
+        <div class="grid-2">
+          <div style="background:rgba(0,0,0,0.35); padding:12px; border-radius:10px; border:1px solid rgba(255,255,255,0.1);">
+            <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:8px;">
+              <strong>You (@${escapeHtml(STATE.currentUser.username)})</strong>
+              <span class="badge">${escapeHtml(myState)} • Total: ${myVal}</span>
+            </div>
+            <div style="display:flex; gap:8px; flex-wrap:wrap;">
+              ${renderPlayingCardsHTML(myHand, false)}
+            </div>
+            ${myState === 'PLAYING' ? `
+              <div style="display:flex; gap:8px; margin-top:12px;">
+                <button type="button" class="btn btn-punt btn-sm bj-action-btn" data-id="${escapeHtml(m.matchId)}" data-act="HIT">🃏 HIT (Draw Card)</button>
+                <button type="button" class="btn btn-primary btn-sm bj-action-btn" data-id="${escapeHtml(m.matchId)}" data-act="STAND">✋ STAND (Lock Hand)</button>
+              </div>
+            ` : ''}
+          </div>
+
+          <div style="background:rgba(0,0,0,0.35); padding:12px; border-radius:10px; border:1px solid rgba(255,255,255,0.1);">
+            <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:8px;">
+              <strong>Opponent (@${escapeHtml(oppName)})</strong>
+              <span class="badge">${escapeHtml(oppState)} • Total: ${hideOpponentCards ? '?' : oppVal}</span>
+            </div>
+            <div style="display:flex; gap:8px; flex-wrap:wrap;">
+              ${renderPlayingCardsHTML(oppHand, hideOpponentCards)}
+            </div>
+          </div>
+        </div>
+      `}
+    </div>
+  `;
 }
 
 /**
- * GAME 1: SLIME ESCAPE 3D (Procedural 3D Perspective Chunks, Bone Evolution -> Stickman, Wall Climb, Skeleton Lasers, Boss Fight, Mini-Map)
+ * SLIME ADVENTURE ENGINE (Chrome Dino-Run Style Endless Slime)
  */
-const SLIME_KEYS = { left: false, right: false, jump: false, dash: false };
+const DINO_INPUT = { jumpPressed: false, duckHeld: false };
 window.addEventListener('keydown', (e) => {
   if (STATE.currentPage !== 'games' || STATE.activeGameTab !== 'slime') return;
   const k = e.key.toLowerCase();
-  if (k === 'a' || e.key === 'ArrowLeft') SLIME_KEYS.left = true;
-  if (k === 'd' || e.key === 'ArrowRight') SLIME_KEYS.right = true;
-  if (k === 'w' || e.key === 'ArrowUp' || e.key === ' ') {
-    if (!SLIME_KEYS.jump) window.__slimeTriggerJump && window.__slimeTriggerJump();
-    SLIME_KEYS.jump = true;
-    if (e.key === ' ') e.preventDefault();
+  if (e.key === ' ' || k === 'w' || e.key === 'ArrowUp') {
+    e.preventDefault();
+    window.__triggerSlimeDinoJump && window.__triggerSlimeDinoJump();
   }
-  if (e.key === 'Shift' || k === 'e' || k === 'j') {
-    window.__slimeTriggerDash && window.__slimeTriggerDash();
-    SLIME_KEYS.dash = true;
+  if (k === 's' || e.key === 'ArrowDown') {
+    e.preventDefault();
+    DINO_INPUT.duckHeld = true;
   }
 });
 window.addEventListener('keyup', (e) => {
   const k = e.key.toLowerCase();
-  if (k === 'a' || e.key === 'ArrowLeft') SLIME_KEYS.left = false;
-  if (k === 'd' || e.key === 'ArrowRight') SLIME_KEYS.right = false;
-  if (k === 'w' || e.key === 'ArrowUp' || e.key === ' ') SLIME_KEYS.jump = false;
-  if (e.key === 'Shift' || k === 'e' || k === 'j') SLIME_KEYS.dash = false;
+  if (k === 's' || e.key === 'ArrowDown') {
+    DINO_INPUT.duckHeld = false;
+  }
 });
 
-function initSlimeEscapeGame() {
-  const canvas = document.getElementById('slimeCanvas');
+function initSlimeDinoGame(isRankedAttempt) {
+  stopSlimeRunner();
+  STATE.slimeRankedMode = Boolean(isRankedAttempt);
+
+  const canvas = document.getElementById('slimeDinoCanvas');
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
 
-  let gameState = {
-    startTime: performance.now(),
-    elapsedMs: 0,
-    bones: 0,
-    maxJumps: 1,
-    jumpsLeft: 1,
-    hasShield: false,
-    shieldReady: false,
-    shieldCooldown: 0,
-    isStickman: false,
-    distance: 0,
-    bossCleared: false,
-    dead: false,
-    winTimeMs: 0,
-    camX: 0,
-    player: { x: 80, y: 200, vx: 0, vy: 0, w: 28, h: 28, onGround: false, onWall: 0, facing: 1, dashTimer: 0, animFrame: 0 },
-    platforms: [],
-    bonesList: [],
-    skeletons: [],
-    lasers: [],
-    particles: [],
-    boss: { active: false, x: 2650, y: 160, w: 54, h: 68, hp: 5, maxHp: 5, vy: 2, shootTimer: 0, stunTimer: 0 }
+  const groundY = 270;
+  let game = {
+    running: true,
+    gameOver: false,
+    rankedSubmitted: false,
+    score: 0,
+    speed: 6.2,
+    tick: 0,
+    slime: { x: 80, y: groundY - 36, vy: 0, w: 36, h: 36, grounded: true },
+    obstacles: [],
+    clouds: [{ x: 180, y: 60 }, { x: 460, y: 90 }, { x: 680, y: 50 }]
   };
 
-  function generateWorld() {
-    gameState.platforms = [
-      { x: 0, y: 330, w: 360, h: 90, climbable: false },
-      { x: 410, y: 290, w: 180, h: 130, climbable: true },
-      { x: 650, y: 240, w: 160, h: 180, climbable: true },
-      { x: 870, y: 310, w: 240, h: 110, climbable: false },
-      { x: 1160, y: 220, w: 90, h: 200, climbable: true },
-      { x: 1310, y: 170, w: 180, h: 40, climbable: false },
-      { x: 1540, y: 290, w: 260, h: 130, climbable: true },
-      { x: 1860, y: 210, w: 120, h: 210, climbable: true },
-      { x: 2040, y: 280, w: 240, h: 140, climbable: false },
-      // Boss Arena Floor & Walls
-      { x: 2340, y: 320, w: 560, h: 100, climbable: false },
-      { x: 2340, y: 120, w: 28, h: 200, climbable: true },
-      { x: 2872, y: 120, w: 28, h: 200, climbable: true }
-    ];
+  window.__triggerSlimeDinoJump = () => {
+    if (game.gameOver) return;
+    if (game.slime.grounded) {
+      game.slime.vy = -12.4;
+      game.slime.grounded = false;
+    }
+  };
 
-    gameState.bonesList = [
-      { x: 260, y: 290, collected: false },
-      { x: 490, y: 250, collected: false },
-      { x: 720, y: 195, collected: false },
-      { x: 1000, y: 270, collected: false },
-      { x: 1390, y: 130, collected: false },
-      { x: 1680, y: 245, collected: false },
-      { x: 2160, y: 235, collected: false }
-    ];
-
-    gameState.skeletons = [
-      { x: 520, y: 256, minX: 420, maxX: 570, vx: 1.1, shootCd: 90, alive: true },
-      { x: 980, y: 276, minX: 880, maxX: 1080, vx: -1.3, shootCd: 70, alive: true },
-      { x: 1650, y: 256, minX: 1550, maxX: 1780, vx: 1.4, shootCd: 65, alive: true },
-      { x: 2150, y: 246, minX: 2050, maxX: 2250, vx: 1.5, shootCd: 60, alive: true }
-    ];
+  const jBtn = document.getElementById('dinoJumpBtn');
+  if (jBtn) {
+    jBtn.onpointerdown = (e) => { e.preventDefault(); window.__triggerSlimeDinoJump(); };
+  }
+  const dBtn = document.getElementById('dinoDuckBtn');
+  if (dBtn) {
+    dBtn.onpointerdown = (e) => { e.preventDefault(); DINO_INPUT.duckHeld = true; };
+    dBtn.onpointerup = () => { DINO_INPUT.duckHeld = false; };
+    dBtn.onpointerleave = () => { DINO_INPUT.duckHeld = false; };
   }
 
-  generateWorld();
-
-  function updateProgression() {
-    const b = gameState.bones;
-    gameState.maxJumps = b >= 3 ? 3 : (b >= 1 ? 2 : 1);
-    if (b >= 4 && !gameState.hasShield) {
-      gameState.hasShield = true;
-      gameState.shieldReady = true;
+  async function onCrash() {
+    game.gameOver = true;
+    const finalScore = Math.floor(game.score);
+    STATE.lastSlimeScore = finalScore;
+    const prevBest = Number(localStorage.getItem('enclave_slime_dino_best') || 0);
+    if (finalScore > prevBest) {
+      localStorage.setItem('enclave_slime_dino_best', String(finalScore));
     }
-    if (b >= 5 && !gameState.isStickman) {
-      gameState.isStickman = true;
-      gameState.player.h = 42;
-      gameState.player.y -= 14;
-      showToast('EVOLUTION! 5 Bones collected — Transformed into Stickman!');
-    }
-  }
 
-  window.__slimeTriggerJump = () => {
-    if (gameState.dead || gameState.bossCleared) return;
-    const p = gameState.player;
-    if (p.onWall !== 0 && !p.onGround) {
-      p.vy = -10.5;
-      p.vx = -p.onWall * 7.5;
-      p.jumpsLeft = Math.max(1, gameState.maxJumps - 1);
-      return;
-    }
-    if (p.jumpsLeft > 0) {
-      p.vy = -10.2;
-      p.onGround = false;
-      p.jumpsLeft--;
-    }
-  };
-
-  window.__slimeTriggerDash = () => {
-    if (gameState.dead || gameState.bossCleared) return;
-    const p = gameState.player;
-    if (p.dashTimer <= 0) {
-      p.dashTimer = 16;
-      p.vx = p.facing * 11.5;
-      p.vy = -2;
-    }
-  };
-
-  // Bind Touch Buttons
-  const bindHold = (id, keyName) => {
-    const el = document.getElementById(id);
-    if (!el) return;
-    el.addEventListener('pointerdown', (e) => { e.preventDefault(); SLIME_KEYS[keyName] = true; });
-    el.addEventListener('pointerup', () => { SLIME_KEYS[keyName] = false; });
-    el.addEventListener('pointerleave', () => { SLIME_KEYS[keyName] = false; });
-  };
-  bindHold('touchLeftBtn', 'left');
-  bindHold('touchRightBtn', 'right');
-
-  const jBtn = document.getElementById('touchJumpBtn');
-  if (jBtn) jBtn.addEventListener('pointerdown', (e) => { e.preventDefault(); window.__slimeTriggerJump(); });
-  const dBtn = document.getElementById('touchDashBtn');
-  if (dBtn) dBtn.addEventListener('pointerdown', (e) => { e.preventDefault(); window.__slimeTriggerDash(); });
-
-  const restartBtn = document.getElementById('restartSlimeBtn');
-  if (restartBtn) restartBtn.addEventListener('click', () => initSlimeEscapeGame());
-
-  const shareBtn = document.getElementById('shareSlimeRunBtn');
-  if (shareBtn) {
-    shareBtn.addEventListener('click', async () => {
-      const statusText = gameState.bossCleared
-        ? `Cleared SLIME ESCAPE 3D Boss in ${(gameState.winTimeMs / 1000).toFixed(2)}s as Evolved Stickman (${gameState.bones} Bones)!`
-        : `Reached ${gameState.distance}m in SLIME ESCAPE 3D (${gameState.bones} Bones collected • ${gameState.isStickman ? 'Stickman Form' : 'Slime Form'})!`;
-      STATE.lastGameResult = statusText;
+    if (STATE.slimeRankedMode && !game.rankedSubmitted) {
+      game.rankedSubmitted = true;
       const res = await apiCall({
-        action: 'createPost',
-        author: STATE.currentUser.username,
-        platform: STATE.currentUser.knoknoxActive ? 'KNOKNOX' : (STATE.currentUser.puntActive ? 'PUNT' : 'METROTV'),
-        caption: `🎮 [ENCLAVE ARCADE] ${statusText}`,
-        mediaUrl: '',
-        mediaType: 'none',
-        durationSec: 0,
-        resolution: 'Arcade Run'
-      }, 'Sharing Arcade Run');
-      if (!res.ok) return showToast(res.error);
-      ingestBootstrap(res);
-      showToast('Posted your Slime Escape run to the feed!');
-    });
-  }
-
-  function takeHit() {
-    if (gameState.shieldReady) {
-      gameState.shieldReady = false;
-      gameState.shieldCooldown = 360; // Recharges after 6 seconds
-      showToast('Shield absorbed lethal laser hit! Recharging...');
-      return;
+        action: 'submitSlimeScore',
+        username: STATE.currentUser.username,
+        score: finalScore
+      }, 'Recording Daily Ranked Slime Score');
+      if (!res.ok) {
+        showToast(res.error || 'Could not submit ranked score');
+      } else {
+        ingestBootstrap(res);
+        showToast(`Ranked Score Submitted: ${finalScore} pts!`);
+      }
     }
-    gameState.dead = true;
   }
 
   function step() {
     if (STATE.currentPage !== 'games' || STATE.activeGameTab !== 'slime') return;
 
-    const p = gameState.player;
-    if (!gameState.dead && !gameState.bossCleared) {
-      gameState.elapsedMs = performance.now() - gameState.startTime;
+    const s = game.slime;
+    if (!game.gameOver) {
+      game.tick++;
+      game.speed = Math.min(13.5, 6.2 + Math.floor(game.score / 250) * 0.45);
+      game.score += 0.25;
 
-      if (gameState.hasShield && !gameState.shieldReady) {
-        gameState.shieldCooldown--;
-        if (gameState.shieldCooldown <= 0) gameState.shieldReady = true;
-      }
-
-      const accel = p.dashTimer > 0 ? 0.9 : 0.65;
-      if (SLIME_KEYS.left) { p.vx = Math.max(p.vx - accel, -5.4); p.facing = -1; }
-      else if (SLIME_KEYS.right) { p.vx = Math.min(p.vx + accel, 5.4); p.facing = 1; }
-      else { p.vx *= 0.82; }
-
-      if (p.dashTimer > 0) p.dashTimer--;
-      p.vy = Math.min(p.vy + 0.52, 12);
-
-      // Horizontal Move & Wall Collision
-      p.x += p.vx;
-      p.onWall = 0;
-      for (const plat of gameState.platforms) {
-        if (p.x + p.w > plat.x && p.x < plat.x + plat.w && p.y + p.h > plat.y + 4 && p.y < plat.y + plat.h - 4) {
-          if (p.vx > 0) {
-            p.x = plat.x - p.w;
-            if (plat.climbable) { p.onWall = 1; if (SLIME_KEYS.right) p.vy = Math.min(p.vy, 1.5); }
-          } else if (p.vx < 0) {
-            p.x = plat.x + plat.w;
-            if (plat.climbable) { p.onWall = -1; if (SLIME_KEYS.left) p.vy = Math.min(p.vy, 1.5); }
-          }
-          p.vx = 0;
+      // Ducking / Squishing Slime
+      const targetH = DINO_INPUT.duckHeld && s.grounded ? 20 : 36;
+      const targetW = DINO_INPUT.duckHeld && s.grounded ? 44 : 36;
+      if (s.grounded) {
+        s.h = targetH;
+        s.w = targetW;
+        s.y = groundY - s.h;
+      } else {
+        s.vy += DINO_INPUT.duckHeld ? 1.15 : 0.62;
+        s.y += s.vy;
+        if (s.y + s.h >= groundY) {
+          s.y = groundY - s.h;
+          s.vy = 0;
+          s.grounded = true;
         }
       }
 
-      // Vertical Move & Floor Collision
-      p.y += p.vy;
-      p.onGround = false;
-      for (const plat of gameState.platforms) {
-        if (p.x + p.w > plat.x + 2 && p.x < plat.x + plat.w - 2 && p.y + p.h >= plat.y && p.y < plat.y + plat.h) {
-          if (p.vy >= 0 && p.y + p.h - p.vy <= plat.y + 14) {
-            p.y = plat.y - p.h;
-            p.vy = 0;
-            p.onGround = true;
-            p.jumpsLeft = gameState.maxJumps;
-          } else if (p.vy < 0) {
-            p.y = plat.y + plat.h;
-            p.vy = 0;
-          }
+      // Spawn Obstacles (Spikes, Twin Cacti, or Low-Flying Drones)
+      const minGap = Math.max(210, 340 - game.speed * 10);
+      const lastObs = game.obstacles[game.obstacles.length - 1];
+      if (!lastObs || (canvas.width - lastObs.x > minGap + Math.random() * 180)) {
+        const roll = Math.random();
+        if (roll < 0.45) {
+          game.obstacles.push({ type: 'SPIKE', x: canvas.width + 20, y: groundY - 34, w: 26, h: 34 });
+        } else if (roll < 0.75) {
+          game.obstacles.push({ type: 'PILLAR', x: canvas.width + 20, y: groundY - 48, w: 32, h: 48 });
+        } else {
+          // Low-flying drone that you can duck under or jump over
+          game.obstacles.push({ type: 'DRONE', x: canvas.width + 20, y: groundY - 56, w: 38, h: 24 });
         }
       }
 
-      if (p.y > 460) gameState.dead = true;
-
-      gameState.distance = Math.max(gameState.distance, Math.floor(p.x / 10));
-      if (gameState.distance > Number(localStorage.getItem('enclave_slime_best_dist') || 0)) {
-        localStorage.setItem('enclave_slime_best_dist', String(gameState.distance));
+      for (let i = game.obstacles.length - 1; i >= 0; i--) {
+        const o = game.obstacles[i];
+        o.x -= game.speed;
+        // Hitbox check (with slight forgiveness margin)
+        if (
+          s.x + s.w - 5 > o.x &&
+          s.x + 5 < o.x + o.w &&
+          s.y + s.h - 4 > o.y &&
+          s.y + 4 < o.y + o.h
+        ) {
+          onCrash();
+          break;
+        }
+        if (o.x + o.w < -40) game.obstacles.splice(i, 1);
       }
-
-      // Collect Bones
-      for (const b of gameState.bonesList) {
-        if (!b.collected && Math.hypot((p.x + p.w/2) - b.x, (p.y + p.h/2) - b.y) < 26) {
-          b.collected = true;
-          gameState.bones++;
-          updateProgression();
-        }
-      }
-
-      // Skeleton Patrol & Red Laser Firing
-      for (const sk of gameState.skeletons) {
-        if (!sk.alive) continue;
-        sk.x += sk.vx;
-        if (sk.x < sk.minX || sk.x > sk.maxX) sk.vx *= -1;
-        sk.shootCd--;
-        if (sk.shootCd <= 0 && Math.abs(sk.x - p.x) < 420) {
-          sk.shootCd = 85;
-          const dir = p.x < sk.x ? -1 : 1;
-          gameState.lasers.push({ x: sk.x, y: sk.y + 12, vx: dir * 6.8, vy: 0 });
-        }
-        // Stomp or Dash-Strike Skeleton
-        if (Math.abs((p.x + p.w/2) - sk.x) < 24 && Math.abs((p.y + p.h/2) - (sk.y + 16)) < 26) {
-          if (p.vy > 1 || p.dashTimer > 0) {
-            sk.alive = false;
-            p.vy = -8;
-          } else {
-            takeHit();
-          }
-        }
-      }
-
-      // Boss Encounter at x >= 2300
-      const boss = gameState.boss;
-      if (p.x > 2280) boss.active = true;
-      if (boss.active && boss.hp > 0) {
-        if (boss.stunTimer > 0) boss.stunTimer--;
-        else {
-          boss.y += boss.vy;
-          if (boss.y < 140 || boss.y > 250) boss.vy *= -1;
-          boss.shootTimer--;
-          if (boss.shootTimer <= 0) {
-            boss.shootTimer = 55;
-            const angle = Math.atan2((p.y + p.h/2) - (boss.y + boss.h/2), (p.x + p.w/2) - boss.x);
-            gameState.lasers.push({ x: boss.x, y: boss.y + 28, vx: Math.cos(angle) * 7.2, vy: Math.sin(angle) * 7.2 });
-          }
-        }
-
-        // Player hits Boss
-        if (p.x + p.w > boss.x && p.x < boss.x + boss.w && p.y + p.h > boss.y && p.y < boss.y + boss.h) {
-          if ((p.vy > 1 || p.dashTimer > 0) && boss.stunTimer <= 0) {
-            boss.hp--;
-            boss.stunTimer = 40;
-            p.vy = -9.5;
-            p.vx = -6;
-            if (boss.hp <= 0) {
-              gameState.bossCleared = true;
-              gameState.winTimeMs = gameState.elapsedMs;
-              const prevBest = Number(localStorage.getItem('enclave_slime_best_ms') || 0);
-              if (prevBest === 0 || gameState.winTimeMs < prevBest) {
-                localStorage.setItem('enclave_slime_best_ms', String(Math.round(gameState.winTimeMs)));
-              }
-              showToast('VICTORY! Boss defeated in ' + (gameState.winTimeMs / 1000).toFixed(2) + 's!');
-            }
-          } else if (boss.stunTimer <= 0) {
-            takeHit();
-          }
-        }
-      }
-
-      // Update Red Lasers
-      for (let i = gameState.lasers.length - 1; i >= 0; i--) {
-        const l = gameState.lasers[i];
-        l.x += l.vx;
-        l.y += l.vy;
-        if (l.x > p.x && l.x < p.x + p.w && l.y > p.y && l.y < p.y + p.h) {
-          gameState.lasers.splice(i, 1);
-          takeHit();
-          continue;
-        }
-        if (Math.abs(l.x - p.x) > 700) gameState.lasers.splice(i, 1);
-      }
-
-      p.animFrame += Math.abs(p.vx) * 0.15 + 0.05;
-      gameState.camX = Math.max(0, p.x - 220);
     }
 
-    // RENDER 3D-PERSPECTIVE WORLD
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    const grad = ctx.createLinearGradient(0, 0, 0, canvas.height);
-    grad.addColorStop(0, '#070b16');
-    grad.addColorStop(1, '#111a2e');
-    ctx.fillStyle = grad;
+    // Draw Frame
+    ctx.fillStyle = '#070a12';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    ctx.save();
-    ctx.translate(-gameState.camX, 0);
+    // Ground Track
+    ctx.strokeStyle = '#334155';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(0, groundY);
+    ctx.lineTo(canvas.width, groundY);
+    ctx.stroke();
 
-    // Draw 3D-Shaded Platforms
-    for (const plat of gameState.platforms) {
-      const depthX = 12;
-      const depthY = -10;
-      // 3D Top Face
-      ctx.fillStyle = plat.climbable ? '#2dd4bf' : '#334155';
-      ctx.beginPath();
-      ctx.moveTo(plat.x, plat.y);
-      ctx.lineTo(plat.x + depthX, plat.y + depthY);
-      ctx.lineTo(plat.x + plat.w + depthX, plat.y + depthY);
-      ctx.lineTo(plat.x + plat.w, plat.y);
-      ctx.closePath();
-      ctx.fill();
+    // Draw Slime Runner
+    ctx.fillStyle = STATE.slimeRankedMode ? '#f59e0b' : '#22c55e';
+    ctx.beginPath();
+    ctx.roundRect(s.x, s.y, s.w, s.h, [14, 14, 4, 4]);
+    ctx.fill();
+    ctx.fillStyle = '#052e16';
+    ctx.fillRect(s.x + s.w - 14, s.y + 8, 4, 5);
+    ctx.fillRect(s.x + s.w - 7, s.y + 8, 4, 5);
 
-      // 3D Right Side Face
-      ctx.fillStyle = '#0f172a';
-      ctx.beginPath();
-      ctx.moveTo(plat.x + plat.w, plat.y);
-      ctx.lineTo(plat.x + plat.w + depthX, plat.y + depthY);
-      ctx.lineTo(plat.x + plat.w + depthX, plat.y + plat.h + depthY);
-      ctx.lineTo(plat.x + plat.w, plat.y + plat.h);
-      ctx.closePath();
-      ctx.fill();
-
-      // Front Face
-      ctx.fillStyle = plat.climbable ? '#115e59' : '#1e293b';
-      ctx.fillRect(plat.x, plat.y, plat.w, plat.h);
-      ctx.strokeStyle = plat.climbable ? '#5eead4' : '#475569';
-      ctx.strokeRect(plat.x, plat.y, plat.w, plat.h);
+    // Draw Obstacles
+    for (const o of game.obstacles) {
+      if (o.type === 'DRONE') {
+        ctx.fillStyle = '#38bdf8';
+        ctx.fillRect(o.x, o.y, o.w, o.h);
+      } else {
+        ctx.fillStyle = '#f43f5e';
+        ctx.fillRect(o.x, o.y, o.w, o.h);
+      }
     }
 
-    // Draw Bones
-    for (const b of gameState.bonesList) {
-      if (b.collected) continue;
-      ctx.fillStyle = '#f8fafc';
-      ctx.beginPath();
-      ctx.arc(b.x - 5, b.y, 5, 0, Math.PI * 2);
-      ctx.arc(b.x + 5, b.y, 5, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.fillRect(b.x - 5, b.y - 2, 10, 4);
-    }
-
-    // Draw Skeleton Enemies
-    for (const sk of gameState.skeletons) {
-      if (!sk.alive) continue;
-      ctx.strokeStyle = '#e2e8f0';
-      ctx.lineWidth = 2.5;
-      ctx.beginPath();
-      ctx.arc(sk.x, sk.y, 7, 0, Math.PI * 2);
-      ctx.moveTo(sk.x, sk.y + 7);
-      ctx.lineTo(sk.x, sk.y + 22);
-      ctx.moveTo(sk.x - 8, sk.y + 13);
-      ctx.lineTo(sk.x + 8, sk.y + 13);
-      ctx.moveTo(sk.x, sk.y + 22);
-      ctx.lineTo(sk.x - 6, sk.y + 32);
-      ctx.moveTo(sk.x, sk.y + 22);
-      ctx.lineTo(sk.x + 6, sk.y + 32);
-      ctx.stroke();
-      ctx.fillStyle = '#ef4444';
-      ctx.fillRect(sk.x - 3, sk.y - 2, 2, 2);
-      ctx.fillRect(sk.x + 1, sk.y - 2, 2, 2);
-    }
-
-    // Draw Boss
-    const boss = gameState.boss;
-    if (boss.active && boss.hp > 0) {
-      ctx.fillStyle = boss.stunTimer > 0 ? '#f59e0b' : '#dc2626';
-      ctx.fillRect(boss.x, boss.y, boss.w, boss.h);
-      ctx.strokeStyle = '#fca5a5';
-      ctx.lineWidth = 2;
-      ctx.strokeRect(boss.x, boss.y, boss.w, boss.h);
-      // Boss HP Bar
-      ctx.fillStyle = '#111827';
-      ctx.fillRect(boss.x - 10, boss.y - 18, 74, 8);
-      ctx.fillStyle = '#ef4444';
-      ctx.fillRect(boss.x - 10, boss.y - 18, (boss.hp / boss.maxHp) * 74, 8);
-    }
-
-    // Draw Red Lasers
-    ctx.fillStyle = '#ff2a4b';
-    for (const l of gameState.lasers) {
-      ctx.beginPath();
-      ctx.arc(l.x, l.y, 4.5, 0, Math.PI * 2);
-      ctx.fill();
-    }
-
-    // Draw Player (Slime OR Evolved Humanoid Stickman)
-    if (gameState.isStickman) {
-      const cx = p.x + p.w / 2;
-      const cy = p.y;
-      const swing = Math.sin(p.animFrame) * 8;
-      ctx.strokeStyle = '#4ade80';
-      ctx.lineWidth = 3.2;
-      ctx.beginPath();
-      ctx.arc(cx, cy + 8, 7, 0, Math.PI * 2);
-      ctx.moveTo(cx, cy + 15);
-      ctx.lineTo(cx, cy + 29);
-      ctx.moveTo(cx, cy + 18);
-      ctx.lineTo(cx - swing, cy + 26);
-      ctx.moveTo(cx, cy + 18);
-      ctx.lineTo(cx + swing, cy + 26);
-      ctx.moveTo(cx, cy + 29);
-      ctx.lineTo(cx - swing, cy + 41);
-      ctx.moveTo(cx, cy + 29);
-      ctx.lineTo(cx + swing, cy + 41);
-      ctx.stroke();
-    } else {
-      ctx.fillStyle = '#22c55e';
-      ctx.beginPath();
-      ctx.roundRect(p.x, p.y, p.w, p.h, [12, 12, 5, 5]);
-      ctx.fill();
-      ctx.fillStyle = '#052e16';
-      const eyeOffset = p.facing > 0 ? 15 : 5;
-      ctx.fillRect(p.x + eyeOffset, p.y + 9, 4, 5);
-      ctx.fillRect(p.x + eyeOffset + 6, p.y + 9, 4, 5);
-    }
-
-    // Draw Shield Bubble (Unlocked at 4 Bones)
-    if (gameState.shieldReady) {
-      ctx.strokeStyle = '#38bdf8';
-      ctx.lineWidth = 2;
-      ctx.beginPath();
-      ctx.arc(p.x + p.w / 2, p.y + p.h / 2, 24, 0, Math.PI * 2);
-      ctx.stroke();
-    }
-
-    ctx.restore();
-
-    // HUD Overlay
-    ctx.fillStyle = 'rgba(9, 10, 13, 0.78)';
-    ctx.fillRect(12, 12, 340, 56);
-    ctx.strokeStyle = 'rgba(255,255,255,0.12)';
-    ctx.strokeRect(12, 12, 340, 56);
+    // HUD Score & Mode Banner
     ctx.fillStyle = '#f3f4f6';
-    ctx.font = 'bold 12px "JetBrains Mono", monospace';
-    ctx.fillText(`TIME: ${(gameState.elapsedMs / 1000).toFixed(2)}s | DIST: ${gameState.distance}m | BONES: ${gameState.bones}/5`, 22, 34);
-    ctx.fillStyle = '#4ade80';
-    ctx.fillText(`FORM: ${gameState.isStickman ? 'STICKMAN (EVOLVED)' : 'SLIME'} | JUMPS: ${gameState.maxJumps}x | SHIELD: ${gameState.shieldReady ? 'ON' : (gameState.hasShield ? 'RECHARGING' : 'LOCKED')}`, 22, 54);
+    ctx.font = 'bold 14px "JetBrains Mono", monospace';
+    ctx.fillText(`MODE: ${STATE.slimeRankedMode ? '🏆 DAILY RANKED ATTEMPT' : 'ENDLESS PRACTICE'}`, 18, 28);
+    ctx.fillText(`SCORE: ${ String(Math.floor(game.score)).padStart(5, '0') }`, canvas.width - 160, 28);
 
-    // Mini-Map in Top-Right Corner
-    const mapW = 150;
-    const mapH = 34;
-    const mapX = canvas.width - mapW - 12;
-    const mapY = 12;
-    ctx.fillStyle = 'rgba(9, 10, 13, 0.82)';
-    ctx.fillRect(mapX, mapY, mapW, mapH);
-    ctx.strokeStyle = 'rgba(255,255,255,0.2)';
-    ctx.strokeRect(mapX, mapY, mapW, mapH);
-    const prog = Math.min(1, p.x / 2850);
-    ctx.fillStyle = '#22c55e';
-    ctx.fillRect(mapX + prog * (mapW - 8), mapY + 8, 6, 18);
-    ctx.fillStyle = '#ef4444';
-    ctx.fillRect(mapX + (2650 / 2850) * (mapW - 8), mapY + 6, 6, 22);
-
-    if (gameState.dead || gameState.bossCleared) {
+    if (game.gameOver) {
       ctx.fillStyle = 'rgba(5, 7, 12, 0.82)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = gameState.bossCleared ? '#4ade80' : '#f43f5e';
-      ctx.font = 'bold 22px "Plus Jakarta Sans", sans-serif';
+      ctx.fillStyle = '#4ade80';
+      ctx.font = 'bold 20px "Plus Jakarta Sans", sans-serif';
       ctx.textAlign = 'center';
-      ctx.fillText(gameState.bossCleared ? '🏆 BOSS DEFEATED — SPEEDRUN COMPLETE!' : '💀 RUN TERMINATED', canvas.width / 2, canvas.height / 2 - 14);
-      ctx.fillStyle = '#e5e7eb';
-      ctx.font = '14px "JetBrains Mono", monospace';
-      ctx.fillText(`Distance: ${gameState.distance}m • Bones: ${gameState.bones} • Time: ${(gameState.elapsedMs / 1000).toFixed(2)}s`, canvas.width / 2, canvas.height / 2 + 16);
-      ctx.fillText('Click "Restart Run" or "Share Run to Feed" above!', canvas.width / 2, canvas.height / 2 + 42);
+      ctx.fillText(`SLIME RUN OVER — SCORE: ${Math.floor(game.score)}`, canvas.width / 2, canvas.height / 2 - 10);
+      ctx.fillStyle = '#9ca3af';
+      ctx.font = '13px "JetBrains Mono", monospace';
+      ctx.fillText(
+        STATE.slimeRankedMode
+          ? 'Your Daily Ranked Score has been recorded on the Leaderboard!'
+          : 'Click "Practice Run" to play again or "Start Daily Ranked Attempt" above!',
+        canvas.width / 2,
+        canvas.height / 2 + 20
+      );
       ctx.textAlign = 'left';
+      return;
     }
 
-    SLIME_LOOP_ID = requestAnimationFrame(step);
+    SLIME_RUNNER_RAF = requestAnimationFrame(step);
   }
 
-  SLIME_LOOP_ID = requestAnimationFrame(step);
+  SLIME_RUNNER_RAF = requestAnimationFrame(step);
 }
 
-/**
- * GAME 2: PUNT STREAM-SNIPE DODGE
- */
-function initCyberDodgeGame() {
-  const canvas = document.getElementById('cyberCanvas');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
+function bindGamesEvents() {
+  stopSlimeRunner();
 
-  let state = {
-    player: { x: 80, y: 190, r: 14, speed: 4.8 },
-    keys: { up: false, down: false, left: false, right: false },
-    drones: [],
-    subs: [],
-    score: 0,
-    alive: true,
-    tick: 0
-  };
-
-  const bindBtn = (id, dir) => {
-    const el = document.getElementById(id);
-    if (!el) return;
-    el.addEventListener('pointerdown', (e) => { e.preventDefault(); state.keys[dir] = true; });
-    el.addEventListener('pointerup', () => { state.keys[dir] = false; });
-    el.addEventListener('pointerleave', () => { state.keys[dir] = false; });
-  };
-  bindBtn('cyberLeftBtn', 'left');
-  bindBtn('cyberRightBtn', 'right');
-  bindBtn('cyberUpBtn', 'up');
-  bindBtn('cyberDownBtn', 'down');
-
-  const rBtn = document.getElementById('restartCyberBtn');
-  if (rBtn) rBtn.addEventListener('click', () => initCyberDodgeGame());
-
-  const sBtn = document.getElementById('shareCyberRunBtn');
-  if (sBtn) {
-    sBtn.addEventListener('click', async () => {
-      const res = await apiCall({
-        action: 'createPost',
-        author: STATE.currentUser.username,
-        platform: STATE.currentUser.puntActive ? 'PUNT' : (STATE.currentUser.knoknoxActive ? 'KNOKNOX' : 'METROTV'),
-        caption: `🟢 [PUNT ARCADE] Survived IRL Stream-Snipe Dodge with ${state.score} Gifted Subs collected!`,
-        mediaUrl: '',
-        mediaType: 'none',
-        durationSec: 0,
-        resolution: 'Arcade Run'
-      }, 'Sharing Score');
-      if (!res.ok) return showToast(res.error);
-      ingestBootstrap(res);
-      showToast('Posted score to feed!');
-    });
-  }
-
-  function loop() {
-    if (STATE.currentPage !== 'games' || STATE.activeGameTab !== 'cyber') return;
-    if (state.alive) {
-      state.tick++;
-      if (state.keys.left) state.player.x = Math.max(20, state.player.x - state.player.speed);
-      if (state.keys.right) state.player.x = Math.min(canvas.width - 20, state.player.x + state.player.speed);
-      if (state.keys.up) state.player.y = Math.max(20, state.player.y - state.player.speed);
-      if (state.keys.down) state.player.y = Math.min(canvas.height - 20, state.player.y + state.player.speed);
-
-      if (state.tick % 32 === 0) {
-        state.drones.push({ x: canvas.width + 20, y: 24 + Math.random() * (canvas.height - 48), vx: -(3.8 + Math.random() * 2.8), r: 12 });
-      }
-      if (state.tick % 45 === 0) {
-        state.subs.push({ x: canvas.width + 20, y: 24 + Math.random() * (canvas.height - 48), vx: -3.2, r: 9 });
-      }
-
-      for (let i = state.drones.length - 1; i >= 0; i--) {
-        const d = state.drones[i];
-        d.x += d.vx;
-        if (Math.hypot(d.x - state.player.x, d.y - state.player.y) < d.r + state.player.r) {
-          state.alive = false;
-        }
-        if (d.x < -30) state.drones.splice(i, 1);
-      }
-
-      for (let i = state.subs.length - 1; i >= 0; i--) {
-        const s = state.subs[i];
-        s.x += s.vx;
-        if (Math.hypot(s.x - state.player.x, s.y - state.player.y) < s.r + state.player.r) {
-          state.score += 10;
-          if (state.score > Number(localStorage.getItem('enclave_cyber_best') || 0)) {
-            localStorage.setItem('enclave_cyber_best', String(state.score));
-          }
-          state.subs.splice(i, 1);
-          continue;
-        }
-        if (s.x < -30) state.subs.splice(i, 1);
-      }
-    }
-
-    ctx.fillStyle = '#060a06';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    ctx.fillStyle = '#53fc18';
-    ctx.beginPath();
-    ctx.arc(state.player.x, state.player.y, state.player.r, 0, Math.PI * 2);
-    ctx.fill();
-
-    ctx.fillStyle = '#f43f5e';
-    for (const d of state.drones) {
-      ctx.beginPath();
-      ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
-      ctx.fill();
-    }
-
-    ctx.fillStyle = '#f59e0b';
-    for (const s of state.subs) {
-      ctx.beginPath();
-      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-      ctx.fill();
-    }
-
-    ctx.fillStyle = '#fff';
-    ctx.font = 'bold 14px "JetBrains Mono", monospace';
-    ctx.fillText(`PUNT SUBS COLLECTED: ${state.score}`, 18, 28);
-
-    if (!state.alive) {
-      ctx.fillStyle = 'rgba(0,0,0,0.78)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = '#53fc18';
-      ctx.font = 'bold 22px "Plus Jakarta Sans", sans-serif';
-      ctx.textAlign = 'center';
-      ctx.fillText('STREAM SNIPED! BROADCAST ENDED', canvas.width / 2, canvas.height / 2 - 8);
-      ctx.fillStyle = '#fff';
-      ctx.font = '14px "JetBrains Mono", monospace';
-      ctx.fillText(`Final Payout: ${state.score} Gifted Subs`, canvas.width / 2, canvas.height / 2 + 20);
-      ctx.textAlign = 'left';
-    }
-
-    CYBER_LOOP_ID = requestAnimationFrame(loop);
-  }
-  CYBER_LOOP_ID = requestAnimationFrame(loop);
-}
-
-/**
- * GAME 3: INSTANT DUNGEON (ID) FORAGER
- */
-function initInstantDungeonGame() {
-  const lootTable = {
-    FISH: ['Abyssal Leviathan Scale', 'Ryugu Pearl', 'Neon Koi', 'Golden Sea King Fin'],
-    MINE: ['Pure Etherium Core', 'Poneglyph Obsidian Shard', 'Mythril Ore', 'Void Crystal'],
-    HUNT: ['Royal Slime Core', 'Skeleton Laser Lens', 'Shadow Wolf Fang', 'Cursed Bone Relic'],
-    CHOP: ['Elder Spirit Timber', 'World-Tree Sap', 'Ironwood Plank', ' luminescent Bark']
-  };
-
-  document.querySelectorAll('.id-forage-btn').forEach(btn => {
+  document.querySelectorAll('.game-tab-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-      const node = btn.getAttribute('data-node');
-      const items = lootTable[node] || lootTable.MINE;
-      const picked = items[Math.floor(Math.random() * items.length)];
-      const mult = STATE.currentUser.multiplier || 1;
-      const qty = Math.max(1, Math.round((2 + Math.floor(Math.random() * 5)) * mult));
-      const msg = `[INSTANT DUNGEON // ${node}] Expedition Success! Harvested ${qty}x ${picked} (Tier ${STATE.currentUser.tier} ${mult}x Yield Bonus).`;
-      STATE.lastGameResult = msg;
-      const box = document.getElementById('dungeonLogBox');
-      if (box) box.textContent = msg;
+      stopSlimeRunner();
+      STATE.activeGameTab = btn.getAttribute('data-gtab');
+      render();
     });
   });
 
-  const shareBtn = document.getElementById('shareDungeonLootBtn');
-  if (shareBtn) {
-    shareBtn.addEventListener('click', async () => {
-      if (!STATE.lastGameResult) return showToast('Run an Instant Dungeon node first!');
-      const res = await apiCall({
-        action: 'createPost',
-        author: STATE.currentUser.username,
-        platform: STATE.currentUser.metroActive ? 'METROTV' : (STATE.currentUser.puntActive ? 'PUNT' : 'KNOKNOX'),
-        caption: `⛏️ ${STATE.lastGameResult}`,
-        mediaUrl: '',
-        mediaType: 'none',
-        durationSec: 0,
-        resolution: 'Instant Dungeon'
-      }, 'Posting Loot');
-      if (!res.ok) return showToast(res.error);
-      ingestBootstrap(res);
-      showToast('Posted Instant Dungeon haul to feed!');
+  document.querySelectorAll('.op-profile-trigger').forEach(el => {
+    el.addEventListener('click', () => openOPProfileModal(el.getAttribute('data-user')));
+  });
+
+  if (STATE.activeGameTab === 'slime') {
+    initSlimeDinoGame(false);
+    const pBtn = document.getElementById('startPracticeSlimeBtn');
+    if (pBtn) pBtn.addEventListener('click', () => initSlimeDinoGame(false));
+
+    const rBtn = document.getElementById('startRankedSlimeBtn');
+    if (rBtn) rBtn.addEventListener('click', () => initSlimeDinoGame(true));
+  } else if (STATE.activeGameTab === 'blackjack') {
+    const refBtn = document.getElementById('refreshBjBtn');
+    if (refBtn) refBtn.addEventListener('click', () => refreshFromServer(true));
+
+    const createBtn = document.getElementById('createBjTableBtn');
+    if (createBtn) {
+      createBtn.addEventListener('click', async () => {
+        const betAmount = Number(document.getElementById('bjBetInput').value || 100);
+        const targetOpponent = document.getElementById('bjOpponentSelect').value;
+        const res = await apiCall({
+          action: 'bjAction',
+          username: STATE.currentUser.username,
+          subAction: 'CREATE_TABLE',
+          betAmount,
+          targetOpponent
+        }, 'Opening Network Jack Table');
+        if (!res.ok) return showToast(res.error);
+        ingestBootstrap(res);
+        showToast('Network Jack table opened!');
+      });
+    }
+
+    document.querySelectorAll('.bj-cancel-btn').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const res = await apiCall({
+          action: 'bjAction',
+          username: STATE.currentUser.username,
+          subAction: 'CANCEL_TABLE',
+          matchId: btn.getAttribute('data-id')
+        }, 'Canceling Table');
+        if (!res.ok) return showToast(res.error);
+        ingestBootstrap(res);
+      });
+    });
+
+    document.querySelectorAll('.bj-join-btn').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const res = await apiCall({
+          action: 'bjAction',
+          username: STATE.currentUser.username,
+          subAction: 'JOIN_TABLE',
+          matchId: btn.getAttribute('data-id')
+        }, 'Dealing Cards');
+        if (!res.ok) return showToast(res.error);
+        ingestBootstrap(res);
+      });
+    });
+
+    document.querySelectorAll('.bj-action-btn').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const res = await apiCall({
+          action: 'bjAction',
+          username: STATE.currentUser.username,
+          subAction: btn.getAttribute('data-act'),
+          matchId: btn.getAttribute('data-id')
+        }, 'Playing Hand');
+        if (!res.ok) return showToast(res.error);
+        ingestBootstrap(res);
+      });
     });
   }
 }
@@ -1938,6 +1925,7 @@ function renderPlatformLeaderboardHTML(platformKey) {
         displayName: u.displayName,
         profilePic: u.profilePic,
         verified: u.verified,
+        isOnline: u.isOnline,
         tierLabel: u.tierLabel,
         isActive: u[activeFlag],
         platFollowers: Number(ps.followers || 0),
@@ -1981,6 +1969,7 @@ function renderPlatformLeaderboardHTML(platformKey) {
                 <div>
                   <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
                     <strong style="font-size:0.86rem;">${escapeHtml(c.displayName)}</strong>
+                    ${renderOnlineBadge(c.isOnline)}
                     ${c.verified ? `<span class="badge verified">✓</span>` : ''}
                     <span class="badge tier">${escapeHtml(c.tierLabel)}</span>
                   </div>
@@ -2048,13 +2037,13 @@ function renderPlatformView(platformKey) {
           </div>
           <div class="grid-2">
             <div class="form-group">
-              <label>Media Attachment (Images Auto-Fit ${spec.bestResolution} • Video/MP3 Stream Ready)</label>
+              <label>Upload Media (Up to 5 Images for Image Dump • Or 1 Video/MP3 up to ${spec.maxDurationSec / 60}m)</label>
               <label class="upload-dropzone">
-                ${ICONS.upload} <span id="uploadFileNameLabel">Select Image, Video (MP4/WebM), or Audio (MP3)</span>
-                <input type="file" id="postMediaFileInput" accept="image/*,video/*,audio/*" />
+                ${ICONS.upload} <span id="uploadFileNameLabel">Select 1–5 Images, Video (MP4/WebM), or Audio (MP3)</span>
+                <input type="file" id="postMediaFileInput" accept="image/*,video/*,audio/*,.mp3,.mp4,.webm,.wav,.ogg,.m4a" multiple />
               </label>
               <div id="mediaCheckStatus" style="font-family:var(--font-mono); font-size:0.7rem; color:var(--text-secondary); margin-top:4px;"></div>
-              <div id="mediaLivePreviewBox" class="post-media-box" style="display:none; margin-top:8px; max-height:220px;"></div>
+              <div id="mediaLivePreviewBox" class="post-media-box" style="display:none; margin-top:8px;"></div>
             </div>
             <div class="form-group">
               <label>External Media Link (Optional)</label>
@@ -2118,7 +2107,8 @@ function bindPlatformEvents(platformKey) {
   const fileInput = document.getElementById('postMediaFileInput');
   if (fileInput) {
     fileInput.addEventListener('change', async () => {
-      document.getElementById('uploadFileNameLabel').textContent = fileInput.files[0] ? fileInput.files[0].name : 'Select Media';
+      const count = fileInput.files ? fileInput.files.length : 0;
+      document.getElementById('uploadFileNameLabel').textContent = count > 1 ? `${Math.min(5, count)} files selected` : (count === 1 ? fileInput.files[0].name : 'Select Media');
       await handleMediaFileSelect(fileInput, platformKey);
     });
   }
@@ -2132,19 +2122,31 @@ function bindPlatformEvents(platformKey) {
       const directType = document.getElementById('postDirectMediaType').value;
 
       let mediaUrl = STATE.pendingMedia.dataUrl;
+      let mediaUrls = STATE.pendingMedia.mediaUrls || [];
       let mediaType = STATE.pendingMedia.mediaType;
       let durationSec = STATE.pendingMedia.durationSec;
       let resolution = STATE.pendingMedia.resolution || '';
 
-      if (!mediaUrl && directUrl) {
+      if (!mediaUrl && mediaUrls.length === 0 && directUrl) {
         mediaUrl = directUrl;
         mediaType = directType;
       }
 
-      const res = await apiCall({ action: 'createPost', author: STATE.currentUser.username, platform: platformKey, caption, mediaUrl, mediaType, durationSec, resolution }, 'Publishing Post');
+      const res = await apiCall({
+        action: 'createPost',
+        author: STATE.currentUser.username,
+        platform: platformKey,
+        caption,
+        mediaUrl,
+        mediaUrls,
+        mediaType,
+        durationSec,
+        resolution
+      }, 'Publishing Post');
+
       if (!res.ok) return showToast(res.error);
       STATE.composerOpen = false;
-      STATE.pendingMedia = { dataUrl: '', mediaType: 'none', durationSec: 0, resolution: '' };
+      STATE.pendingMedia = { dataUrl: '', mediaUrls: [], mediaType: 'none', durationSec: 0, resolution: '' };
       ingestBootstrap(res);
       showToast('Published!');
     });
@@ -2153,11 +2155,50 @@ function bindPlatformEvents(platformKey) {
   bindGlobalPostEvents();
 }
 
+function renderPostMediaHTML(p) {
+  const rawMediaUrl = String(p.mediaUrl || '').trim();
+  if (!rawMediaUrl || p.mediaType === 'none') return '';
+
+  if (p.mediaType === 'imagedump') {
+    if (rawMediaUrl.startsWith('[')) {
+      try {
+        const arr = JSON.parse(rawMediaUrl);
+        return `<div class="post-dump-grid">${arr.map(u => `<img src="${escapeHtml(fixMediaUrl(u))}" alt="Dump Image" loading="lazy" />`).join('')}</div>`;
+      } catch (e) {}
+    }
+    return `<div class="post-dump-grid" data-dump-src="${escapeHtml(rawMediaUrl)}"><span style="font-size:0.75rem;color:var(--text-secondary);padding:12px;">Loading Image Dump...</span></div>`;
+  }
+
+  if (p.mediaType === 'image') {
+    if (rawMediaUrl.startsWith('sheetmedia:') || rawMediaUrl.startsWith('gdrive:')) {
+      return `<div class="post-media-box"><img data-stream-src="${escapeHtml(rawMediaUrl)}" alt="" loading="lazy" /></div>`;
+    }
+    return `<div class="post-media-box"><img src="${escapeHtml(fixMediaUrl(rawMediaUrl))}" alt="" loading="lazy" /></div>`;
+  }
+
+  if (p.mediaType === 'video') {
+    return `
+      <div class="post-media-box">
+        <video data-stream-src="${escapeHtml(rawMediaUrl)}" controls playsinline preload="metadata"></video>
+      </div>
+    `;
+  }
+
+  if (p.mediaType === 'audio') {
+    return `
+      <div class="post-media-box">
+        <audio data-stream-src="${escapeHtml(rawMediaUrl)}" controls preload="metadata"></audio>
+      </div>
+    `;
+  }
+
+  return '';
+}
+
 function renderPostCardHTML(p) {
-  const op = STATE.users.find(u => u.username.toLowerCase() === p.author.toLowerCase()) || { username: p.author, displayName: p.author, profilePic: FALLBACK_AVATAR, verified: false, tierLabel: 'Tier 1' };
+  const op = STATE.users.find(u => u.username.toLowerCase() === p.author.toLowerCase()) || { username: p.author, displayName: p.author, profilePic: FALLBACK_AVATAR, verified: false, isOnline: false, tierLabel: 'Tier 1' };
   const spec = PLATFORM_SPECS[p.platform] || PLATFORM_SPECS.METROTV;
   const originalPost = p.sharedFromId ? STATE.posts.find(x => x.postId === p.sharedFromId) : null;
-  const rawMediaUrl = String(p.mediaUrl || '').trim();
   const comments = Array.isArray(p.comments) ? p.comments : [];
   const isCommentsOpen = Boolean(STATE.openCommentsMap[p.postId]);
 
@@ -2169,6 +2210,7 @@ function renderPostCardHTML(p) {
           <div>
             <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
               <span style="font-weight:700; font-size:0.88rem; color:#fff;">${escapeHtml(op.displayName)}</span>
+              ${renderOnlineBadge(op.isOnline)}
               ${op.verified ? `<span class="badge verified" style="padding:1px 5px;">✓</span>` : ''}
               <span class="badge tier">${escapeHtml(op.tierLabel)}</span>
             </div>
@@ -2180,6 +2222,7 @@ function renderPostCardHTML(p) {
 
         <div style="display:flex; align-items:center; gap:6px;">
           <span class="badge ${spec.badgeClass}">${spec.name}</span>
+          ${p.mediaType === 'imagedump' ? `<span class="badge">📸 Image Dump</span>` : ''}
           ${p.durationSec > 0 ? `<span class="badge">${p.durationSec}s</span>` : ''}
         </div>
       </div>
@@ -2193,19 +2236,7 @@ function renderPostCardHTML(p) {
 
       <div class="post-caption">${escapeHtml(p.caption)}</div>
 
-      ${rawMediaUrl && p.mediaType === 'image' ? `
-        <div class="post-media-box"><img src="${escapeHtml(fixMediaUrl(rawMediaUrl))}" alt="" loading="lazy" /></div>
-      ` : ''}
-      ${rawMediaUrl && p.mediaType === 'video' ? `
-        <div class="post-media-box">
-          <video data-stream-src="${escapeHtml(rawMediaUrl)}" controls playsinline preload="metadata"></video>
-        </div>
-      ` : ''}
-      ${rawMediaUrl && p.mediaType === 'audio' ? `
-        <div class="post-media-box">
-          <audio data-stream-src="${escapeHtml(rawMediaUrl)}" controls preload="metadata"></audio>
-        </div>
-      ` : ''}
+      ${renderPostMediaHTML(p)}
 
       <div class="post-actions">
         <button type="button" class="btn btn-sm ${p.myVote === 'UP' ? 'btn-success' : 'btn-outline'} vote-btn" data-id="${escapeHtml(p.postId)}" data-type="UP">
@@ -2404,6 +2435,7 @@ function openOPProfileModal(username) {
         <div>
           <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
             <h3 style="font-size:1rem;">${escapeHtml(op.displayName)}</h3>
+            ${renderOnlineBadge(op.isOnline)}
             ${op.verified ? `<span class="badge verified">✓</span>` : ''}
             <span class="badge tier">${escapeHtml(op.tierLabel)}</span>
           </div>
@@ -2467,6 +2499,7 @@ function renderSearchView() {
                 <div>
                   <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
                     <span style="font-weight:700; font-size:0.88rem;">${escapeHtml(u.displayName)}</span>
+                    ${renderOnlineBadge(u.isOnline)}
                     ${u.verified ? `<span class="badge verified">✓</span>` : ''}
                     <span class="badge tier">${escapeHtml(u.tierLabel)}</span>
                   </div>
@@ -2567,7 +2600,11 @@ function renderConnectionsView() {
         <div style="font-family:var(--font-mono); font-size:0.7rem; text-transform:uppercase; color:var(--text-secondary);">Direct Messages</div>
         <div style="display:flex; flex-direction:column; gap:4px;">
           ${connectedUsers.length === 0 ? `<p style="font-size:0.75rem; color:var(--text-dim);">No active connections.</p>` :
-            connectedUsers.map(uName => `<button class="btn btn-sm ${STATE.activeChat.type==='DM' && STATE.activeChat.targetId===uName ? 'btn-primary' : 'btn-outline'} chat-select-btn" data-type="DM" data-target="${escapeHtml(uName)}" style="justify-content:flex-start;">@${escapeHtml(uName)}</button>`).join('')}
+            connectedUsers.map(uName => {
+              const peerObj = STATE.users.find(x => x.username.toLowerCase() === uName.toLowerCase());
+              const dot = peerObj && peerObj.isOnline ? '🟢' : '⚪';
+              return `<button class="btn btn-sm ${STATE.activeChat.type==='DM' && STATE.activeChat.targetId===uName ? 'btn-primary' : 'btn-outline'} chat-select-btn" data-type="DM" data-target="${escapeHtml(uName)}" style="justify-content:flex-start;">${dot} @${escapeHtml(uName)}</button>`;
+            }).join('')}
         </div>
 
         <hr style="border:none; border-top:1px solid var(--border-subtle); margin:4px 0;" />
