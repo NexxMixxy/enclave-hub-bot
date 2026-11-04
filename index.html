@@ -32,6 +32,8 @@
       --accent-punt: #53fc18;
       --accent-knok: #06b6d4;
       --accent-arcade: #a855f7;
+      --pk-left: #ff1f5a;
+      --pk-right: #00e5ff;
       --danger: #f43f5e;
       --success: #10b981;
       --radius-lg: 12px;
@@ -85,7 +87,7 @@
     .card { background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 18px; }
     .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
     .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(185px, 1fr)); gap: 10px; }
-    .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(145px, 1fr)); gap: 10px; }
 
     .badge { display: inline-flex; align-items: center; gap: 4px; padding: 2px 7px; border-radius: 6px; font-family: var(--font-mono); font-size: 0.68rem; font-weight: 600; background: var(--bg-elevated); color: var(--text-secondary); border: 1px solid var(--border-subtle); white-space: nowrap; }
     .badge.verified { background: rgba(6, 182, 212, 0.12); color: var(--accent-knok); border-color: rgba(6, 182, 212, 0.3); }
@@ -96,6 +98,7 @@
     .badge.arcade { background: rgba(168, 85, 247, 0.14); color: #d8b4fe; border-color: rgba(168, 85, 247, 0.35); }
     .badge.live { background: rgba(16, 185, 129, 0.14); color: #34d399; border-color: rgba(16, 185, 129, 0.35); }
     .badge.offline { background: rgba(107, 114, 128, 0.12); color: #9ca3af; border-color: rgba(107, 114, 128, 0.25); }
+    .badge.tt-coin { background: rgba(0, 229, 255, 0.14); color: #00e5ff; border-color: rgba(0, 229, 255, 0.35); }
 
     .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
     .form-group label { font-size: 0.75rem; font-weight: 600; color: var(--text-secondary); }
@@ -135,7 +138,6 @@
     .post-media-box img, .post-media-box video { max-width: 100%; max-height: 430px; width: auto; height: auto; object-fit: contain; display: block; margin: 0 auto; }
     .post-media-box audio { width: 94%; margin: 14px auto; display: block; }
 
-    /* Multi-Image Dump Grid (Up to 5 Images) */
     .post-dump-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 8px; width: 100%; background: #050608; padding: 8px; border-radius: 10px; border: 1px solid var(--border-subtle); }
     .post-dump-grid img { width: 100%; height: 180px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border-subtle); display: block; background: var(--bg-elevated); }
 
@@ -162,6 +164,21 @@
     .playing-card { display: inline-flex; flex-direction: column; align-items: center; justify-content: center; width: 52px; height: 74px; border-radius: 8px; background: #f8fafc; color: #0f172a; font-family: var(--font-mono); font-weight: 800; font-size: 0.95rem; border: 2px solid #cbd5e1; box-shadow: 0 4px 10px rgba(0,0,0,0.4); user-select: none; }
     .playing-card.red { color: #dc2626; }
     .playing-card.hidden-card { background: linear-gradient(135deg, #1e293b, #0f172a); color: #94a3b8; border-color: #475569; }
+
+    /* TikTok Live PK Tap-Tap Battle Arena */
+    .pk-arena-shell { background: linear-gradient(180deg, #0d0f17 0%, #07080d 100%); border: 1px solid rgba(255,255,255,0.16); border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 20px 50px rgba(0,0,0,0.75); }
+    .pk-top-bar { display: flex; align-items: center; justify-content: space-between; padding: 10px 16px; background: rgba(0,0,0,0.55); border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .pk-tug-bar { width: 100%; height: 28px; display: flex; position: relative; overflow: hidden; font-family: var(--font-mono); font-size: 0.78rem; font-weight: 800; }
+    .pk-tug-left { background: linear-gradient(90deg, #b80d38, var(--pk-left)); color: #fff; display: flex; align-items: center; padding-left: 12px; transition: width 0.35s ease; white-space: nowrap; }
+    .pk-tug-right { background: linear-gradient(90deg, var(--pk-right), #0077ff); color: #021017; display: flex; align-items: center; justify-content: flex-end; padding-right: 12px; flex: 1; white-space: nowrap; }
+    .pk-split-stage { display: grid; grid-template-columns: 1fr 1fr; min-height: 250px; position: relative; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .pk-side-pane { padding: 18px 14px; display: flex; flex-direction: column; align-items: center; justify-content: space-between; gap: 12px; cursor: pointer; user-select: none; touch-action: manipulation; position: relative; transition: transform 0.08s ease; }
+    .pk-side-pane.host-pane { background: radial-gradient(circle at top left, rgba(255, 31, 90, 0.22), rgba(15, 17, 26, 0.92)); border-right: 1px solid rgba(255,255,255,0.1); }
+    .pk-side-pane.guest-pane { background: radial-gradient(circle at top right, rgba(0, 229, 255, 0.22), rgba(15, 17, 26, 0.92)); }
+    .pk-side-pane:active { transform: scale(0.985); }
+    .pk-vs-badge { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 44px; height: 44px; border-radius: 50%; background: #090a0f; border: 2px solid var(--accent-enclave); color: var(--accent-enclave); font-weight: 900; font-size: 0.85rem; display: flex; align-items: center; justify-content: center; z-index: 5; box-shadow: 0 0 18px rgba(245, 158, 11, 0.5); pointer-events: none; }
+    .pk-tap-btn-big { width: 100%; max-width: 220px; padding: 12px; border-radius: 999px; font-weight: 800; font-size: 0.84rem; text-transform: uppercase; letter-spacing: 0.04em; border: none; cursor: pointer; box-shadow: 0 6px 20px rgba(0,0,0,0.45); }
+    .pk-chat-stream { height: 165px; overflow-y: auto; padding: 10px 14px; background: rgba(5, 6, 10, 0.85); display: flex; flex-direction: column; gap: 6px; font-size: 0.78rem; }
 
     .chat-layout { display: grid; grid-template-columns: 240px 1fr; gap: 12px; min-height: 500px; }
     .viewport-wrapper.mode-mobile .chat-layout { grid-template-columns: 1fr; }
@@ -250,7 +267,7 @@
         <div class="nav-section-label">Arcade & PvP</div>
         <button class="nav-btn games-tab" data-page="games" id="navBtn_games">
           <svg class="icon-svg" viewBox="0 0 24 24"><line x1="6" x2="10" y1="12" y2="12"/><line x1="8" x2="8" y1="10" y2="14"/><line x1="15" x2="15.01" y1="13" y2="13"/><line x1="18" x2="18.01" y1="11" y2="11"/><rect width="20" height="12" x="2" y="6" rx="2"/></svg>
-          <span>Games</span>
+          <span>Arcade</span>
         </button>
 
         <button class="nav-btn admin-tab" id="navAdminBtn" data-page="admin" style="display:none;">
@@ -322,7 +339,8 @@ let STATE = {
   viewportMode: localStorage.getItem('enclave_viewport_mode') || 'desktop',
   currentPage: 'profile',
   authTab: 'login',
-  activeGameTab: 'slime', // slime | blackjack
+  activeGameTab: 'tapbattle', // tapbattle | slime | blackjack
+  selectedBattleId: '',
   slimeRankedMode: false,
   composerOpen: false,
   leaderboardOpen: false,
@@ -338,6 +356,8 @@ let STATE = {
   slimeLeaderboard: [],
   bjLeaderboard: [],
   bjMatches: [],
+  tapBattles: [],
+  ttConversions: [],
   reports: [],
   history: [],
   activeChat: { type: 'DM', targetId: '', replyToMsgId: '', replyPreview: '' },
@@ -360,10 +380,6 @@ function hideLoading() {
   document.getElementById('loadingOverlay').classList.remove('active');
 }
 
-/**
- * Converts a Base64 DataURL into a clean Browser Blob URL with explicit MIME enforcement
- * so <video> and <audio> elements play reliably across Discord & all browsers.
- */
 function dataUrlToBlobUrl(dataUrl, fallbackMime) {
   try {
     const str = String(dataUrl || '').trim();
@@ -396,13 +412,9 @@ function dataUrlToBlobUrl(dataUrl, fallbackMime) {
   }
 }
 
-/**
- * Hydrates all `sheetmedia:`, `gdrive:`, `data:`, and `imagedump` elements on the page!
- */
 async function hydrateMediaStreams() {
   const scriptUrl = (LOGO_CONFIG.GOOGLE_SCRIPT_URL || '').trim();
 
-  // 1. Hydrate Multi-Image Dumps stored in MediaChunks
   const dumpEls = document.querySelectorAll('[data-dump-src]');
   for (const box of dumpEls) {
     const rawDump = box.getAttribute('data-dump-src');
@@ -433,7 +445,6 @@ async function hydrateMediaStreams() {
     }
   }
 
-  // 2. Hydrate Video, Audio, and Single Chunked Images
   const mediaEls = document.querySelectorAll('[data-stream-src]');
   for (const el of mediaEls) {
     const rawSrc = el.getAttribute('data-stream-src');
@@ -551,7 +562,9 @@ function formatCountdownUntil(isoTarget) {
   if (diff <= 0) return 'Ready';
   const hrs = Math.floor(diff / 3600000);
   const mins = Math.floor((diff % 3600000) / 60000);
-  return hrs + 'h ' + mins + 'm';
+  const secs = Math.floor((diff % 60000) / 1000);
+  if (hrs > 0) return hrs + 'h ' + mins + 'm';
+  return mins + 'm ' + secs + 's';
 }
 
 function renderOnlineBadge(isOnline) {
@@ -658,6 +671,8 @@ function ingestBootstrap(res, skipCacheSave) {
   STATE.slimeLeaderboard = res.slimeLeaderboard || [];
   STATE.bjLeaderboard = res.bjLeaderboard || [];
   STATE.bjMatches = res.bjMatches || [];
+  STATE.tapBattles = res.tapBattles || [];
+  STATE.ttConversions = res.ttConversions || [];
   STATE.reports = res.reports || [];
   STATE.history = res.history || [];
 
@@ -698,6 +713,7 @@ async function refreshFromServer(withLoadingPopup) {
 
 function logout() {
   stopSlimeRunner();
+  stopTapBattleLoops();
   localStorage.removeItem('enclave_session_user');
   STATE.currentUser = null;
   STATE.openOPModalUser = null;
@@ -710,6 +726,7 @@ function logout() {
 function navigate(page) {
   if (STATE.currentPage === 'games' && page !== 'games') {
     stopSlimeRunner();
+    stopTapBattleLoops();
   }
   STATE.currentPage = page;
   STATE.composerOpen = false;
@@ -721,9 +738,6 @@ function navigate(page) {
   render();
 }
 
-/**
- * Handles Single Image, Multi-Image Dump (Up to 5 Images), Video (MP4/WebM), and Audio (MP3/WAV/OGG)
- */
 async function handleMediaFileSelect(inputEl, platformKey) {
   const files = Array.from(inputEl.files || []);
   const statusEl = document.getElementById('mediaCheckStatus');
@@ -731,8 +745,6 @@ async function handleMediaFileSelect(inputEl, platformKey) {
   if (files.length === 0) return;
 
   const spec = PLATFORM_SPECS[platformKey];
-
-  // Check if all selected files are images (Supports 1 image OR 2-5 Image Dump!)
   const allImages = files.every(f => f.type.startsWith('image/') || /\.(jpg|jpeg|png|gif|webp)$/i.test(f.name));
 
   if (allImages) {
@@ -782,7 +794,6 @@ async function handleMediaFileSelect(inputEl, platformKey) {
     return;
   }
 
-  // Video or Audio File Upload
   const file = files[0];
   const isAudioExt = /\.(mp3|wav|ogg|m4a|aac|flac)$/i.test(file.name);
   const isVideoExt = /\.(mp4|webm|mov|mkv)$/i.test(file.name);
@@ -803,7 +814,6 @@ async function handleMediaFileSelect(inputEl, platformKey) {
   showLoading(isVideo ? 'Encoding Video Stream...' : 'Encoding Audio Stream...');
   const tempBlobUrl = URL.createObjectURL(file);
 
-  // Measure duration with safe 4-second timeout fallback so metadata hiccups never block uploads
   const measureDuration = () => new Promise(resolve => {
     const mediaEl = document.createElement(isVideo ? 'video' : 'audio');
     mediaEl.preload = 'metadata';
@@ -843,7 +853,6 @@ async function handleMediaFileSelect(inputEl, platformKey) {
     hideLoading();
     let rawDataUrl = String(ev.target.result || '');
     const forcedMime = isAudio ? 'audio/mpeg' : 'video/mp4';
-    // Ensure valid MIME header in DataURL so chunked storage and playback never break
     if (rawDataUrl.startsWith('data:;base64,') || rawDataUrl.startsWith('data:application/octet-stream;base64,')) {
       rawDataUrl = 'data:' + forcedMime + ';base64,' + rawDataUrl.split(',')[1];
     }
@@ -1037,6 +1046,7 @@ function renderProfileView() {
   const u = STATE.currentUser;
   const incomingRequests = STATE.connections.filter(c => c.receiver.toLowerCase() === u.username.toLowerCase() && c.status === 'PENDING');
   const myPosts = STATE.posts.filter(p => p.author.toLowerCase() === u.username.toLowerCase() && p.status === 'ACTIVE');
+  const myTTRequests = STATE.ttConversions.filter(r => String(r.username).toLowerCase() === u.username.toLowerCase());
 
   return `
     <div class="card" style="display:flex; flex-direction:column; gap:14px;">
@@ -1049,13 +1059,16 @@ function renderProfileView() {
               ${renderOnlineBadge(true)}
               ${u.verified ? `<span class="badge verified">${ICONS.check} Verified</span>` : ''}
               <span class="badge tier">${escapeHtml(u.tierLabel)}</span>
+              <span class="badge tt-coin">💎 ${Number(u.terminalTokens || 0).toFixed(2)} TT</span>
               ${u.isAdmin ? `<span class="badge" style="color:var(--accent-enclave);border-color:var(--accent-enclave);">STAFF</span>` : ''}
             </div>
-            <div style="font-family:var(--font-mono); color:var(--text-secondary); font-size:0.78rem; margin-top:4px;">@${escapeHtml(u.username)}</div>
+            <div style="font-family:var(--font-mono); color:var(--text-secondary); font-size:0.76rem; margin-top:4px;">
+              @${escapeHtml(u.username)} • Fan Club Keyword: <strong style="color:#fff;">"${escapeHtml(u.fanClubKeyword || (u.username + 'SQUAD'))}"</strong>
+            </div>
           </div>
         </div>
         <div style="display:flex; gap:8px; flex-wrap:wrap;">
-          <button class="btn btn-arcade btn-sm" id="goArcadeBtn">🎮 Slime & Network Jack</button>
+          <button class="btn btn-arcade btn-sm" id="goArcadeBtn">⚡ Tap-Tap Battles & Arcade</button>
           ${u.isAdmin ? `<button class="btn btn-outline btn-sm" id="openAdminBtn">Admin Console</button>` : ''}
         </div>
       </div>
@@ -1076,25 +1089,29 @@ function renderProfileView() {
           </div>
         </div>
         <div style="background:var(--bg-input); padding:12px; border-radius:var(--radius-md); border:1px solid var(--border-subtle);">
-          <div style="font-size:0.7rem; color:var(--text-secondary);">Total Upvotes</div>
-          <div style="font-family:var(--font-mono); font-size:1.12rem; font-weight:700; color:var(--success); margin-top:4px;">
-            +${Number(u.totalUpvotes).toLocaleString()}
+          <div style="font-size:0.7rem; color:var(--text-secondary);">Terminal Tokens (TT)</div>
+          <div style="font-family:var(--font-mono); font-size:1.12rem; font-weight:700; color:#00e5ff; margin-top:4px;">
+            💎 ${Number(u.terminalTokens || 0).toFixed(2)} TT
           </div>
         </div>
         <div style="background:var(--bg-input); padding:12px; border-radius:var(--radius-md); border:1px solid var(--border-subtle);">
-          <div style="font-size:0.7rem; color:var(--text-secondary);">Total Downvotes</div>
-          <div style="font-family:var(--font-mono); font-size:1.12rem; font-weight:700; color:var(--danger); margin-top:4px;">
-            -${Number(u.totalDownvotes).toLocaleString()}
+          <div style="font-size:0.7rem; color:var(--text-secondary);">Net Votes</div>
+          <div style="font-family:var(--font-mono); font-size:1.05rem; font-weight:700; margin-top:4px;">
+            <span style="color:var(--success);">+${Number(u.totalUpvotes).toLocaleString()}</span> / <span style="color:var(--danger);">-${Number(u.totalDownvotes).toLocaleString()}</span>
           </div>
         </div>
       </div>
 
       <details style="background:var(--bg-input); padding:10px 14px; border-radius:var(--radius-md); border:1px solid var(--border-subtle);">
-        <summary style="cursor:pointer; font-size:0.78rem; font-weight:600; color:var(--text-secondary);">Edit Channel Settings</summary>
-        <div class="grid-2" style="margin-top:12px;">
+        <summary style="cursor:pointer; font-size:0.78rem; font-weight:600; color:var(--text-secondary);">Edit Channel Settings & Fan Club Keyword</summary>
+        <div class="grid-3" style="margin-top:12px;">
           <div class="form-group">
             <label>Display Name</label>
             <input type="text" id="editDisplayName" value="${escapeHtml(u.displayName)}" />
+          </div>
+          <div class="form-group">
+            <label>Fan Club Keyword (Triggers +10% PK Tap Boost)</label>
+            <input type="text" id="editFanClubKeyword" value="${escapeHtml(u.fanClubKeyword || (u.username + 'SQUAD'))}" placeholder="e.g. MURASAKISQUAD" />
           </div>
           <div class="form-group">
             <label>Update Avatar</label>
@@ -1104,8 +1121,53 @@ function renderProfileView() {
             </label>
           </div>
         </div>
-        <button class="btn btn-primary btn-sm" id="saveProfileBtn">Save Changes</button>
+        <button class="btn btn-primary btn-sm" id="saveProfileBtn">Save Settings</button>
       </details>
+    </div>
+
+    <!-- TERMINAL TOKENS (TT) EXCHANGE & USD CASHOUT REQUESTS -->
+    <div class="card" style="border-left:3px solid #00e5ff; display:flex; flex-direction:column; gap:12px;">
+      <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px;">
+        <div>
+          <h3 style="font-size:0.95rem; font-weight:800; color:#00e5ff;">💎 Terminal Tokens (TT) Exchange & Cashout</h3>
+          <p style="font-size:0.74rem; color:var(--text-secondary);">
+            Convert Followers into Terminal Tokens (<strong>500 Followers = 1 TT</strong>, permanently deducts followers). Request USD payouts (<strong>3 TT = $1 USD</strong>) for Admin confirmation.
+          </p>
+        </div>
+        <span class="badge tt-coin" style="font-size:0.8rem; padding:4px 10px;">Balance: ${Number(u.terminalTokens || 0).toFixed(2)} TT</span>
+      </div>
+
+      <div class="grid-2">
+        <div style="background:var(--bg-input); padding:12px; border-radius:var(--radius-md); border:1px solid var(--border-subtle); display:flex; flex-direction:column; gap:8px;">
+          <strong style="font-size:0.82rem;">1. Convert Followers → Terminal Tokens</strong>
+          <div style="font-size:0.72rem; color:var(--text-secondary);">Rate: 500 Followers = 1 TT (Permanent follower sacrifice)</div>
+          <div style="display:flex; gap:8px; align-items:center; margin-top:4px;">
+            <input type="number" id="mintTTInput" value="1" min="1" step="1" style="flex:1;" />
+            <button type="button" class="btn btn-knok btn-sm" id="mintTTBtn">Convert to TT</button>
+          </div>
+        </div>
+
+        <div style="background:var(--bg-input); padding:12px; border-radius:var(--radius-md); border:1px solid var(--border-subtle); display:flex; flex-direction:column; gap:8px;">
+          <strong style="font-size:0.82rem;">2. Request TT → USD Payout Log</strong>
+          <div style="font-size:0.72rem; color:var(--text-secondary);">Rate: 3 TT = $1 USD (Must be a multiple of 3 TT)</div>
+          <div style="display:flex; gap:8px; align-items:center; margin-top:4px;">
+            <input type="number" id="payoutTTInput" value="3" min="3" step="3" style="flex:1;" />
+            <button type="button" class="btn btn-primary btn-sm" id="requestPayoutBtn">Request USD Log</button>
+          </div>
+        </div>
+      </div>
+
+      ${myTTRequests.length > 0 ? `
+        <div style="display:flex; flex-direction:column; gap:6px; margin-top:4px;">
+          <div style="font-family:var(--font-mono); font-size:0.7rem; color:var(--text-secondary); text-transform:uppercase;">My Payout Requests</div>
+          ${myTTRequests.slice(0, 5).map(r => `
+            <div style="display:flex; align-items:center; justify-content:space-between; background:var(--bg-input); padding:8px 12px; border-radius:6px; border:1px solid var(--border-subtle); font-size:0.76rem;">
+              <span><strong>${escapeHtml(r.reqId)}</strong> • ${Number(r.ttAmount)} TT → <strong>$${Number(r.usdAmount).toFixed(2)} USD</strong></span>
+              <span class="badge ${r.status==='PROCESSED'?'live':(r.status==='REJECTED'?'metro':'tier')}">${escapeHtml(r.status)}</span>
+            </div>
+          `).join('')}
+        </div>
+      ` : ''}
     </div>
 
     <div class="card">
@@ -1193,6 +1255,7 @@ function bindProfileEvents() {
   if (saveBtn) {
     saveBtn.addEventListener('click', async () => {
       const displayName = document.getElementById('editDisplayName').value.trim();
+      const fanClubKeyword = document.getElementById('editFanClubKeyword').value.trim();
       let profilePic = '';
       if (avatarFile && avatarFile.files && avatarFile.files[0]) {
         showLoading('Optimizing Avatar');
@@ -1200,10 +1263,42 @@ function bindProfileEvents() {
         profilePic = resized.dataUrl;
         hideLoading();
       }
-      const res = await apiCall({ action: 'updateProfile', username: STATE.currentUser.username, displayName, profilePic }, 'Saving Profile');
+      const res = await apiCall({ action: 'updateProfile', username: STATE.currentUser.username, displayName, fanClubKeyword, profilePic }, 'Saving Settings');
       if (!res.ok) return showToast(res.error);
       ingestBootstrap(res);
-      showToast('Profile saved.');
+      showToast('Profile settings saved.');
+    });
+  }
+
+  const mintTTBtn = document.getElementById('mintTTBtn');
+  if (mintTTBtn) {
+    mintTTBtn.addEventListener('click', async () => {
+      const ttAmount = Math.floor(Number(document.getElementById('mintTTInput').value || 0));
+      if (ttAmount < 1) return showToast('Enter at least 1 TT (500 Followers).');
+      const res = await apiCall({
+        action: 'convertFollowersToTT',
+        username: STATE.currentUser.username,
+        ttAmount
+      }, 'Converting Followers to TT');
+      if (!res.ok) return showToast(res.error);
+      ingestBootstrap(res);
+      showToast(`Converted ${ttAmount * 500} Followers into +${ttAmount} TT!`);
+    });
+  }
+
+  const requestPayoutBtn = document.getElementById('requestPayoutBtn');
+  if (requestPayoutBtn) {
+    requestPayoutBtn.addEventListener('click', async () => {
+      const ttAmount = Math.floor(Number(document.getElementById('payoutTTInput').value || 0));
+      if (ttAmount < 3 || ttAmount % 3 !== 0) return showToast('Payouts must be in multiples of 3 TT (3 TT = $1 USD).');
+      const res = await apiCall({
+        action: 'requestTTPayout',
+        username: STATE.currentUser.username,
+        ttAmount
+      }, 'Logging USD Payout Request to Admin');
+      if (!res.ok) return showToast(res.error);
+      ingestBootstrap(res);
+      showToast(`Logged ${ttAmount} TT ($${(ttAmount / 3).toFixed(2)} USD) payout request to Admin!`);
     });
   }
 
@@ -1249,12 +1344,16 @@ function bindProfileEvents() {
 
 /**
  * ============================================================================
- * ENCLAVE ARCADE & PVP HUB
- * 1. Slime Adventure (Chrome Dino-Run Style Endless Slime + 24h Ranked Attempt + Monthly +2% Bonus)
- * 2. Network Jack (Tier 4+ Live PvP Blackjack, 100 Min Bet, 1000 Weekly Cap, 300 Loss Lockout)
+ * ENCLAVE ARCADE & LIVE PVP HUB
+ * 1. Live Tap-Tap PK Battles (Tier 3+, 1m/5m/10m, 40% Follower Auto-Taps, 5/s Manual Taps, 1 TT Gift, Fan Club Boost)
+ * 2. Slime Adventure (Chrome Dino-Run Style Endless Slime + 24h Ranked Attempt + Monthly +2% Bonus)
+ * 3. Network Jack (Tier 4+ Live PvP Blackjack, 100 Min Bet, 1000 Weekly Cap, 300 Loss Lockout) uh for personal notes
  * ============================================================================
  */
 let SLIME_RUNNER_RAF = null;
+let TAP_BATTLE_POLL_INTERVAL = null;
+let TAP_BATTLE_TICK_INTERVAL = null;
+let TAP_RATE_WINDOW = { sec: 0, count: 0, queuedHost: 0, queuedGuest: 0, flushing: false };
 
 function stopSlimeRunner() {
   if (SLIME_RUNNER_RAF) {
@@ -1263,8 +1362,19 @@ function stopSlimeRunner() {
   }
 }
 
+function stopTapBattleLoops() {
+  if (TAP_BATTLE_POLL_INTERVAL) {
+    clearInterval(TAP_BATTLE_POLL_INTERVAL);
+    TAP_BATTLE_POLL_INTERVAL = null;
+  }
+  if (TAP_BATTLE_TICK_INTERVAL) {
+    clearInterval(TAP_BATTLE_TICK_INTERVAL);
+    TAP_BATTLE_TICK_INTERVAL = null;
+  }
+}
+
 function renderGamesView() {
-  const gTab = STATE.activeGameTab || 'slime';
+  const gTab = STATE.activeGameTab || 'tapbattle';
   const u = STATE.currentUser;
   const mySlimeRecord = STATE.slimeLeaderboard.find(s => String(s.username).toLowerCase() === u.username.toLowerCase()) || {
     highScore: 0,
@@ -1279,22 +1389,256 @@ function renderGamesView() {
       <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px;">
         <div>
           <div style="display:flex; align-items:center; gap:8px;">
-            <h2 style="font-size:1.12rem; font-weight:800;">ENCLAVE ARCADE & PVP</h2>
-            <span class="badge arcade">Live Leaderboards</span>
+            <h2 style="font-size:1.12rem; font-weight:800;">ENCLAVE ARCADE & LIVE PK</h2>
+            <span class="badge tt-coin">💎 ${Number(u.terminalTokens || 0).toFixed(2)} TT</span>
           </div>
           <p style="font-size:0.75rem; color:var(--text-secondary); margin-top:2px;">
-            Play Slime Adventure (Daily Ranked Run + Monthly +2% Follower Bonus) or Network Jack (Tier 4+ PvP Blackjack)
+            Compete in TikTok-style Live Tap-Tap PK Battles (Tier 3+), Slime Adventure (Daily Ranked), or Network Jack (Tier 4+)
           </p>
         </div>
 
-        <div style="display:flex; gap:8px; flex-wrap:wrap;">
-          <button type="button" class="btn btn-sm ${gTab==='slime'?'btn-arcade':'btn-outline'} game-tab-btn" data-gtab="slime">🟢 Slime Adventure (Dino Run)</button>
-          <button type="button" class="btn btn-sm ${gTab==='blackjack'?'btn-arcade':'btn-outline'} game-tab-btn" data-gtab="blackjack">🃏 Network Jack (PvP T4+)</button>
+        <div style="display:flex; gap:6px; flex-wrap:wrap;">
+          <button type="button" class="btn btn-sm ${gTab==='tapbattle'?'btn-arcade':'btn-outline'} game-tab-btn" data-gtab="tapbattle">⚡ Live Tap-Tap PK (T3+)</button>
+          <button type="button" class="btn btn-sm ${gTab==='slime'?'btn-arcade':'btn-outline'} game-tab-btn" data-gtab="slime">🟢 Slime Adventure</button>
+          <button type="button" class="btn btn-sm ${gTab==='blackjack'?'btn-arcade':'btn-outline'} game-tab-btn" data-gtab="blackjack">🃏 Network Jack (T4+)</button>
         </div>
       </div>
     </div>
 
-    ${gTab === 'slime' ? renderSlimeAdventureSection(mySlimeRecord) : renderNetworkJackSection()}
+    ${gTab === 'tapbattle' ? renderTapBattleSection() : (gTab === 'slime' ? renderSlimeAdventureSection(mySlimeRecord) : renderNetworkJackSection())}
+  `;
+}
+
+/**
+ * 1. TIKTOK-STYLE LIVE TAP-TAP PK BATTLE ARENA
+ */
+function renderTapBattleSection() {
+  const u = STATE.currentUser;
+  const isEligible = u.tier >= 3 || u.isAdmin;
+  const tier3Users = STATE.users.filter(x => (x.tier >= 3 || x.isAdmin) && x.username.toLowerCase() !== u.username.toLowerCase());
+
+  const playingBattles = STATE.tapBattles.filter(b => b.status === 'PLAYING');
+  const waitingBattles = STATE.tapBattles.filter(b => b.status === 'WAITING');
+  const finishedBattles = STATE.tapBattles.filter(b => b.status === 'FINISHED').slice(0, 6);
+
+  // Pick active battle to display in the main PK arena
+  let activeBattle = STATE.tapBattles.find(b => b.battleId === STATE.selectedBattleId && (b.status === 'PLAYING' || b.status === 'WAITING'));
+  if (!activeBattle) {
+    activeBattle = playingBattles.find(b => b.hostUser.toLowerCase() === u.username.toLowerCase() || b.guestUser.toLowerCase() === u.username.toLowerCase())
+      || playingBattles[0]
+      || waitingBattles.find(b => b.hostUser.toLowerCase() === u.username.toLowerCase())
+      || null;
+    if (activeBattle) STATE.selectedBattleId = activeBattle.battleId;
+  }
+
+  return `
+    <div class="card" style="display:flex; flex-direction:column; gap:12px;">
+      <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;">
+        <div>
+          <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+            <h3 style="font-size:0.98rem; font-weight:800; color:#ff1f5a;">⚡ Live Tap-Tap PK Battles</h3>
+            <span class="badge tier">Competitors: Tier 3+</span>
+            <span class="badge verified">Spectators & Tappers: All Tiers!</span>
+          </div>
+          <p style="font-size:0.74rem; color:var(--text-secondary); margin-top:2px;">
+            1m, 5m, or 10m live battles • Both creators must stay <strong>LIVE</strong> or forfeit • 40% of followers auto-tap + hype chat • Anyone can tap (max 5/sec), shout Fan Club Keywords (+10% speed for 10s), or gift <strong>1 TT</strong> (+200 Followers & +0.2 TT to creator)!
+          </p>
+        </div>
+        <button type="button" class="btn btn-outline btn-sm" id="refreshTapBattleBtn">↻ Sync Live Arena</button>
+      </div>
+
+      ${!isEligible ? `
+        <div style="background:rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3); padding:10px 12px; border-radius:var(--radius-md); font-size:0.78rem; color:#fcd34d;">
+          ℹ️ Hosting or joining as a main PK competitor requires <strong>Follower Tier 3+ (201+ Avg Followers)</strong>. You can still spectate any live battle below, tap the screen (up to 5x/sec), trigger Fan Club Keywords, and gift TT!
+        </div>
+      ` : `
+        <div style="display:flex; gap:8px; align-items:flex-end; flex-wrap:wrap; background:var(--bg-input); padding:12px; border-radius:var(--radius-md); border:1px solid var(--border-subtle);">
+          <div class="form-group" style="margin-bottom:0; min-width:140px; flex:1;">
+            <label>Battle Duration</label>
+            <select id="pkDurationSelect">
+              <option value="60">1 Minute Blitz (60s)</option>
+              <option value="300">5 Minute Clash (300s)</option>
+              <option value="600">10 Minute Marathon (600s)</option>
+            </select>
+          </div>
+          <div class="form-group" style="margin-bottom:0; min-width:180px; flex:1;">
+            <label>Challenge Tier 3+ Creator (Optional)</label>
+            <select id="pkOpponentSelect">
+              <option value="">Open PK Arena (Any Tier 3+ Creator)</option>
+              ${tier3Users.map(tu => `<option value="${escapeHtml(tu.username)}">@${escapeHtml(tu.username)} (${tu.isOnline ? '● LIVE' : '○ OFFLINE'} • ${tu.tierLabel})</option>`).join('')}
+            </select>
+          </div>
+          <button type="button" class="btn btn-metro" id="createPkBattleBtn">🔥 Start Live PK Lobby</button>
+        </div>
+      `}
+    </div>
+
+    ${activeBattle ? renderActivePKArenaHTML(activeBattle) : ''}
+
+    <div class="grid-2">
+      <div class="card" style="display:flex; flex-direction:column; gap:10px;">
+        <h3 style="font-size:0.9rem; font-weight:700;">Live & Open PK Battles (${playingBattles.length + waitingBattles.length})</h3>
+        ${(playingBattles.length + waitingBattles.length) === 0 ? `<p style="font-size:0.78rem; color:var(--text-secondary);">No live battles right now. Open a lobby above!</p>` :
+          [...playingBattles, ...waitingBattles].map(b => {
+            const isMine = String(b.hostUser).toLowerCase() === u.username.toLowerCase();
+            return `
+              <div class="lb-row">
+                <div>
+                  <div style="font-weight:700; font-size:0.82rem;">
+                    @${escapeHtml(b.hostUser)} vs ${b.guestUser ? '@' + escapeHtml(b.guestUser) : 'Open Challenger'}
+                  </div>
+                  <div style="font-family:var(--font-mono); font-size:0.7rem; color:var(--text-secondary);">
+                    ${b.durationSec / 60}m Battle • Status: <strong style="color:${b.status==='PLAYING'?'var(--accent-punt)':'var(--accent-enclave)'};">${b.status}</strong>
+                  </div>
+                </div>
+                <div style="display:flex; gap:6px;">
+                  <button type="button" class="btn btn-outline btn-sm pk-watch-btn" data-id="${escapeHtml(b.battleId)}">Watch / Tap</button>
+                  ${b.status === 'WAITING' && isMine ? `
+                    <button type="button" class="btn btn-danger btn-sm pk-cancel-btn" data-id="${escapeHtml(b.battleId)}">Cancel</button>
+                  ` : b.status === 'WAITING' && isEligible ? `
+                    <button type="button" class="btn btn-success btn-sm pk-join-btn" data-id="${escapeHtml(b.battleId)}">Join PK</button>
+                  ` : ''}
+                </div>
+              </div>
+            `;
+          }).join('')}
+      </div>
+
+      <div class="card" style="display:flex; flex-direction:column; gap:10px;">
+        <h3 style="font-size:0.9rem; font-weight:700;">Recent PK Battle Results</h3>
+        ${finishedBattles.length === 0 ? `<p style="font-size:0.78rem; color:var(--text-secondary);">No completed battles yet.</p>` :
+          finishedBattles.map(f => `
+            <div style="font-size:0.75rem; padding:8px 10px; background:var(--bg-input); border-radius:6px; border:1px solid var(--border-subtle);">
+              <strong>@${escapeHtml(f.hostUser)} (${Number(f.hostTotalTaps).toLocaleString()}) vs @${escapeHtml(f.guestUser)} (${Number(f.guestTotalTaps).toLocaleString()})</strong>
+              <div style="color:var(--text-secondary); margin-top:2px;">${escapeHtml(f.summary)}</div>
+            </div>
+          `).join('')}
+      </div>
+    </div>
+  `;
+}
+
+function renderActivePKArenaHTML(b) {
+  const hostObj = STATE.users.find(u => u.username.toLowerCase() === String(b.hostUser).toLowerCase()) || { username: b.hostUser, displayName: b.hostUser, profilePic: FALLBACK_AVATAR, isOnline: true, followers: 100, fanClubKeyword: b.hostUser.toUpperCase() + 'SQUAD' };
+  const guestObj = STATE.users.find(u => u.username.toLowerCase() === String(b.guestUser).toLowerCase()) || { username: b.guestUser || 'Waiting...', displayName: b.guestUser || 'Waiting...', profilePic: FALLBACK_AVATAR, isOnline: true, followers: 100, fanClubKeyword: (b.guestUser || 'GUEST').toUpperCase() + 'SQUAD' };
+
+  const hTotal = Math.max(0, Number(b.hostTotalTaps) || 0);
+  const gTotal = Math.max(0, Number(b.guestTotalTaps) || 0);
+  const sumTaps = hTotal + gTotal;
+  const hostPct = sumTaps > 0 ? Math.min(92, Math.max(8, Math.round((hTotal / sumTaps) * 100))) : 50;
+  const guestPct = 100 - hostPct;
+
+  const nowMs = Date.now();
+  const hBoostActive = b.hostBoostUntil && (nowMs < new Date(b.hostBoostUntil).getTime());
+  const gBoostActive = b.guestBoostUntil && (nowMs < new Date(b.guestBoostUntil).getTime());
+
+  const remSec = b.endsAt ? Math.max(0, Math.floor((new Date(b.endsAt).getTime() - nowMs) / 1000)) : b.durationSec;
+  const mm = String(Math.floor(remSec / 60)).padStart(2, '0');
+  const ss = String(remSec % 60).padStart(2, '0');
+
+  return `
+    <div class="pk-arena-shell" id="activePKArenaBox" data-battle-id="${escapeHtml(b.battleId)}">
+      <div class="pk-top-bar">
+        <div style="display:flex; align-items:center; gap:8px;">
+          <span class="badge metro">LIVE PK ARENA</span>
+          <span style="font-family:var(--font-mono); font-size:0.75rem; color:#fff;">${escapeHtml(b.battleId)} (${b.durationSec / 60}m)</span>
+        </div>
+        <div style="font-family:var(--font-mono); font-size:0.95rem; font-weight:800; color:var(--accent-enclave);" id="pkCountdownTimer" data-ends="${escapeHtml(b.endsAt || '')}">
+          ⏱ ${b.status === 'PLAYING' ? (mm + ':' + ss) : 'WAITING FOR CHALLENGER'}
+        </div>
+      </div>
+
+      <!-- TIKTOK TUG-OF-WAR PROGRESS BAR -->
+      <div class="pk-tug-bar">
+        <div class="pk-tug-left" id="pkTugLeftBar" style="width:${hostPct}%;">
+          <span id="pkHostScoreText">${hTotal.toLocaleString()} TAPS (${hostPct}%)</span>
+        </div>
+        <div class="pk-tug-right" id="pkTugRightBar">
+          <span id="pkGuestScoreText">(${guestPct}%) ${gTotal.toLocaleString()} TAPS</span>
+        </div>
+      </div>
+
+      ${b.status === 'WAITING' ? `
+        <div style="padding:28px; text-align:center;">
+          <h3 style="font-size:1rem;">@${escapeHtml(b.hostUser)} is waiting for a Tier 3+ opponent...</h3>
+          <p style="font-size:0.78rem; color:var(--text-secondary); margin-top:6px;">Once joined, both creators must stay LIVE or forfeit!</p>
+        </div>
+      ` : `
+        <div class="pk-split-stage">
+          <div class="pk-vs-badge">VS</div>
+
+          <!-- LEFT SIDE: HOST -->
+          <div class="pk-side-pane host-pane pk-tap-trigger" data-id="${escapeHtml(b.battleId)}" data-side="HOST">
+            <div style="display:flex; flex-direction:column; align-items:center; gap:6px; text-align:center;">
+              <img src="${escapeHtml(fixMediaUrl(hostObj.profilePic) || FALLBACK_AVATAR)}" class="avatar-lg" style="border-color:var(--pk-left);" alt="" />
+              <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap; justify-content:center;">
+                <strong style="font-size:0.95rem; color:#fff;">@${escapeHtml(hostObj.username)}</strong>
+                ${renderOnlineBadge(hostObj.isOnline)}
+              </div>
+              <div style="font-family:var(--font-mono); font-size:0.68rem; color:#fda4af;">
+                40% Auto-Tap Fleet: ${Math.round((hostObj.followers || 0) * 0.4).toLocaleString()} Fans • Pool: +${Number(b.hostPendingTT || 0).toFixed(1)} TT
+              </div>
+              <div style="font-family:var(--font-mono); font-size:0.68rem; color:var(--accent-enclave);">
+                Fan Club Keyword: <strong>"${escapeHtml(hostObj.fanClubKeyword)}"</strong>
+                ${hBoostActive ? `<span class="badge live" style="margin-left:4px;">🚀 +10% BOOST!</span>` : ''}
+              </div>
+            </div>
+
+            <button type="button" class="pk-tap-btn-big" style="background:var(--pk-left); color:#fff;">
+              👆 TAP FOR @${escapeHtml(hostObj.username)} (Max 5/s)
+            </button>
+
+            <button type="button" class="btn btn-outline btn-sm pk-gift-tt-btn" data-id="${escapeHtml(b.battleId)}" data-side="HOST" style="z-index:3;">
+              💎 Spend 1 TT (+200 Fol & +0.2 TT)
+            </button>
+          </div>
+
+          <!-- RIGHT SIDE: GUEST -->
+          <div class="pk-side-pane guest-pane pk-tap-trigger" data-id="${escapeHtml(b.battleId)}" data-side="GUEST">
+            <div style="display:flex; flex-direction:column; align-items:center; gap:6px; text-align:center;">
+              <img src="${escapeHtml(fixMediaUrl(guestObj.profilePic) || FALLBACK_AVATAR)}" class="avatar-lg" style="border-color:var(--pk-right);" alt="" />
+              <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap; justify-content:center;">
+                <strong style="font-size:0.95rem; color:#fff;">@${escapeHtml(guestObj.username)}</strong>
+                ${renderOnlineBadge(guestObj.isOnline)}
+              </div>
+              <div style="font-family:var(--font-mono); font-size:0.68rem; color:#7dd3fc;">
+                40% Auto-Tap Fleet: ${Math.round((guestObj.followers || 0) * 0.4).toLocaleString()} Fans • Pool: +${Number(b.guestPendingTT || 0).toFixed(1)} TT
+              </div>
+              <div style="font-family:var(--font-mono); font-size:0.68rem; color:var(--accent-enclave);">
+                Fan Club Keyword: <strong>"${escapeHtml(guestObj.fanClubKeyword)}"</strong>
+                ${gBoostActive ? `<span class="badge live" style="margin-left:4px;">🚀 +10% BOOST!</span>` : ''}
+              </div>
+            </div>
+
+            <button type="button" class="pk-tap-btn-big" style="background:var(--pk-right); color:#021017;">
+              👆 TAP FOR @${escapeHtml(guestObj.username)} (Max 5/s)
+            </button>
+
+            <button type="button" class="btn btn-outline btn-sm pk-gift-tt-btn" data-id="${escapeHtml(b.battleId)}" data-side="GUEST" style="z-index:3;">
+              💎 Spend 1 TT (+200 Fol & +0.2 TT)
+            </button>
+          </div>
+        </div>
+
+        <!-- LIVE HYPE CHAT & FAN CLUB KEYWORD CALLOUT BAR -->
+        <div class="pk-chat-stream" id="pkChatStreamBox">
+          ${(b.chat || []).map(c => `
+            <div style="color:${c.isGift ? '#00e5ff' : (c.isBoost ? '#f59e0b' : (c.side === 'HOST' ? '#fda4af' : '#bae6fd'))};">
+              <strong>@${escapeHtml(c.sender)}</strong>: ${escapeHtml(c.text)}
+            </div>
+          `).join('')}
+        </div>
+
+        <form id="pkBattleChatForm" data-id="${escapeHtml(b.battleId)}" style="display:flex; gap:8px; padding:10px 14px; background:var(--bg-surface); border-top:1px solid var(--border-subtle);">
+          <select id="pkChatSideSelect" style="width:140px;">
+            <option value="HOST">Support @${escapeHtml(hostObj.username)}</option>
+            <option value="GUEST">Support @${escapeHtml(guestObj.username)}</option>
+          </select>
+          <input type="text" id="pkChatInput" placeholder="Shout Fan Club Keyword (&quot;${escapeHtml(hostObj.fanClubKeyword)}&quot; or &quot;${escapeHtml(guestObj.fanClubKeyword)}&quot;) for +10% Speed Boost!" style="flex:1;" required />
+          <button type="submit" class="btn btn-primary btn-sm">Send Hype</button>
+        </form>
+      `}
+    </div>
   `;
 }
 
@@ -1331,7 +1675,6 @@ function renderSlimeAdventureSection(mySlimeRecord) {
       </div>
     </div>
 
-    <!-- SLIME ADVENTURE LEADERBOARD -->
     <div class="card" style="display:flex; flex-direction:column; gap:10px;">
       <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px;">
         <div>
@@ -1444,10 +1787,8 @@ function renderNetworkJackSection() {
       `}
     </div>
 
-    <!-- ACTIVE PVP TABLE FELT -->
     ${myActiveMatch ? renderActiveBlackjackTableHTML(myActiveMatch) : ''}
 
-    <!-- OPEN TABLES & LIVE/OFFLINE TIER 4+ ROSTER -->
     <div class="grid-2">
       <div class="card" style="display:flex; flex-direction:column; gap:10px;">
         <h3 style="font-size:0.9rem; font-weight:700;">Open Network Jack Tables (${openTables.length})</h3>
@@ -1487,7 +1828,6 @@ function renderNetworkJackSection() {
         ` : ''}
       </div>
 
-      <!-- LIVE / OFFLINE HANDLES ROSTER -->
       <div class="card" style="display:flex; flex-direction:column; gap:10px;">
         <h3 style="font-size:0.9rem; font-weight:700;">Creator Handles Status (Live & Offline)</h3>
         <div style="display:flex; flex-direction:column; gap:6px; max-height:280px; overflow-y:auto;">
@@ -1507,7 +1847,6 @@ function renderNetworkJackSection() {
       </div>
     </div>
 
-    <!-- NETWORK JACK WIN/LOSS LEADERBOARD -->
     <div class="card" style="display:flex; flex-direction:column; gap:10px;">
       <h3 style="font-size:0.92rem; font-weight:800;">${ICONS.trophy} Network Jack Win / Loss Leaderboard</h3>
       ${STATE.bjLeaderboard.length === 0 ? `<p style="font-size:0.8rem; color:var(--text-secondary);">No Network Jack matches completed yet.</p>` : `
@@ -1657,8 +1996,7 @@ function initSlimeDinoGame(isRankedAttempt) {
     speed: 6.2,
     tick: 0,
     slime: { x: 80, y: groundY - 36, vy: 0, w: 36, h: 36, grounded: true },
-    obstacles: [],
-    clouds: [{ x: 180, y: 60 }, { x: 460, y: 90 }, { x: 680, y: 50 }]
+    obstacles: []
   };
 
   window.__triggerSlimeDinoJump = () => {
@@ -1670,9 +2008,7 @@ function initSlimeDinoGame(isRankedAttempt) {
   };
 
   const jBtn = document.getElementById('dinoJumpBtn');
-  if (jBtn) {
-    jBtn.onpointerdown = (e) => { e.preventDefault(); window.__triggerSlimeDinoJump(); };
-  }
+  if (jBtn) jBtn.onpointerdown = (e) => { e.preventDefault(); window.__triggerSlimeDinoJump(); };
   const dBtn = document.getElementById('dinoDuckBtn');
   if (dBtn) {
     dBtn.onpointerdown = (e) => { e.preventDefault(); DINO_INPUT.duckHeld = true; };
@@ -1714,7 +2050,6 @@ function initSlimeDinoGame(isRankedAttempt) {
       game.speed = Math.min(13.5, 6.2 + Math.floor(game.score / 250) * 0.45);
       game.score += 0.25;
 
-      // Ducking / Squishing Slime
       const targetH = DINO_INPUT.duckHeld && s.grounded ? 20 : 36;
       const targetW = DINO_INPUT.duckHeld && s.grounded ? 44 : 36;
       if (s.grounded) {
@@ -1731,7 +2066,6 @@ function initSlimeDinoGame(isRankedAttempt) {
         }
       }
 
-      // Spawn Obstacles (Spikes, Twin Cacti, or Low-Flying Drones)
       const minGap = Math.max(210, 340 - game.speed * 10);
       const lastObs = game.obstacles[game.obstacles.length - 1];
       if (!lastObs || (canvas.width - lastObs.x > minGap + Math.random() * 180)) {
@@ -1741,7 +2075,6 @@ function initSlimeDinoGame(isRankedAttempt) {
         } else if (roll < 0.75) {
           game.obstacles.push({ type: 'PILLAR', x: canvas.width + 20, y: groundY - 48, w: 32, h: 48 });
         } else {
-          // Low-flying drone that you can duck under or jump over
           game.obstacles.push({ type: 'DRONE', x: canvas.width + 20, y: groundY - 56, w: 38, h: 24 });
         }
       }
@@ -1749,13 +2082,7 @@ function initSlimeDinoGame(isRankedAttempt) {
       for (let i = game.obstacles.length - 1; i >= 0; i--) {
         const o = game.obstacles[i];
         o.x -= game.speed;
-        // Hitbox check (with slight forgiveness margin)
-        if (
-          s.x + s.w - 5 > o.x &&
-          s.x + 5 < o.x + o.w &&
-          s.y + s.h - 4 > o.y &&
-          s.y + 4 < o.y + o.h
-        ) {
+        if (s.x + s.w - 5 > o.x && s.x + 5 < o.x + o.w && s.y + s.h - 4 > o.y && s.y + 4 < o.y + o.h) {
           onCrash();
           break;
         }
@@ -1763,11 +2090,9 @@ function initSlimeDinoGame(isRankedAttempt) {
       }
     }
 
-    // Draw Frame
     ctx.fillStyle = '#070a12';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    // Ground Track
     ctx.strokeStyle = '#334155';
     ctx.lineWidth = 2;
     ctx.beginPath();
@@ -1775,7 +2100,6 @@ function initSlimeDinoGame(isRankedAttempt) {
     ctx.lineTo(canvas.width, groundY);
     ctx.stroke();
 
-    // Draw Slime Runner
     ctx.fillStyle = STATE.slimeRankedMode ? '#f59e0b' : '#22c55e';
     ctx.beginPath();
     ctx.roundRect(s.x, s.y, s.w, s.h, [14, 14, 4, 4]);
@@ -1784,22 +2108,15 @@ function initSlimeDinoGame(isRankedAttempt) {
     ctx.fillRect(s.x + s.w - 14, s.y + 8, 4, 5);
     ctx.fillRect(s.x + s.w - 7, s.y + 8, 4, 5);
 
-    // Draw Obstacles
     for (const o of game.obstacles) {
-      if (o.type === 'DRONE') {
-        ctx.fillStyle = '#38bdf8';
-        ctx.fillRect(o.x, o.y, o.w, o.h);
-      } else {
-        ctx.fillStyle = '#f43f5e';
-        ctx.fillRect(o.x, o.y, o.w, o.h);
-      }
+      ctx.fillStyle = o.type === 'DRONE' ? '#38bdf8' : '#f43f5e';
+      ctx.fillRect(o.x, o.y, o.w, o.h);
     }
 
-    // HUD Score & Mode Banner
     ctx.fillStyle = '#f3f4f6';
     ctx.font = 'bold 14px "JetBrains Mono", monospace';
     ctx.fillText(`MODE: ${STATE.slimeRankedMode ? '🏆 DAILY RANKED ATTEMPT' : 'ENDLESS PRACTICE'}`, 18, 28);
-    ctx.fillText(`SCORE: ${ String(Math.floor(game.score)).padStart(5, '0') }`, canvas.width - 160, 28);
+    ctx.fillText(`SCORE: ${String(Math.floor(game.score)).padStart(5, '0')}`, canvas.width - 160, 28);
 
     if (game.gameOver) {
       ctx.fillStyle = 'rgba(5, 7, 12, 0.82)';
@@ -1827,12 +2144,52 @@ function initSlimeDinoGame(isRankedAttempt) {
   SLIME_RUNNER_RAF = requestAnimationFrame(step);
 }
 
+/**
+ * Flush queued PK Taps in the background (without blocking rapid 5/sec tapping!)
+ */
+async function flushQueuedPKTaps(battleId) {
+  if (TAP_RATE_WINDOW.flushing) return;
+  const hSend = TAP_RATE_WINDOW.queuedHost;
+  const gSend = TAP_RATE_WINDOW.queuedGuest;
+  if (hSend <= 0 && gSend <= 0) return;
+
+  TAP_RATE_WINDOW.queuedHost = 0;
+  TAP_RATE_WINDOW.queuedGuest = 0;
+  TAP_RATE_WINDOW.flushing = true;
+
+  const scriptUrl = (LOGO_CONFIG.GOOGLE_SCRIPT_URL || '').trim();
+  try {
+    if (hSend > 0) {
+      const resp = await fetch(scriptUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({ action: 'tapBattleAction', username: STATE.currentUser.username, subAction: 'SEND_TAPS', battleId, side: 'HOST', taps: hSend })
+      });
+      const res = await resp.json();
+      if (res && res.ok && res.currentUser) ingestBootstrap(res);
+    }
+    if (gSend > 0) {
+      const resp = await fetch(scriptUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({ action: 'tapBattleAction', username: STATE.currentUser.username, subAction: 'SEND_TAPS', battleId, side: 'GUEST', taps: gSend })
+      });
+      const res = await resp.json();
+      if (res && res.ok && res.currentUser) ingestBootstrap(res);
+    }
+  } catch (e) {} finally {
+    TAP_RATE_WINDOW.flushing = false;
+  }
+}
+
 function bindGamesEvents() {
   stopSlimeRunner();
+  stopTapBattleLoops();
 
   document.querySelectorAll('.game-tab-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       stopSlimeRunner();
+      stopTapBattleLoops();
       STATE.activeGameTab = btn.getAttribute('data-gtab');
       render();
     });
@@ -1842,7 +2199,167 @@ function bindGamesEvents() {
     el.addEventListener('click', () => openOPProfileModal(el.getAttribute('data-user')));
   });
 
-  if (STATE.activeGameTab === 'slime') {
+  if (STATE.activeGameTab === 'tapbattle') {
+    const refBtn = document.getElementById('refreshTapBattleBtn');
+    if (refBtn) refBtn.addEventListener('click', () => refreshFromServer(true));
+
+    const createBtn = document.getElementById('createPkBattleBtn');
+    if (createBtn) {
+      createBtn.addEventListener('click', async () => {
+        const durationSec = Number(document.getElementById('pkDurationSelect').value || 60);
+        const targetOpponent = document.getElementById('pkOpponentSelect').value;
+        const res = await apiCall({
+          action: 'tapBattleAction',
+          username: STATE.currentUser.username,
+          subAction: 'CREATE_BATTLE',
+          durationSec,
+          targetOpponent
+        }, 'Opening Live PK Arena');
+        if (!res.ok) return showToast(res.error);
+        ingestBootstrap(res);
+        showToast('Live Tap-Tap PK Lobby opened!');
+      });
+    }
+
+    document.querySelectorAll('.pk-watch-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        STATE.selectedBattleId = btn.getAttribute('data-id');
+        render();
+      });
+    });
+
+    document.querySelectorAll('.pk-cancel-btn').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const res = await apiCall({
+          action: 'tapBattleAction',
+          username: STATE.currentUser.username,
+          subAction: 'CANCEL_BATTLE',
+          battleId: btn.getAttribute('data-id')
+        }, 'Canceling PK Lobby');
+        if (!res.ok) return showToast(res.error);
+        ingestBootstrap(res);
+      });
+    });
+
+    document.querySelectorAll('.pk-join-btn').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const bId = btn.getAttribute('data-id');
+        STATE.selectedBattleId = bId;
+        const res = await apiCall({
+          action: 'tapBattleAction',
+          username: STATE.currentUser.username,
+          subAction: 'JOIN_BATTLE',
+          battleId: bId
+        }, 'Starting Live PK Battle');
+        if (!res.ok) return showToast(res.error);
+        ingestBootstrap(res);
+        showToast('LIVE PK BATTLE STARTED!');
+      });
+    });
+
+    // Spend 1 TT Support Button
+    document.querySelectorAll('.pk-gift-tt-btn').forEach(btn => {
+      btn.addEventListener('click', async (e) => {
+        e.stopPropagation();
+        const bId = btn.getAttribute('data-id');
+        const side = btn.getAttribute('data-side');
+        const res = await apiCall({
+          action: 'tapBattleAction',
+          username: STATE.currentUser.username,
+          subAction: 'SPEND_TT_SUPPORT',
+          battleId: bId,
+          side,
+          ttAmount: 1
+        }, 'Sending 1 TT Gift (+200 Followers & +0.2 TT)');
+        if (!res.ok) return showToast(res.error);
+        ingestBootstrap(res);
+        showToast('💎 Sent 1 TT Gift! (+200 Followers & +0.2 TT added)');
+      });
+    });
+
+    // Rapid Screen Tap Handler (Capped at 5 Taps/Second)
+    document.querySelectorAll('.pk-tap-trigger').forEach(pane => {
+      pane.addEventListener('click', (e) => {
+        if (e.target.closest('.pk-gift-tt-btn')) return;
+        const bId = pane.getAttribute('data-id');
+        const side = pane.getAttribute('data-side');
+        const nowSec = Math.floor(Date.now() / 1000);
+        if (TAP_RATE_WINDOW.sec !== nowSec) {
+          TAP_RATE_WINDOW.sec = nowSec;
+          TAP_RATE_WINDOW.count = 0;
+        }
+        if (TAP_RATE_WINDOW.count >= 5) {
+          return showToast('Max tap speed reached (5 taps/sec)!');
+        }
+        TAP_RATE_WINDOW.count += 1;
+
+        if (side === 'HOST') TAP_RATE_WINDOW.queuedHost += 1;
+        else TAP_RATE_WINDOW.queuedGuest += 1;
+
+        // Instant UI update
+        const battleObj = STATE.tapBattles.find(x => x.battleId === bId);
+        if (battleObj) {
+          if (side === 'HOST') battleObj.hostTotalTaps = (battleObj.hostTotalTaps || 0) + 1;
+          else battleObj.guestTotalTaps = (battleObj.guestTotalTaps || 0) + 1;
+          const sum = (battleObj.hostTotalTaps || 0) + (battleObj.guestTotalTaps || 0);
+          const hPct = sum > 0 ? Math.min(92, Math.max(8, Math.round((battleObj.hostTotalTaps / sum) * 100))) : 50;
+          const gPct = 100 - hPct;
+          const lBar = document.getElementById('pkTugLeftBar');
+          const hTxt = document.getElementById('pkHostScoreText');
+          const gTxt = document.getElementById('pkGuestScoreText');
+          if (lBar) lBar.style.width = hPct + '%';
+          if (hTxt) hTxt.textContent = `${battleObj.hostTotalTaps.toLocaleString()} TAPS (${hPct}%)`;
+          if (gTxt) gTxt.textContent = `(${gPct}%) ${battleObj.guestTotalTaps.toLocaleString()} TAPS`;
+        }
+
+        clearTimeout(window.__pkFlushTimer);
+        window.__pkFlushTimer = setTimeout(() => flushQueuedPKTaps(bId), 750);
+      });
+    });
+
+    // Battle Chat & Fan Club Keyword Form
+    const chatForm = document.getElementById('pkBattleChatForm');
+    if (chatForm) {
+      chatForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const bId = chatForm.getAttribute('data-id');
+        const side = document.getElementById('pkChatSideSelect').value;
+        const text = document.getElementById('pkChatInput').value.trim();
+        if (!text) return;
+        const res = await apiCall({
+          action: 'tapBattleAction',
+          username: STATE.currentUser.username,
+          subAction: 'SEND_BATTLE_CHAT',
+          battleId: bId,
+          side,
+          text
+        }, 'Sending Battle Hype');
+        if (!res.ok) return showToast(res.error);
+        ingestBootstrap(res);
+      });
+    }
+
+    // Live 1s Countdown Timer & 5s Auto-Tap Sync Loop while viewing an active PK Battle
+    const activeArena = document.getElementById('activePKArenaBox');
+    if (activeArena) {
+      TAP_BATTLE_TICK_INTERVAL = setInterval(() => {
+        const timerEl = document.getElementById('pkCountdownTimer');
+        if (!timerEl) return;
+        const endsIso = timerEl.getAttribute('data-ends');
+        if (!endsIso) return;
+        const rem = Math.max(0, Math.floor((new Date(endsIso).getTime() - Date.now()) / 1000));
+        const m = String(Math.floor(rem / 60)).padStart(2, '0');
+        const s = String(rem % 60).padStart(2, '0');
+        timerEl.textContent = `⏱ ${m}:${s}`;
+      }, 1000);
+
+      TAP_BATTLE_POLL_INTERVAL = setInterval(() => {
+        if (!STATE.isBusy && STATE.currentPage === 'games' && STATE.activeGameTab === 'tapbattle') {
+          refreshFromServer(false);
+        }
+      }, 5000);
+    }
+  } else if (STATE.activeGameTab === 'slime') {
     initSlimeDinoGame(false);
     const pBtn = document.getElementById('startPracticeSlimeBtn');
     if (pBtn) pBtn.addEventListener('click', () => initSlimeDinoGame(false));
@@ -2177,19 +2694,11 @@ function renderPostMediaHTML(p) {
   }
 
   if (p.mediaType === 'video') {
-    return `
-      <div class="post-media-box">
-        <video data-stream-src="${escapeHtml(rawMediaUrl)}" controls playsinline preload="metadata"></video>
-      </div>
-    `;
+    return `<div class="post-media-box"><video data-stream-src="${escapeHtml(rawMediaUrl)}" controls playsinline preload="metadata"></video></div>`;
   }
 
   if (p.mediaType === 'audio') {
-    return `
-      <div class="post-media-box">
-        <audio data-stream-src="${escapeHtml(rawMediaUrl)}" controls preload="metadata"></audio>
-      </div>
-    `;
+    return `<div class="post-media-box"><audio data-stream-src="${escapeHtml(rawMediaUrl)}" controls preload="metadata"></audio></div>`;
   }
 
   return '';
@@ -2438,6 +2947,7 @@ function openOPProfileModal(username) {
             ${renderOnlineBadge(op.isOnline)}
             ${op.verified ? `<span class="badge verified">✓</span>` : ''}
             <span class="badge tier">${escapeHtml(op.tierLabel)}</span>
+            <span class="badge tt-coin">💎 ${Number(op.terminalTokens || 0).toFixed(2)} TT</span>
           </div>
           <div style="font-family:var(--font-mono); font-size:0.72rem; color:var(--text-secondary); margin-top:2px;">
             @${escapeHtml(op.username)} • Main Avg: ${Number(op.followers).toLocaleString()} • Combined Total: ${Number(op.totalFollowers || 0).toLocaleString()}
@@ -2803,9 +3313,41 @@ function renderAdminView() {
         <img src="${escapeHtml(fixMediaUrl(LOGO_CONFIG.ENCLAVE_HUB_LOGO) || FALLBACK_AVATAR)}" class="avatar" alt="" />
         <div>
           <h2 style="font-size:1.05rem; font-weight:800; color:var(--accent-enclave);">ENCLAVE ADMINISTRATION</h2>
-          <p style="font-size:0.75rem; color:var(--text-secondary);">Brand Assets • Moderation Queue • Access Blocks • Per-Platform Audience Overrides</p>
+          <p style="font-size:0.75rem; color:var(--text-secondary);">TT → USD Payout Queue • Brand Assets • Moderation • Access Blocks • Audience Overrides</p>
         </div>
       </div>
+    </div>
+
+    <!-- TERMINAL TOKENS (TT) -> USD PAYOUT LOG QUEUE -->
+    <div class="card" style="border-left:3px solid #00e5ff;">
+      <h3 style="font-size:0.92rem; font-weight:800; color:#00e5ff; margin-bottom:6px;">💎 Terminal Tokens (TT) → USD Payout Log (${STATE.ttConversions.length})</h3>
+      <p style="font-size:0.74rem; color:var(--text-secondary); margin-bottom:10px;">
+        Rate: 3 TT = $1 USD. Confirming a request marks it PROCESSED and permanently deducts the spent TT from the user's account.
+      </p>
+      ${STATE.ttConversions.length === 0 ? `<p style="font-size:0.8rem; color:var(--text-secondary);">No TT conversion requests logged yet.</p>` : `
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          ${STATE.ttConversions.map(req => `
+            <div class="lb-row">
+              <div>
+                <div style="display:flex; align-items:center; gap:8px;">
+                  <strong style="font-size:0.84rem;">@${escapeHtml(req.username)}</strong>
+                  <span class="badge tt-coin">${Number(req.ttAmount)} TT → $${Number(req.usdAmount).toFixed(2)} USD</span>
+                  <span class="badge ${req.status==='PROCESSED'?'live':(req.status==='REJECTED'?'metro':'tier')}">${escapeHtml(req.status)}</span>
+                </div>
+                <div style="font-family:var(--font-mono); font-size:0.68rem; color:var(--text-secondary); margin-top:2px;">
+                  ID: ${escapeHtml(req.reqId)} • Requested: ${formatTime(req.createdAt)}
+                </div>
+              </div>
+              ${req.status === 'PENDING' ? `
+                <div style="display:flex; gap:6px;">
+                  <button type="button" class="btn btn-success btn-sm admin-tt-btn" data-sub="CONFIRM_TT_PAYOUT" data-id="${escapeHtml(req.reqId)}">✓ Confirm Processed (-${req.ttAmount} TT)</button>
+                  <button type="button" class="btn btn-danger btn-sm admin-tt-btn" data-sub="REJECT_TT_PAYOUT" data-id="${escapeHtml(req.reqId)}">✕ Reject</button>
+                </div>
+              ` : ''}
+            </div>
+          `).join('')}
+        </div>
+      `}
     </div>
 
     <div class="card">
@@ -2874,21 +3416,23 @@ function renderAdminView() {
     </div>
 
     <div class="card">
-      <h3 style="font-size:0.9rem; font-weight:700; margin-bottom:10px;">Per-Platform Audience Overrides (Auto-Computes Main Avg & Total)</h3>
+      <h3 style="font-size:0.9rem; font-weight:700; margin-bottom:10px;">Creator Followers & Terminal Tokens Overrides</h3>
       <div style="display:flex; flex-direction:column; gap:10px;">
         ${STATE.users.map(u => `
           <div style="background:var(--bg-input); padding:12px; border-radius:var(--radius-md); border:1px solid var(--border-subtle); display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;">
             <div>
               <strong style="font-size:0.84rem;">@${escapeHtml(u.username)}</strong>
               <span class="badge tier">${escapeHtml(u.tierLabel)}</span>
+              <span class="badge tt-coin">${Number(u.terminalTokens || 0).toFixed(2)} TT</span>
               <div style="font-family:var(--font-mono); font-size:0.7rem; color:var(--text-secondary); margin-top:2px;">
                 Main Avg: ${Number(u.followers).toLocaleString()} • Combined Total: ${Number(u.totalFollowers || 0).toLocaleString()}
               </div>
             </div>
             <div style="display:flex; gap:6px; align-items:center; flex-wrap:wrap;">
-              <label style="font-size:0.7rem; color:var(--text-secondary);">Metro: <input type="number" id="adminFolM_${escapeHtml(u.username)}" value="${u.metroFollowers || 0}" style="width:85px; padding:4px 6px;" /></label>
-              <label style="font-size:0.7rem; color:var(--text-secondary);">PUNT: <input type="number" id="adminFolP_${escapeHtml(u.username)}" value="${u.puntFollowers || 0}" style="width:85px; padding:4px 6px;" /></label>
-              <label style="font-size:0.7rem; color:var(--text-secondary);">Knok: <input type="number" id="adminFolK_${escapeHtml(u.username)}" value="${u.knoknoxFollowers || 0}" style="width:85px; padding:4px 6px;" /></label>
+              <label style="font-size:0.7rem; color:var(--text-secondary);">Metro: <input type="number" id="adminFolM_${escapeHtml(u.username)}" value="${u.metroFollowers || 0}" style="width:78px; padding:4px 6px;" /></label>
+              <label style="font-size:0.7rem; color:var(--text-secondary);">PUNT: <input type="number" id="adminFolP_${escapeHtml(u.username)}" value="${u.puntFollowers || 0}" style="width:78px; padding:4px 6px;" /></label>
+              <label style="font-size:0.7rem; color:var(--text-secondary);">Knok: <input type="number" id="adminFolK_${escapeHtml(u.username)}" value="${u.knoknoxFollowers || 0}" style="width:78px; padding:4px 6px;" /></label>
+              <label style="font-size:0.7rem; color:#00e5ff;">TT: <input type="number" step="0.1" id="adminTT_${escapeHtml(u.username)}" value="${u.terminalTokens || 0}" style="width:68px; padding:4px 6px;" /></label>
               <button class="btn btn-primary btn-sm admin-set-fol" data-user="${escapeHtml(u.username)}">Save</button>
             </div>
           </div>
@@ -2899,6 +3443,23 @@ function renderAdminView() {
 }
 
 function bindAdminEvents() {
+  document.querySelectorAll('.admin-tt-btn').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const subAction = btn.getAttribute('data-sub');
+      const reqId = btn.getAttribute('data-id');
+      const res = await apiCall({
+        action: 'adminAction',
+        adminUser: 'EnclaveAdmin',
+        adminPass: 'ADMIN_KEY_2026',
+        subAction,
+        reqId
+      }, 'Updating TT Payout Request');
+      if (!res.ok) return showToast(res.error);
+      ingestBootstrap(res);
+      showToast('TT Payout status updated.');
+    });
+  });
+
   ['HUB', 'METRO', 'PUNT', 'KNOK'].forEach(suffix => {
     const fInput = document.getElementById('logoFile_' + suffix);
     if (fInput) {
@@ -2966,6 +3527,7 @@ function bindAdminEvents() {
       const mVal = Number(document.getElementById('adminFolM_' + targetUser).value || 0);
       const pVal = Number(document.getElementById('adminFolP_' + targetUser).value || 0);
       const kVal = Number(document.getElementById('adminFolK_' + targetUser).value || 0);
+      const ttVal = Number(document.getElementById('adminTT_' + targetUser).value || 0);
       const res = await apiCall({
         action: 'adminAction',
         adminUser: 'EnclaveAdmin',
@@ -2974,11 +3536,12 @@ function bindAdminEvents() {
         targetUser,
         metroFollowers: mVal,
         puntFollowers: pVal,
-        knoknoxFollowers: kVal
-      }, 'Updating Followers');
+        knoknoxFollowers: kVal,
+        terminalTokens: ttVal
+      }, 'Updating Creator Account');
       if (!res.ok) return showToast(res.error);
       ingestBootstrap(res);
-      showToast('Audience counts updated.');
+      showToast('Creator account updated.');
     });
   });
 }
