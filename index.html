@@ -7,7 +7,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Enclave" />
   <meta name="theme-color" content="#090a0d" />
-  <title>ENCLAVE</title>
+  <title>ENCLAVE NETWORK</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -92,6 +92,7 @@
     .badge { display: inline-flex; align-items: center; gap: 4px; padding: 2px 7px; border-radius: 6px; font-family: var(--font-mono); font-size: 0.68rem; font-weight: 600; background: var(--bg-elevated); color: var(--text-secondary); border: 1px solid var(--border-subtle); white-space: nowrap; }
     .badge.verified { background: rgba(6, 182, 212, 0.12); color: var(--accent-knok); border-color: rgba(6, 182, 212, 0.3); }
     .badge.tier { background: rgba(245, 158, 11, 0.1); color: var(--accent-enclave); border-color: rgba(245, 158, 11, 0.25); }
+    .badge.plat-rank { background: rgba(168, 85, 247, 0.12); color: #e9d5ff; border-color: rgba(168, 85, 247, 0.32); }
     .badge.metro { background: rgba(239, 68, 68, 0.12); color: #f87171; border-color: rgba(239, 68, 68, 0.3); }
     .badge.punt { background: rgba(83, 252, 24, 0.1); color: var(--accent-punt); border-color: rgba(83, 252, 24, 0.3); }
     .badge.knoknox { background: rgba(6, 182, 212, 0.12); color: #38bdf8; border-color: rgba(6, 182, 212, 0.3); }
@@ -125,6 +126,7 @@
     .btn-danger { background: rgba(244, 63, 94, 0.12); color: #fb7185; border-color: rgba(244, 63, 94, 0.28); }
     .btn-success { background: rgba(16, 185, 129, 0.14); color: #34d399; border-color: rgba(16, 185, 129, 0.3); }
     .btn-sm { padding: 5px 10px; font-size: 0.74rem; border-radius: 6px; }
+    .btn-xs { padding: 3px 7px; font-size: 0.68rem; border-radius: 5px; }
 
     .auth-container { max-width: 420px; width: 100%; margin: 40px auto; }
     .post-card { background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 16px; display: flex; flex-direction: column; gap: 12px; }
@@ -143,15 +145,18 @@
 
     .post-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; padding-top: 10px; border-top: 1px solid var(--border-subtle); }
     .shared-embed { background: var(--bg-input); border: 1px solid var(--border-subtle); border-left: 3px solid var(--text-secondary); padding: 10px 12px; border-radius: 6px; font-size: 0.8rem; }
+    .shared-comment-embed { background: rgba(168, 85, 247, 0.07); border: 1px solid rgba(168, 85, 247, 0.28); border-left: 3px solid var(--accent-arcade); padding: 10px 12px; border-radius: 6px; font-size: 0.8rem; }
 
     .comments-drawer { background: var(--bg-input); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 12px; margin-top: 4px; display: flex; flex-direction: column; gap: 10px; }
-    .comment-item { display: flex; gap: 9px; align-items: flex-start; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 0.81rem; }
+    .comment-item { display: flex; gap: 9px; align-items: flex-start; padding-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.81rem; }
     .comment-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .comment-actions-row { display: flex; align-items: center; gap: 6px; margin-top: 6px; flex-wrap: wrap; }
 
     .lb-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 12px; background: var(--bg-input); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); flex-wrap: wrap; }
     .lb-rank { width: 26px; height: 26px; border-radius: 6px; background: var(--bg-elevated); display: inline-flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 0.75rem; font-weight: 700; color: var(--accent-enclave); flex-shrink: 0; }
 
     .quota-strip { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; padding: 9px 12px; background: var(--bg-input); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-secondary); }
+    .milestone-banner { background: linear-gradient(90deg, rgba(245, 158, 11, 0.16), rgba(168, 85, 247, 0.16)); border: 1px solid rgba(245, 158, 11, 0.45); border-radius: var(--radius-md); padding: 12px 14px; display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
 
     /* Slime Adventure & Network Jack Styles */
     .game-canvas-wrap { width: 100%; background: #06080e; border: 1px solid var(--border-hover); border-radius: var(--radius-lg); overflow: hidden; display: flex; flex-direction: column; align-items: center; }
@@ -219,7 +224,7 @@
         <img id="cornerHubLogo" class="brand-logo" src="" alt="Enclave" />
         <div>
           <div class="brand-title">ENCLAVE NETWORK</div>
-          <div class="brand-sub">METRO.TV / PUNT / KNOKNOX</div>
+          <div class="brand-sub">METRO.TV / PUNT / KNOKNOX / ARCADE</div>
         </div>
       </div>
       <div class="top-controls">
@@ -316,9 +321,9 @@ const LOGO_CONFIG = {
 };
 
 const PLATFORM_SPECS = {
-  METROTV: { name: 'Metro TV', sub: 'Long-Form Video & Studio Drops', badgeClass: 'metro', btnClass: 'btn-metro', accentColor: 'var(--accent-metro)', maxDurationSec: 600, targetMaxW: 640, targetMaxH: 360, bestResolution: '640×360 (16:9)', logoKey: 'METRO_TV_LOGO', folKey: 'metroFollowers' },
-  PUNT: { name: 'PUNT', sub: 'Live Streams, Ranked Grinds & IRL Broadcasts', badgeClass: 'punt', btnClass: 'btn-punt', accentColor: 'var(--accent-punt)', maxDurationSec: 300, targetMaxW: 640, targetMaxH: 360, bestResolution: '640×360 (Live VOD)', logoKey: 'PUNT_LOGO', folKey: 'puntFollowers' },
-  KNOKNOX: { name: 'KnokNox', sub: 'Short-Form Algorithmic Vertical Feed', badgeClass: 'knoknox', btnClass: 'btn-knok', accentColor: 'var(--accent-knok)', maxDurationSec: 60, targetMaxW: 360, targetMaxH: 640, bestResolution: '360×640 (9:16)', logoKey: 'KNOKNOX_LOGO', folKey: 'knoknoxFollowers' }
+  METROTV: { name: 'Metro TV', sub: 'Long-Form Video & Studio Drops', badgeClass: 'metro', btnClass: 'btn-metro', accentColor: 'var(--accent-metro)', maxDurationSec: 600, targetMaxW: 640, targetMaxH: 360, bestResolution: '640×360 (16:9)', logoKey: 'METRO_TV_LOGO', folKey: 'metroFollowers', rankKey: 'metroRank' },
+  PUNT: { name: 'PUNT', sub: 'Live Streams, Ranked Grinds & IRL Broadcasts', badgeClass: 'punt', btnClass: 'btn-punt', accentColor: 'var(--accent-punt)', maxDurationSec: 300, targetMaxW: 640, targetMaxH: 360, bestResolution: '640×360 (Live VOD)', logoKey: 'PUNT_LOGO', folKey: 'puntFollowers', rankKey: 'puntRank' },
+  KNOKNOX: { name: 'KnokNox', sub: 'Short-Form Algorithmic Vertical Feed', badgeClass: 'knoknox', btnClass: 'btn-knok', accentColor: 'var(--accent-knok)', maxDurationSec: 60, targetMaxW: 360, targetMaxH: 640, bestResolution: '360×640 (9:16)', logoKey: 'KNOKNOX_LOGO', folKey: 'knoknoxFollowers', rankKey: 'knoknoxRank' }
 };
 
 const ICONS = {
@@ -339,7 +344,7 @@ let STATE = {
   viewportMode: localStorage.getItem('enclave_viewport_mode') || 'desktop',
   currentPage: 'profile',
   authTab: 'login',
-  activeGameTab: 'tapbattle', // tapbattle | slime | blackjack
+  activeGameTab: 'tapbattle',
   selectedBattleId: '',
   slimeRankedMode: false,
   composerOpen: false,
@@ -358,6 +363,7 @@ let STATE = {
   bjMatches: [],
   tapBattles: [],
   ttConversions: [],
+  milestoneAlerts: [],
   reports: [],
   history: [],
   activeChat: { type: 'DM', targetId: '', replyToMsgId: '', replyPreview: '' },
@@ -367,6 +373,29 @@ let STATE = {
   isBusy: false,
   lastSlimeScore: 0
 };
+
+function getPlatformRankLabel(userObj, platformKey) {
+  if (!userObj) return 'Copper (T1)';
+  const spec = PLATFORM_SPECS[platformKey];
+  if (spec && userObj[spec.rankKey] && userObj[spec.rankKey].label) {
+    return userObj[spec.rankKey].label;
+  }
+  const f = Math.max(0, Number(spec ? userObj[spec.folKey] : 0) || 0);
+  const names = ['Copper', 'Bronze', 'Iron', 'Silver', 'Gold', 'Platinum', 'Emerald', 'Diamond', 'Obsidian', 'Mythic', 'Apex Enclave'];
+  let t = 1;
+  if (f <= 50) t = 1;
+  else if (f <= 200) t = 2;
+  else if (f <= 500) t = 3;
+  else if (f <= 1000) t = 4;
+  else if (f <= 5000) t = 5;
+  else if (f <= 10000) t = 6;
+  else if (f <= 100000) t = 7;
+  else if (f <= 1000000) t = 8;
+  else if (f <= 10000000) t = 9;
+  else if (f <= 100000000) t = 10;
+  else t = 11;
+  return `${names[t - 1]} (T${t})`;
+}
 
 function showLoading(subText) {
   STATE.isBusy = true;
@@ -673,6 +702,7 @@ function ingestBootstrap(res, skipCacheSave) {
   STATE.bjMatches = res.bjMatches || [];
   STATE.tapBattles = res.tapBattles || [];
   STATE.ttConversions = res.ttConversions || [];
+  STATE.milestoneAlerts = res.milestoneAlerts || [];
   STATE.reports = res.reports || [];
   STATE.history = res.history || [];
 
@@ -882,6 +912,41 @@ async function handleMediaFileSelect(inputEl, platformKey) {
   reader.readAsDataURL(file);
 }
 
+function renderQuotaBanner(u) {
+  const q = u.quota || { windowType: '6H WINDOW', used6h: 0, max6h: u.tier || 1, remaining6h: 1, next6hResetIso: '', usedWeek: 0, maxWeek: 10, remainingWeek: 10 };
+  if (u.isAdmin || q.windowType === 'UNLIMITED (ADMIN)') {
+    return `
+      <div class="quota-strip">
+        <div>
+          <span>Post Cooldown:</span>
+          <strong style="color:var(--accent-enclave);">♾️ (EA IMMUNITY)</strong>
+        </div>
+        <div>
+          <span>Weekly Quota:</span>
+          <strong style="color:var(--success);">♾️ UNLIMITED (${q.usedWeek} posted this week) • Shared Comments Free</strong>
+        </div>
+      </div>
+    `;
+  }
+
+  const isDaily = u.tier >= 5 || q.windowType === '24H DAILY';
+  const windowLabel = isDaily ? 'Daily Post Limit (24h Window — Tier 5+)' : '6h Window Quota (Tiers 1–4)';
+  return `
+    <div class="quota-strip">
+      <div>
+        <span>${windowLabel}:</span>
+        <strong style="color:${q.remaining6h > 0 ? 'var(--success)' : 'var(--danger)'};">${q.remaining6h}/${q.max6h} left</strong>
+        <span>(Resets in ${formatCountdownUntil(q.next6hResetIso)})</span>
+      </div>
+      <div>
+        <span>Weekly Quota (Tier ${u.tier}):</span>
+        <strong style="color:${q.remainingWeek > 0 ? '#fff' : 'var(--danger)'};">${q.usedWeek}/${q.maxWeek} used</strong>
+        <span style="color:var(--accent-knok);">• Sharing Comments is Limit-Free!</span>
+      </div>
+    </div>
+  `;
+}
+
 function render() {
   const stage = document.getElementById('mainStage');
   if (!STATE.currentUser) {
@@ -902,23 +967,6 @@ function render() {
     default: stage.innerHTML = renderProfileView();
   }
   hydrateMediaStreams();
-}
-
-function renderQuotaBanner(u) {
-  const q = u.quota || { used6h: 0, max6h: u.tier || 1, remaining6h: 1, next6hResetIso: '', usedWeek: 0, maxWeek: 10, remainingWeek: 10 };
-  return `
-    <div class="quota-strip">
-      <div>
-        <span>6h Window Quota:</span>
-        <strong style="color:${q.remaining6h > 0 ? 'var(--success)' : 'var(--danger)'};">${q.remaining6h}/${q.max6h} left</strong>
-        <span>(Resets in ${formatCountdownUntil(q.next6hResetIso)})</span>
-      </div>
-      <div>
-        <span>Weekly Quota (Tier ${u.tier}):</span>
-        <strong style="color:${q.remainingWeek > 0 ? '#fff' : 'var(--danger)'};">${q.usedWeek}/${q.maxWeek} used</strong>
-      </div>
-    </div>
-  `;
 }
 
 function renderAuthView() {
@@ -1058,7 +1106,7 @@ function renderProfileView() {
               <h2 style="font-size:1.2rem; font-weight:800;">${escapeHtml(u.displayName)}</h2>
               ${renderOnlineBadge(true)}
               ${u.verified ? `<span class="badge verified">${ICONS.check} Verified</span>` : ''}
-              <span class="badge tier">${escapeHtml(u.tierLabel)}</span>
+              <span class="badge tier" title="Calculated from your 3-Network Average Followers">Main ${escapeHtml(u.tierLabel)}</span>
               <span class="badge tt-coin">💎 ${Number(u.terminalTokens || 0).toFixed(2)} TT</span>
               ${u.isAdmin ? `<span class="badge" style="color:var(--accent-enclave);border-color:var(--accent-enclave);">STAFF</span>` : ''}
             </div>
@@ -1077,7 +1125,7 @@ function renderProfileView() {
 
       <div class="grid-4">
         <div style="background:var(--bg-input); padding:12px; border-radius:var(--radius-md); border:1px solid var(--border-subtle);">
-          <div style="font-size:0.7rem; color:var(--text-secondary);">Main Follower Avg (Active)</div>
+          <div style="font-size:0.7rem; color:var(--text-secondary);">Main Follower Avg (3-Network)</div>
           <div style="font-family:var(--font-mono); font-size:1.12rem; font-weight:700; margin-top:4px;">
             ${Number(u.followers).toLocaleString()} <span style="font-size:0.72rem; color:var(--accent-enclave);">${u.multiplier}x</span>
           </div>
@@ -1125,7 +1173,6 @@ function renderProfileView() {
       </details>
     </div>
 
-    <!-- TERMINAL TOKENS (TT) EXCHANGE & USD CASHOUT REQUESTS -->
     <div class="card" style="border-left:3px solid #00e5ff; display:flex; flex-direction:column; gap:12px;">
       <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px;">
         <div>
@@ -1172,21 +1219,25 @@ function renderProfileView() {
 
     <div class="card">
       <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:6px; margin-bottom:10px;">
-        <h3 style="font-size:0.9rem; font-weight:700;">Connected Networks & Individual Followings</h3>
-        <span style="font-size:0.72rem; color:var(--text-secondary);">Main Tier uses the Average across your active channels</span>
+        <h3 style="font-size:0.9rem; font-weight:700;">Connected Networks & Individual Platform Ranks</h3>
+        <span style="font-size:0.72rem; color:var(--text-secondary);">Main Tier uses your 3-Network Average • Each Network has its own Rank (Copper → Apex Enclave)</span>
       </div>
       <div class="grid-3">
         ${['METROTV', 'PUNT', 'KNOKNOX'].map(key => {
           const spec = PLATFORM_SPECS[key];
           const isActive = key === 'METROTV' ? u.metroActive : (key === 'PUNT' ? u.puntActive : u.knoknoxActive);
           const platFol = Number(u[spec.folKey] || 0).toLocaleString();
+          const rankBadgeText = getPlatformRankLabel(u, key);
           return `
             <div style="background:var(--bg-input); border:1px solid var(--border-subtle); padding:12px; border-radius:var(--radius-md); display:flex; flex-direction:column; justify-content:space-between; gap:12px;">
               <div style="display:flex; align-items:center; gap:10px;">
                 <img src="${fixMediaUrl(LOGO_CONFIG[spec.logoKey]) || FALLBACK_AVATAR}" style="width:32px;height:32px;border-radius:6px;object-fit:cover;" alt="" />
                 <div>
-                  <div style="font-weight:700; font-size:0.84rem;">${spec.name}</div>
-                  <div style="font-family:var(--font-mono); font-size:0.7rem; color:${isActive ? 'var(--success)' : 'var(--text-dim)'};">
+                  <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
+                    <span style="font-weight:700; font-size:0.84rem;">${spec.name}</span>
+                    <span class="badge plat-rank">${escapeHtml(rankBadgeText)}</span>
+                  </div>
+                  <div style="font-family:var(--font-mono); font-size:0.7rem; color:${isActive ? 'var(--success)' : 'var(--text-dim)'}; margin-top:2px;">
                     ${isActive ? 'ACTIVE' : 'INACTIVE'} • ${platFol} followers
                   </div>
                 </div>
@@ -1343,12 +1394,7 @@ function bindProfileEvents() {
 }
 
 /**
- * ============================================================================
  * ENCLAVE ARCADE & LIVE PVP HUB
- * 1. Live Tap-Tap PK Battles (Tier 3+, 1m/5m/10m, 40% Follower Auto-Taps, 5/s Manual Taps, 1 TT Gift, Fan Club Boost)
- * 2. Slime Adventure (Chrome Dino-Run Style Endless Slime + 24h Ranked Attempt + Monthly +2% Bonus)
- * 3. Network Jack (Tier 4+ Live PvP Blackjack, 100 Min Bet, 1000 Weekly Cap, 300 Loss Lockout) uh for personal notes
- * ============================================================================
  */
 let SLIME_RUNNER_RAF = null;
 let TAP_BATTLE_POLL_INTERVAL = null;
@@ -1409,9 +1455,6 @@ function renderGamesView() {
   `;
 }
 
-/**
- * 1. TIKTOK-STYLE LIVE TAP-TAP PK BATTLE ARENA
- */
 function renderTapBattleSection() {
   const u = STATE.currentUser;
   const isEligible = u.tier >= 3 || u.isAdmin;
@@ -1421,7 +1464,6 @@ function renderTapBattleSection() {
   const waitingBattles = STATE.tapBattles.filter(b => b.status === 'WAITING');
   const finishedBattles = STATE.tapBattles.filter(b => b.status === 'FINISHED').slice(0, 6);
 
-  // Pick active battle to display in the main PK arena
   let activeBattle = STATE.tapBattles.find(b => b.battleId === STATE.selectedBattleId && (b.status === 'PLAYING' || b.status === 'WAITING'));
   if (!activeBattle) {
     activeBattle = playingBattles.find(b => b.hostUser.toLowerCase() === u.username.toLowerCase() || b.guestUser.toLowerCase() === u.username.toLowerCase())
@@ -1437,7 +1479,7 @@ function renderTapBattleSection() {
         <div>
           <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
             <h3 style="font-size:0.98rem; font-weight:800; color:#ff1f5a;">⚡ Live Tap-Tap PK Battles</h3>
-            <span class="badge tier">Competitors: Tier 3+</span>
+            <span class="badge tier">Competitors: Main Tier 3+</span>
             <span class="badge verified">Spectators & Tappers: All Tiers!</span>
           </div>
           <p style="font-size:0.74rem; color:var(--text-secondary); margin-top:2px;">
@@ -1449,7 +1491,7 @@ function renderTapBattleSection() {
 
       ${!isEligible ? `
         <div style="background:rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3); padding:10px 12px; border-radius:var(--radius-md); font-size:0.78rem; color:#fcd34d;">
-          ℹ️ Hosting or joining as a main PK competitor requires <strong>Follower Tier 3+ (201+ Avg Followers)</strong>. You can still spectate any live battle below, tap the screen (up to 5x/sec), trigger Fan Club Keywords, and gift TT!
+          ℹ️ Hosting or joining as a main PK competitor requires <strong>Main Follower Tier 3+ (201+ Avg Followers)</strong>. You can still spectate any live battle below, tap the screen (up to 5x/sec), trigger Fan Club Keywords, and gift TT!
         </div>
       ` : `
         <div style="display:flex; gap:8px; align-items:flex-end; flex-wrap:wrap; background:var(--bg-input); padding:12px; border-radius:var(--radius-md); border:1px solid var(--border-subtle);">
@@ -1548,7 +1590,6 @@ function renderActivePKArenaHTML(b) {
         </div>
       </div>
 
-      <!-- TIKTOK TUG-OF-WAR PROGRESS BAR -->
       <div class="pk-tug-bar">
         <div class="pk-tug-left" id="pkTugLeftBar" style="width:${hostPct}%;">
           <span id="pkHostScoreText">${hTotal.toLocaleString()} TAPS (${hostPct}%)</span>
@@ -1567,7 +1608,6 @@ function renderActivePKArenaHTML(b) {
         <div class="pk-split-stage">
           <div class="pk-vs-badge">VS</div>
 
-          <!-- LEFT SIDE: HOST -->
           <div class="pk-side-pane host-pane pk-tap-trigger" data-id="${escapeHtml(b.battleId)}" data-side="HOST">
             <div style="display:flex; flex-direction:column; align-items:center; gap:6px; text-align:center;">
               <img src="${escapeHtml(fixMediaUrl(hostObj.profilePic) || FALLBACK_AVATAR)}" class="avatar-lg" style="border-color:var(--pk-left);" alt="" />
@@ -1593,7 +1633,6 @@ function renderActivePKArenaHTML(b) {
             </button>
           </div>
 
-          <!-- RIGHT SIDE: GUEST -->
           <div class="pk-side-pane guest-pane pk-tap-trigger" data-id="${escapeHtml(b.battleId)}" data-side="GUEST">
             <div style="display:flex; flex-direction:column; align-items:center; gap:6px; text-align:center;">
               <img src="${escapeHtml(fixMediaUrl(guestObj.profilePic) || FALLBACK_AVATAR)}" class="avatar-lg" style="border-color:var(--pk-right);" alt="" />
@@ -1620,7 +1659,6 @@ function renderActivePKArenaHTML(b) {
           </div>
         </div>
 
-        <!-- LIVE HYPE CHAT & FAN CLUB KEYWORD CALLOUT BAR -->
         <div class="pk-chat-stream" id="pkChatStreamBox">
           ${(b.chat || []).map(c => `
             <div style="color:${c.isGift ? '#00e5ff' : (c.isBoost ? '#f59e0b' : (c.side === 'HOST' ? '#fda4af' : '#bae6fd'))};">
@@ -1736,7 +1774,7 @@ function renderNetworkJackSection() {
         <div>
           <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
             <h3 style="font-size:0.98rem; font-weight:800; color:var(--accent-enclave);">🃏 Network Jack — Live PvP Follower Blackjack</h3>
-            <span class="badge tier">Tier 4+ Exclusive</span>
+            <span class="badge tier">Main Tier 4+ Exclusive</span>
           </div>
           <p style="font-size:0.74rem; color:var(--text-secondary); margin-top:2px;">
             Wager Followers head-to-head • Min Bet: <strong>100 Followers</strong> • Max Weekly Gain: <strong>1,000 Followers</strong> • Weekly Loss Lockout: <strong>300 Followers</strong>
@@ -1763,7 +1801,7 @@ function renderNetworkJackSection() {
 
       ${!isEligible ? `
         <div style="background:rgba(244,63,94,0.1); border:1px solid rgba(244,63,94,0.3); padding:14px; border-radius:var(--radius-md); font-size:0.82rem; color:#fda4af;">
-          🔒 <strong>Tier 4 Required:</strong> Network Jack is unlocked at <strong>Follower Tier 4 (501+ Main Avg Followers)</strong>. You are currently Tier ${u.tier} (${Number(u.followers).toLocaleString()} avg followers).
+          🔒 <strong>Main Tier 4 Required:</strong> Network Jack is unlocked at <strong>Main Follower Tier 4 (501+ 3-Network Avg Followers)</strong>. You are currently Tier ${u.tier} (${Number(u.followers).toLocaleString()} avg followers).
         </div>
       ` : myBjStat.lockedOut && !u.isAdmin ? `
         <div style="background:rgba(244,63,94,0.12); border:1px solid var(--danger); padding:14px; border-radius:var(--radius-md); font-size:0.82rem; color:#fda4af;">
@@ -1837,7 +1875,7 @@ function renderNetworkJackSection() {
                 <img src="${escapeHtml(fixMediaUrl(usr.profilePic) || FALLBACK_AVATAR)}" class="avatar" style="width:28px;height:28px;" alt="" />
                 <div>
                   <div style="font-size:0.8rem; font-weight:700;">@${escapeHtml(usr.username)}</div>
-                  <div style="font-family:var(--font-mono); font-size:0.66rem; color:var(--text-secondary);">${escapeHtml(usr.tierLabel)}</div>
+                  <div style="font-family:var(--font-mono); font-size:0.66rem; color:var(--text-secondary);">Main ${escapeHtml(usr.tierLabel)}</div>
                 </div>
               </div>
               ${renderOnlineBadge(usr.isOnline)}
@@ -1956,9 +1994,6 @@ function renderActiveBlackjackTableHTML(m) {
   `;
 }
 
-/**
- * SLIME ADVENTURE ENGINE (Chrome Dino-Run Style Endless Slime)
- */
 const DINO_INPUT = { jumpPressed: false, duckHeld: false };
 window.addEventListener('keydown', (e) => {
   if (STATE.currentPage !== 'games' || STATE.activeGameTab !== 'slime') return;
@@ -2144,9 +2179,6 @@ function initSlimeDinoGame(isRankedAttempt) {
   SLIME_RUNNER_RAF = requestAnimationFrame(step);
 }
 
-/**
- * Flush queued PK Taps in the background (without blocking rapid 5/sec tapping!)
- */
 async function flushQueuedPKTaps(battleId) {
   if (TAP_RATE_WINDOW.flushing) return;
   const hSend = TAP_RATE_WINDOW.queuedHost;
@@ -2257,7 +2289,6 @@ function bindGamesEvents() {
       });
     });
 
-    // Spend 1 TT Support Button
     document.querySelectorAll('.pk-gift-tt-btn').forEach(btn => {
       btn.addEventListener('click', async (e) => {
         e.stopPropagation();
@@ -2277,7 +2308,6 @@ function bindGamesEvents() {
       });
     });
 
-    // Rapid Screen Tap Handler (Capped at 5 Taps/Second)
     document.querySelectorAll('.pk-tap-trigger').forEach(pane => {
       pane.addEventListener('click', (e) => {
         if (e.target.closest('.pk-gift-tt-btn')) return;
@@ -2296,7 +2326,6 @@ function bindGamesEvents() {
         if (side === 'HOST') TAP_RATE_WINDOW.queuedHost += 1;
         else TAP_RATE_WINDOW.queuedGuest += 1;
 
-        // Instant UI update
         const battleObj = STATE.tapBattles.find(x => x.battleId === bId);
         if (battleObj) {
           if (side === 'HOST') battleObj.hostTotalTaps = (battleObj.hostTotalTaps || 0) + 1;
@@ -2317,7 +2346,6 @@ function bindGamesEvents() {
       });
     });
 
-    // Battle Chat & Fan Club Keyword Form
     const chatForm = document.getElementById('pkBattleChatForm');
     if (chatForm) {
       chatForm.addEventListener('submit', async (e) => {
@@ -2339,7 +2367,6 @@ function bindGamesEvents() {
       });
     }
 
-    // Live 1s Countdown Timer & 5s Auto-Tap Sync Loop while viewing an active PK Battle
     const activeArena = document.getElementById('activePKArenaBox');
     if (activeArena) {
       TAP_BATTLE_TICK_INTERVAL = setInterval(() => {
@@ -2437,13 +2464,14 @@ function renderPlatformLeaderboardHTML(platformKey) {
   const ranked = STATE.users
     .map(u => {
       const ps = (u.platformStats && u.platformStats[platformKey]) || { followers: u[spec.folKey] || 0, posts: 0, upvotes: 0, downvotes: 0 };
+      const rankObj = u[spec.rankKey] || { label: 'Copper (T1)' };
       return {
         username: u.username,
         displayName: u.displayName,
         profilePic: u.profilePic,
         verified: u.verified,
         isOnline: u.isOnline,
-        tierLabel: u.tierLabel,
+        rankLabel: rankObj.label || 'Copper (T1)',
         isActive: u[activeFlag],
         platFollowers: Number(ps.followers || 0),
         totalFollowers: Number(u.totalFollowers || 0),
@@ -2466,7 +2494,7 @@ function renderPlatformLeaderboardHTML(platformKey) {
       <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;">
         <div>
           <h3 style="font-size:0.95rem; font-weight:800;">${ICONS.trophy} ${spec.name} Creator Leaderboard</h3>
-          <p style="font-size:0.74rem; color:var(--text-secondary);">Ranked by ${spec.name} stats • Displays Network Following & Total Combined Following</p>
+          <p style="font-size:0.74rem; color:var(--text-secondary);">Ranked by ${spec.name} stats • Displays Network Rank, Following & Total Combined</p>
         </div>
         <div style="display:flex; gap:6px; flex-wrap:wrap;">
           <button type="button" class="btn btn-sm ${sortKey==='followers'?'btn-primary':'btn-outline'} lb-sort-btn" data-sort="followers">Most Followers</button>
@@ -2488,7 +2516,7 @@ function renderPlatformLeaderboardHTML(platformKey) {
                     <strong style="font-size:0.86rem;">${escapeHtml(c.displayName)}</strong>
                     ${renderOnlineBadge(c.isOnline)}
                     ${c.verified ? `<span class="badge verified">✓</span>` : ''}
-                    <span class="badge tier">${escapeHtml(c.tierLabel)}</span>
+                    <span class="badge plat-rank">${escapeHtml(c.rankLabel)}</span>
                   </div>
                   <div style="font-family:var(--font-mono); font-size:0.68rem; color:var(--text-secondary);">
                     @${escapeHtml(c.username)} • Total Combined: ${c.totalFollowers.toLocaleString()} (Main Avg: ${c.avgFollowers.toLocaleString()})
@@ -2515,6 +2543,7 @@ function renderPlatformView(platformKey) {
   const isActivated = u.isAdmin || (platformKey === 'METROTV' ? u.metroActive : platformKey === 'PUNT' ? u.puntActive : u.knoknoxActive);
   const platformPosts = STATE.posts.filter(p => p.platform === platformKey && p.status === 'ACTIVE');
   const myPlatFollowers = Number(u[spec.folKey] || 0).toLocaleString();
+  const myPlatRank = getPlatformRankLabel(u, platformKey);
 
   return `
     <div class="card" style="padding:14px 18px; border-top:2px solid ${spec.accentColor}; display:flex; flex-direction:column; gap:12px;">
@@ -2524,7 +2553,8 @@ function renderPlatformView(platformKey) {
           <div>
             <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
               <h2 style="font-size:1.1rem; font-weight:800;">${spec.name}</h2>
-              <span class="badge ${spec.badgeClass}">My ${spec.name} Following: ${myPlatFollowers}</span>
+              <span class="badge ${spec.badgeClass}">Following: ${myPlatFollowers}</span>
+              <span class="badge plat-rank">${escapeHtml(myPlatRank)}</span>
               <span class="badge">${spec.maxDurationSec / 60}m Max</span>
             </div>
             <p style="font-size:0.75rem; color:var(--text-secondary); margin-top:2px;">${spec.sub}</p>
@@ -2707,9 +2737,11 @@ function renderPostMediaHTML(p) {
 function renderPostCardHTML(p) {
   const op = STATE.users.find(u => u.username.toLowerCase() === p.author.toLowerCase()) || { username: p.author, displayName: p.author, profilePic: FALLBACK_AVATAR, verified: false, isOnline: false, tierLabel: 'Tier 1' };
   const spec = PLATFORM_SPECS[p.platform] || PLATFORM_SPECS.METROTV;
-  const originalPost = p.sharedFromId ? STATE.posts.find(x => x.postId === p.sharedFromId) : null;
+  const originalPost = p.sharedFromId && p.sharedFromId.indexOf('CMTSHARE:') === -1 ? STATE.posts.find(x => x.postId === p.sharedFromId) : null;
   const comments = Array.isArray(p.comments) ? p.comments : [];
   const isCommentsOpen = Boolean(STATE.openCommentsMap[p.postId]);
+
+  const isSharedComment = p.sharedFromId && p.sharedFromId.indexOf('CMTSHARE:') === 0;
 
   return `
     <article class="post-card" id="post-${escapeHtml(p.postId)}">
@@ -2731,19 +2763,25 @@ function renderPostCardHTML(p) {
 
         <div style="display:flex; align-items:center; gap:6px;">
           <span class="badge ${spec.badgeClass}">${spec.name}</span>
+          ${isSharedComment ? `<span class="badge arcade">💬 Shared Comment</span>` : ''}
           ${p.mediaType === 'imagedump' ? `<span class="badge">📸 Image Dump</span>` : ''}
           ${p.durationSec > 0 ? `<span class="badge">${p.durationSec}s</span>` : ''}
         </div>
       </div>
 
-      ${p.sharedFromId ? `
+      ${p.sharedFromId && !isSharedComment ? `
         <div class="shared-embed">
           Reposted from <a href="javascript:void(0)" class="op-profile-trigger" data-user="${escapeHtml(p.sharedFromAuthor)}" style="color:#fff; font-weight:700; text-decoration:underline;">@${escapeHtml(p.sharedFromAuthor)}</a>
           ${originalPost ? `<div style="margin-top:4px; color:var(--text-secondary);">"${escapeHtml(originalPost.caption)}"</div>` : ''}
         </div>
       ` : ''}
 
-      <div class="post-caption">${escapeHtml(p.caption)}</div>
+      ${isSharedComment ? `
+        <div class="shared-comment-embed">
+          <div style="font-family:var(--font-mono); font-size:0.7rem; color:var(--accent-arcade); margin-bottom:3px;">SHARED COMMENT THREAD</div>
+          <div style="color:#fff; font-style:italic;">"${escapeHtml(p.caption)}"</div>
+        </div>
+      ` : `<div class="post-caption">${escapeHtml(p.caption)}</div>`}
 
       ${renderPostMediaHTML(p)}
 
@@ -2770,7 +2808,7 @@ function renderPostCardHTML(p) {
 
       ${isCommentsOpen ? `
         <div class="comments-drawer">
-          <div style="display:flex; flex-direction:column; gap:8px; max-height:220px; overflow-y:auto;">
+          <div style="display:flex; flex-direction:column; gap:8px; max-height:240px; overflow-y:auto;">
             ${comments.length === 0 ? `<p style="font-size:0.76rem; color:var(--text-dim);">No comments yet. Start the discussion!</p>` :
               comments.map(c => {
                 const cUser = STATE.users.find(x => x.username.toLowerCase() === String(c.author).toLowerCase()) || { username: c.author, displayName: c.author, profilePic: FALLBACK_AVATAR };
@@ -2782,7 +2820,18 @@ function renderPostCardHTML(p) {
                         <strong style="font-size:0.78rem; cursor:pointer;" class="op-profile-trigger" data-user="${escapeHtml(cUser.username)}">${escapeHtml(cUser.displayName)}</strong>
                         <span style="font-family:var(--font-mono); font-size:0.65rem; color:var(--text-dim);">@${escapeHtml(cUser.username)} • ${formatTime(c.createdAt)}</span>
                       </div>
-                      <div style="margin-top:2px; color:var(--text-primary);">${escapeHtml(c.text)}</div>
+                      <div style="margin-top:3px; color:var(--text-primary);">${escapeHtml(c.text)}</div>
+                      <div class="comment-actions-row">
+                        <button type="button" class="btn btn-xs ${c.myVote === 'LIKE' ? 'btn-success' : 'btn-outline'} comment-vote-btn" data-comment-id="${escapeHtml(c.commentId)}" data-vote="LIKE">
+                          👍 ${Number(c.likesCount || 0)}
+                        </button>
+                        <button type="button" class="btn btn-xs ${c.myVote === 'DISLIKE' ? 'btn-danger' : 'btn-outline'} comment-vote-btn" data-comment-id="${escapeHtml(c.commentId)}" data-vote="DISLIKE">
+                          👎 ${Number(c.dislikesCount || 0)}
+                        </button>
+                        <button type="button" class="btn btn-xs btn-outline share-comment-post-btn" data-author="${escapeHtml(c.author)}" data-text="${escapeHtml(c.text)}" style="margin-left:auto; color:var(--accent-arcade);">
+                          📤 Share as Post (Limit-Free)
+                        </button>
+                      </div>
                     </div>
                   </div>
                 `;
@@ -2815,6 +2864,63 @@ function bindGlobalPostEvents() {
       STATE.openCommentsMap[pid] = !STATE.openCommentsMap[pid];
       render();
       if (STATE.openOPModalUser) openOPProfileModal(STATE.openOPModalUser);
+    });
+  });
+
+  document.querySelectorAll('.comment-vote-btn').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const commentId = btn.getAttribute('data-comment-id');
+      const voteType = btn.getAttribute('data-vote');
+      const res = await apiCall({
+        action: 'voteComment',
+        commentId,
+        username: STATE.currentUser.username,
+        voteType
+      }, 'Voting on Comment');
+
+      if (!res || !res.ok) return showToast((res && res.error) ? res.error : 'Comment vote failed');
+
+      if (res.fastCommentVote) {
+        const targetPost = STATE.posts.find(p => String(p.postId) === String(res.postId));
+        if (targetPost && Array.isArray(targetPost.comments)) {
+          const targetCmt = targetPost.comments.find(c => String(c.commentId) === String(res.commentId));
+          if (targetCmt) {
+            targetCmt.likesCount = res.likesCount;
+            targetCmt.dislikesCount = res.dislikesCount;
+            targetCmt.myVote = res.myVote;
+          }
+        }
+        render();
+        if (STATE.openOPModalUser) openOPProfileModal(STATE.openOPModalUser);
+      } else if (res.currentUser) {
+        ingestBootstrap(res);
+      }
+    });
+  });
+
+  document.querySelectorAll('.share-comment-post-btn').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const author = btn.getAttribute('data-author');
+      const text = btn.getAttribute('data-text');
+      const caption = `💬 Shared comment by @${author}:\n"${text}"`;
+      const targetPlat = STATE.currentUser.metroActive ? 'METROTV' : (STATE.currentUser.puntActive ? 'PUNT' : 'KNOKNOX');
+
+      const res = await apiCall({
+        action: 'createPost',
+        author: STATE.currentUser.username,
+        platform: targetPlat,
+        caption,
+        mediaUrl: '',
+        mediaType: 'none',
+        durationSec: 0,
+        resolution: 'Comment Share',
+        sharedFromId: 'CMTSHARE:' + Date.now(),
+        sharedFromAuthor: author
+      }, 'Sharing Comment as Post');
+
+      if (!res.ok) return showToast(res.error);
+      ingestBootstrap(res);
+      showToast('Shared comment to your feed (exempt from daily limit)!');
     });
   });
 
@@ -2953,9 +3059,9 @@ function openOPProfileModal(username) {
             @${escapeHtml(op.username)} • Main Avg: ${Number(op.followers).toLocaleString()} • Combined Total: ${Number(op.totalFollowers || 0).toLocaleString()}
           </div>
           <div style="display:flex; gap:6px; flex-wrap:wrap; margin-top:6px;">
-            <span class="badge metro">Metro: ${Number(op.metroFollowers || 0).toLocaleString()}</span>
-            <span class="badge punt">PUNT: ${Number(op.puntFollowers || 0).toLocaleString()}</span>
-            <span class="badge knoknox">KnokNox: ${Number(op.knoknoxFollowers || 0).toLocaleString()}</span>
+            <span class="badge metro">Metro: ${Number(op.metroFollowers || 0).toLocaleString()} (${op.metroRank.label})</span>
+            <span class="badge punt">PUNT: ${Number(op.puntFollowers || 0).toLocaleString()} (${op.puntRank.label})</span>
+            <span class="badge knoknox">KnokNox: ${Number(op.knoknoxFollowers || 0).toLocaleString()} (${op.knoknoxRank.label})</span>
           </div>
         </div>
       </div>
@@ -3011,7 +3117,7 @@ function renderSearchView() {
                     <span style="font-weight:700; font-size:0.88rem;">${escapeHtml(u.displayName)}</span>
                     ${renderOnlineBadge(u.isOnline)}
                     ${u.verified ? `<span class="badge verified">✓</span>` : ''}
-                    <span class="badge tier">${escapeHtml(u.tierLabel)}</span>
+                    <span class="badge tier">Main ${escapeHtml(u.tierLabel)}</span>
                   </div>
                   <div style="font-family:var(--font-mono); font-size:0.7rem; color:var(--text-secondary);">
                     @${escapeHtml(u.username)} • Avg: ${Number(u.followers).toLocaleString()} • Total: ${Number(u.totalFollowers || 0).toLocaleString()}
@@ -3032,9 +3138,9 @@ function renderSearchView() {
             </div>
 
             <div style="display:flex; flex-direction:column; gap:6px; font-size:0.76rem; background:var(--bg-input); padding:10px; border-radius:var(--radius-md); border:1px solid var(--border-subtle);">
-              <div style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;"><span class="badge metro" style="margin-right:6px;">Metro (${Number(u.metroFollowers||0).toLocaleString()})</span><span style="color:var(--text-secondary);">${latestMetro ? escapeHtml(latestMetro.caption) : '—'}</span></div>
-              <div style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;"><span class="badge punt" style="margin-right:6px;">PUNT (${Number(u.puntFollowers||0).toLocaleString()})</span><span style="color:var(--text-secondary);">${latestPunt ? escapeHtml(latestPunt.caption) : '—'}</span></div>
-              <div style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;"><span class="badge knoknox" style="margin-right:6px;">Knok (${Number(u.knoknoxFollowers||0).toLocaleString()})</span><span style="color:var(--text-secondary);">${latestKnok ? escapeHtml(latestKnok.caption) : '—'}</span></div>
+              <div style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;"><span class="badge metro" style="margin-right:6px;">Metro (${Number(u.metroFollowers||0).toLocaleString()} • ${u.metroRank.label})</span><span style="color:var(--text-secondary);">${latestMetro ? escapeHtml(latestMetro.caption) : '—'}</span></div>
+              <div style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;"><span class="badge punt" style="margin-right:6px;">PUNT (${Number(u.puntFollowers||0).toLocaleString()} • ${u.puntRank.label})</span><span style="color:var(--text-secondary);">${latestPunt ? escapeHtml(latestPunt.caption) : '—'}</span></div>
+              <div style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;"><span class="badge knoknox" style="margin-right:6px;">Knok (${Number(u.knoknoxFollowers||0).toLocaleString()} • ${u.knoknoxRank.label})</span><span style="color:var(--text-secondary);">${latestKnok ? escapeHtml(latestKnok.caption) : '—'}</span></div>
             </div>
           </div>
         `;
@@ -3307,18 +3413,32 @@ function openShareToChatModal(postId) {
 }
 
 function renderAdminView() {
+  const alerts = STATE.milestoneAlerts || [];
   return `
     <div class="card" style="border-top:2px solid var(--accent-enclave);">
       <div style="display:flex; align-items:center; gap:12px;">
         <img src="${escapeHtml(fixMediaUrl(LOGO_CONFIG.ENCLAVE_HUB_LOGO) || FALLBACK_AVATAR)}" class="avatar" alt="" />
         <div>
           <h2 style="font-size:1.05rem; font-weight:800; color:var(--accent-enclave);">ENCLAVE ADMINISTRATION</h2>
-          <p style="font-size:0.75rem; color:var(--text-secondary);">TT → USD Payout Queue • Brand Assets • Moderation • Access Blocks • Audience Overrides</p>
+          <p style="font-size:0.75rem; color:var(--text-secondary);">1M Milestone Alerts • TT Payout Queue • Brand Assets • Moderation • Overrides</p>
         </div>
       </div>
     </div>
 
-    <!-- TERMINAL TOKENS (TT) -> USD PAYOUT LOG QUEUE -->
+    ${alerts.length > 0 ? `
+      <div class="card" style="border-left:3px solid #f59e0b; background:rgba(245,158,11,0.04);">
+        <h3 style="font-size:0.92rem; font-weight:800; color:#f59e0b; margin-bottom:8px;">🎉 1,000,000 Follower Platform Milestones (${alerts.length})</h3>
+        <div style="display:flex; flex-direction:column; gap:6px; max-height:200px; overflow-y:auto;">
+          ${alerts.map(a => `
+            <div class="milestone-banner">
+              <span style="font-size:0.82rem; font-weight:700; color:#fff;">${escapeHtml(a.message)}</span>
+              <span style="font-family:var(--font-mono); font-size:0.68rem; color:var(--text-secondary);">${formatTime(a.createdAt)}</span>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    ` : ''}
+
     <div class="card" style="border-left:3px solid #00e5ff;">
       <h3 style="font-size:0.92rem; font-weight:800; color:#00e5ff; margin-bottom:6px;">💎 Terminal Tokens (TT) → USD Payout Log (${STATE.ttConversions.length})</h3>
       <p style="font-size:0.74rem; color:var(--text-secondary); margin-bottom:10px;">
@@ -3422,7 +3542,7 @@ function renderAdminView() {
           <div style="background:var(--bg-input); padding:12px; border-radius:var(--radius-md); border:1px solid var(--border-subtle); display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;">
             <div>
               <strong style="font-size:0.84rem;">@${escapeHtml(u.username)}</strong>
-              <span class="badge tier">${escapeHtml(u.tierLabel)}</span>
+              <span class="badge tier">Main ${escapeHtml(u.tierLabel)}</span>
               <span class="badge tt-coin">${Number(u.terminalTokens || 0).toFixed(2)} TT</span>
               <div style="font-family:var(--font-mono); font-size:0.7rem; color:var(--text-secondary); margin-top:2px;">
                 Main Avg: ${Number(u.followers).toLocaleString()} • Combined Total: ${Number(u.totalFollowers || 0).toLocaleString()}
